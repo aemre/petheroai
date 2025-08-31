@@ -23,7 +23,8 @@ import { AppDispatch, RootState } from '../store/store';
 import { uploadAndProcessPhoto } from '../store/slices/photoSlice';
 import { addCredits, decrementCredits } from '../store/slices/userSlice';
 import { RootStackParamList } from '../navigation/AppNavigator';
-import IAPService, { itemSKUs } from '../services/iap';
+import IAPService from '../services/iap';
+import { useTranslation } from '../hooks/useTranslation';
 
 type HomeScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Home'>;
 
@@ -33,6 +34,7 @@ export default function HomeScreen() {
   const { user } = useSelector((state: RootState) => state.auth);
   const { profile, petPreference } = useSelector((state: RootState) => state.user);
   const { isUploading } = useSelector((state: RootState) => state.photo);
+  const { t, isRTL } = useTranslation();
 
   const [showPurchaseModal, setShowPurchaseModal] = useState(false);
   const [products, setProducts] = useState<any[]>([]);
@@ -49,14 +51,10 @@ export default function HomeScreen() {
       emoji: isDog ? '🐕' : '🐱',
       heroEmoji: isDog ? '🦸‍♂️' : '🦸‍♀️',
       image: isDog ? require('../../assets/dog.jpg') : require('../../assets/cat.jpg'),
-      petName: isDog ? 'Dog' : 'Cat',
-      subtitle: isDog 
-        ? 'Transform your loyal companion into an epic hero!' 
-        : 'Transform your feline friend into an epic hero!',
-      actionText: isDog ? 'Transform Dog' : 'Transform Cat',
-      actionSubtext: isDog 
-        ? 'Create epic hero transformation for your dog' 
-        : 'Create epic hero transformation for your cat',
+      petName: isDog ? t('common.dog') : t('common.cat'),
+      subtitle: isDog ? t('home.dogSubtitle') : t('home.catSubtitle'),
+      actionText: isDog ? t('home.transformDog') : t('home.transformCat'),
+      actionSubtext: isDog ? t('home.dogActionText') : t('home.catActionText'),
       gradientColors: isDog 
         ? ['#667eea', '#764ba2', '#f093fb'] as const
         : ['#fa709a', '#fee140', '#fa709a'] as const,
@@ -131,13 +129,13 @@ export default function HomeScreen() {
       if (useCamera) {
         hasPermission = await requestCameraPermission();
         if (!hasPermission) {
-          Alert.alert('Permission needed', 'Camera permission is required to take photos');
+          Alert.alert(t('home.permissionNeeded'), t('home.cameraPermission'));
           return;
         }
       } else {
         hasPermission = await requestMediaLibraryPermission();
         if (!hasPermission) {
-          Alert.alert('Permission needed', 'Photo library permission is required');
+          Alert.alert(t('home.permissionNeeded'), t('home.photoLibraryPermission'));
           return;
         }
       }
@@ -154,30 +152,30 @@ export default function HomeScreen() {
       }
     } catch (error) {
       console.error('Error picking image:', error);
-      Alert.alert('Error', 'Failed to pick image');
+      Alert.alert(t('common.error'), t('home.failedToPickImage'));
     }
   };
 
   const handleUploadPhoto = async () => {
     if (!profile || profile.credits <= 0) {
       Alert.alert(
-        'No Credits',
-        'You need credits to transform your pet. Please purchase credits first.',
+        t('home.noCredits'),
+        t('home.needCredits'),
         [
-          { text: 'Cancel', style: 'cancel' },
-          { text: 'Buy Credits', onPress: () => setShowPurchaseModal(true) },
+          { text: t('common.cancel'), style: 'cancel' },
+          { text: t('home.buyCreditsAction'), onPress: () => setShowPurchaseModal(true) },
         ]
       );
       return;
     }
 
     Alert.alert(
-      'Select Photo',
-      'Choose how you want to add your pet photo',
+      t('home.selectPhoto'),
+      t('home.selectPhotoMethod'),
       [
-        { text: 'Camera', onPress: () => handleImageSelection(true) },
-        { text: 'Gallery', onPress: () => handleImageSelection(false) },
-        { text: 'Cancel', style: 'cancel' },
+        { text: t('common.camera'), onPress: () => handleImageSelection(true) },
+        { text: t('common.gallery'), onPress: () => handleImageSelection(false) },
+        { text: t('common.cancel'), style: 'cancel' },
       ]
     );
   };
@@ -200,7 +198,7 @@ export default function HomeScreen() {
         }
       } catch (error) {
         console.error('Upload error:', error);
-        Alert.alert('Error', 'Failed to upload photo');
+        Alert.alert(t('common.error'), t('home.failedToUpload'));
       }
     }
   };
@@ -212,11 +210,11 @@ export default function HomeScreen() {
         const credits = IAPService.getCreditsFromProductId(productId);
         await dispatch(addCredits({ userId: user.uid, credits }));
         setShowPurchaseModal(false);
-        Alert.alert('Success', `${credits} credits added to your account!`);
+        Alert.alert(t('common.success'), `${credits} ${t('home.purchaseModal.purchaseSuccess')}`);
       }
     } catch (error) {
       console.error('Purchase error:', error);
-      Alert.alert('Error', 'Purchase failed');
+      Alert.alert(t('common.error'), t('home.purchaseModal.purchaseError'));
     }
   };
 
@@ -323,7 +321,7 @@ export default function HomeScreen() {
                 <Text style={styles.creditsIcon}>{petContent.emoji}</Text>
               </View>
               <View style={styles.creditsInfo}>
-                <Text style={styles.creditsLabel}>Your Credits</Text>
+                <Text style={styles.creditsLabel}>{t('home.yourCredits')}</Text>
                 <Text style={styles.creditsValue}>{profile?.credits || 0}</Text>
               </View>
             </View>
@@ -337,7 +335,7 @@ export default function HomeScreen() {
                 style={styles.buyCreditsGradient}
               >
                 <Text style={styles.buyCreditsIcon}>+</Text>
-                <Text style={styles.buyCreditsText}>Buy Credits</Text>
+                <Text style={styles.buyCreditsText}>{t('home.buyCredits')}</Text>
               </LinearGradient>
             </TouchableOpacity>
           </LinearGradient>
@@ -378,10 +376,10 @@ export default function HomeScreen() {
                   </Text>
                 </View>
                 <Text style={styles.primaryButtonText}>
-                  {isUploading ? 'Uploading...' : petContent.actionText}
+                  {isUploading ? t('home.uploading') : petContent.actionText}
                 </Text>
                 <Text style={styles.primaryButtonSubtext}>
-                  {isUploading ? 'Please wait...' : petContent.actionSubtext}
+                  {isUploading ? t('home.pleaseWait') : petContent.actionSubtext}
                 </Text>
               </View>
             </LinearGradient>
@@ -401,8 +399,8 @@ export default function HomeScreen() {
                 <View style={styles.buttonIconContainer}>
                   <Text style={styles.secondaryButtonIcon}>🖼️</Text>
                 </View>
-                <Text style={styles.secondaryButtonText}>My Hero Gallery</Text>
-                <Text style={styles.secondaryButtonSubtext}>View all transformations</Text>
+                <Text style={styles.secondaryButtonText}>{t('home.myHeroGallery')}</Text>
+                <Text style={styles.secondaryButtonSubtext}>{t('home.viewTransformations')}</Text>
               </View>
             </LinearGradient>
           </TouchableOpacity>
@@ -423,15 +421,15 @@ export default function HomeScreen() {
             style={styles.infoGradient}
           >
             <View style={styles.infoHeader}>
-              <Text style={styles.infoTitle}>✨ How it works</Text>
+              <Text style={styles.infoTitle}>{t('home.howItWorks')}</Text>
             </View>
             
             <View style={styles.stepsContainer}>
               {[
-                { icon: '💎', text: 'Purchase credits', color: '#ff6b6b' },
-                { icon: '📸', text: `Upload ${petContent.petName.toLowerCase()} photo`, color: '#4ecdc4' },
-                { icon: '🤖', text: 'AI creates magic', color: '#a8edea' },
-                { icon: '🎉', text: 'Download & share!', color: '#ffd93d' },
+                { icon: '💎', text: t('home.step1'), color: '#ff6b6b' },
+                { icon: '📸', text: `${t('home.step2')}`, color: '#4ecdc4' },
+                { icon: '🤖', text: t('home.step3'), color: '#a8edea' },
+                { icon: '🎉', text: t('home.step4'), color: '#ffd93d' },
               ].map((step, index) => (
                 <View key={index} style={styles.stepItem}>
                   <View style={[styles.stepIcon, { backgroundColor: step.color + '20' }]}>
