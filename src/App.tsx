@@ -10,11 +10,23 @@ import { initializeFirebase } from './services/firebase';
 import PushNotificationService from './services/pushNotifications';
 import IAPService from './services/iap';
 import { loadOnboardingState } from './services/onboarding';
+import { i18n } from './services/i18n';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function App() {
   useEffect(() => {
     const initializeApp = async () => {
       try {
+        // Load saved language preference
+        try {
+          const savedLanguage = await AsyncStorage.getItem('language');
+          if (savedLanguage && ['en', 'tr', 'ar'].includes(savedLanguage)) {
+            i18n.setLanguage(savedLanguage as 'en' | 'tr' | 'ar');
+          }
+        } catch (error) {
+          console.log('No saved language preference found');
+        }
+        
         await initializeFirebase();
         await PushNotificationService.initialize();
         await IAPService.initialize();

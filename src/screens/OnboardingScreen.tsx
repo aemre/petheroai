@@ -11,6 +11,9 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { useDispatch } from 'react-redux';
 import { setOnboardingCompleted, setPetPreference } from '../store/slices/userSlice';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useTranslation } from '../hooks/useTranslation';
+import LanguageSelector from '../components/LanguageSelector';
+import { Language } from '../services/i18n';
 
 const { width, height } = Dimensions.get('window');
 
@@ -22,7 +25,9 @@ interface OnboardingScreenProps {
 
 const OnboardingScreen: React.FC<OnboardingScreenProps> = ({ navigation }) => {
   const [selectedPreference, setSelectedPreference] = useState<PetPreference | null>(null);
+  const [showLanguageSelector, setShowLanguageSelector] = useState(false);
   const dispatch = useDispatch();
+  const { t, changeLanguage, isRTL } = useTranslation();
 
   const handlePreferenceSelect = (preference: PetPreference) => {
     setSelectedPreference(preference);
@@ -53,14 +58,22 @@ const OnboardingScreen: React.FC<OnboardingScreenProps> = ({ navigation }) => {
       style={styles.container}
     >
       <SafeAreaView style={styles.safeArea}>
+        {/* Language Selector Button */}
+        <TouchableOpacity
+          style={[styles.languageButton, isRTL() && styles.languageButtonRTL]}
+          onPress={() => setShowLanguageSelector(true)}
+        >
+          <Text style={styles.languageIcon}>🌐</Text>
+        </TouchableOpacity>
+        
         {/* Decorative paw prints */}
         <Text style={styles.pawTop}>🐾</Text>
         <Text style={styles.pawTopRight}>🐾</Text>
         
-        <View style={styles.content}>
+        <View style={[styles.content, isRTL() && styles.contentRTL]}>
           {/* Question Text */}
-          <Text style={styles.questionText}>
-            Are you a cat{'\n'}or dog person?
+          <Text style={[styles.questionText, isRTL() && styles.textRTL]}>
+            {t('onboarding.question')}
           </Text>
           
           {/* Pet Options */}
@@ -119,14 +132,25 @@ const OnboardingScreen: React.FC<OnboardingScreenProps> = ({ navigation }) => {
             style={[
               styles.continueButton,
               !selectedPreference && styles.disabledButton,
+              isRTL() && styles.continueButtonRTL,
             ]}
             onPress={handleContinue}
             disabled={!selectedPreference}
           >
-            <Text style={styles.continueButtonText}>Continue</Text>
+            <Text style={[styles.continueButtonText, isRTL() && styles.textRTL]}>
+              {t('onboarding.getStarted')}
+            </Text>
           </TouchableOpacity>
         </View>
       </SafeAreaView>
+      
+      <LanguageSelector
+        visible={showLanguageSelector}
+        onClose={() => setShowLanguageSelector(false)}
+        onLanguageSelect={(language: Language) => {
+          changeLanguage(language);
+        }}
+      />
     </LinearGradient>
   );
 };
@@ -402,6 +426,39 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
     fontSize: 20,
     fontWeight: 'bold',
+  },
+  languageButton: {
+    position: 'absolute',
+    top: 60,
+    right: 20,
+    width: 44,
+    height: 44,
+    borderRadius: 22,
+    backgroundColor: 'rgba(255, 255, 255, 0.9)',
+    alignItems: 'center',
+    justifyContent: 'center',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
+    zIndex: 10,
+  },
+  languageButtonRTL: {
+    right: 'auto',
+    left: 20,
+  },
+  languageIcon: {
+    fontSize: 24,
+  },
+  textRTL: {
+    textAlign: 'right',
+  },
+  contentRTL: {
+    alignItems: 'flex-end',
+  },
+  continueButtonRTL: {
+    alignSelf: 'center',
   },
 });
 

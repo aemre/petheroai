@@ -21,6 +21,7 @@ import { AppDispatch, RootState } from '../store/store';
 import { RootStackParamList } from '../navigation/AppNavigator';
 import { getUserPhotos } from '../services/firebase';
 import AnimatedGalleryItem from '../components/AnimatedGalleryItem';
+import { useTranslation } from '../hooks/useTranslation';
 
 type GalleryScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Gallery'>;
 
@@ -40,6 +41,7 @@ export default function GalleryScreen() {
   const dispatch = useDispatch<AppDispatch>();
   const navigation = useNavigation<GalleryScreenNavigationProp>();
   const { user } = useSelector((state: RootState) => state.auth);
+  const { t, isRTL } = useTranslation();
   
   const [galleryItems, setGalleryItems] = useState<GalleryItem[]>([]);
   const [loading, setLoading] = useState(true);
@@ -71,7 +73,7 @@ export default function GalleryScreen() {
       setGalleryItems(galleryData);
     } catch (error) {
       console.error('Error loading gallery:', error);
-      Alert.alert('Error', 'Failed to load your gallery');
+      Alert.alert(t('common.error'), t('errors.loadFailed'));
     } finally {
       setLoading(false);
     }
@@ -118,12 +120,12 @@ export default function GalleryScreen() {
     const diffInHours = (now.getTime() - date.getTime()) / (1000 * 60 * 60);
     
     if (diffInHours < 24) {
-      return 'Today';
+      return t('gallery.today');
     } else if (diffInHours < 48) {
-      return 'Yesterday';
+      return t('gallery.yesterday');
     } else {
       const days = Math.floor(diffInHours / 24);
-      return `${days} days ago`;
+      return `${days} ${t('gallery.daysAgo')}`;
     }
   };
 
@@ -138,17 +140,21 @@ export default function GalleryScreen() {
   );
 
   const renderEmpty = () => (
-    <View style={styles.emptyContainer}>
+    <View style={[styles.emptyContainer, isRTL() && styles.emptyContainerRTL]}>
       <Text style={styles.emptyIcon}>🎨</Text>
-      <Text style={styles.emptyTitle}>No Hero Images Yet</Text>
-      <Text style={styles.emptySubtitle}>
-        Create your first pet hero transformation to see it here!
+      <Text style={[styles.emptyTitle, isRTL() && styles.textRTL]}>
+        {t('gallery.empty')}
+      </Text>
+      <Text style={[styles.emptySubtitle, isRTL() && styles.textRTL]}>
+        {t('gallery.emptySubtitle')}
       </Text>
       <TouchableOpacity
         style={styles.createButton}
         onPress={() => navigation.navigate('Home')}
       >
-        <Text style={styles.createButtonText}>Create Your First Hero</Text>
+        <Text style={[styles.createButtonText, isRTL() && styles.textRTL]}>
+          {t('gallery.createButton')}
+        </Text>
       </TouchableOpacity>
     </View>
   );
@@ -160,7 +166,9 @@ export default function GalleryScreen() {
         style={styles.loadingContainer}
       >
         <ActivityIndicator size="large" color="#FF6B6B" />
-        <Text style={styles.loadingText}>Loading your gallery...</Text>
+        <Text style={[styles.loadingText, isRTL() && styles.textRTL]}>
+          {t('common.loading')}
+        </Text>
       </LinearGradient>
     );
   }
@@ -173,14 +181,18 @@ export default function GalleryScreen() {
       <SafeAreaView style={styles.safeArea}>
         <View style={styles.header}>
         <TouchableOpacity
-          style={styles.backButton}
+          style={[styles.backButton, isRTL() && styles.backButtonRTL]}
           onPress={() => navigation.goBack()}
         >
-          <Text style={styles.backIcon}>←</Text>
+          <Text style={styles.backIcon}>{isRTL() ? '→' : '←'}</Text>
         </TouchableOpacity>
         <View style={styles.titleContainer}>
-          <Text style={styles.title}>🖼️ Your Hero Gallery</Text>
-          <Text style={styles.subtitle}>Swipe right or double-tap to see originals!</Text>
+          <Text style={[styles.title, isRTL() && styles.textRTL]}>
+            {t('gallery.title')}
+          </Text>
+          <Text style={[styles.subtitle, isRTL() && styles.textRTL]}>
+            {t('gallery.subtitle')}
+          </Text>
         </View>
         <View style={styles.placeholder} />
       </View>
@@ -315,5 +327,14 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 16,
     fontWeight: '600',
+  },
+  textRTL: {
+    textAlign: 'right',
+  },
+  backButtonRTL: {
+    transform: [{ scaleX: -1 }],
+  },
+  emptyContainerRTL: {
+    alignItems: 'flex-end',
   },
 });

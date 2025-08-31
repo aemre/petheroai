@@ -17,6 +17,7 @@ import {
   TapGestureHandlerStateChangeEvent,
 } from 'react-native-gesture-handler';
 import { LinearGradient } from 'expo-linear-gradient';
+import { useTranslation } from '../hooks/useTranslation';
 
 interface GalleryItem {
   id: string;
@@ -44,6 +45,7 @@ const AnimatedGalleryItem: React.FC<AnimatedGalleryItemProps> = ({
 }) => {
   const [isTransformed, setIsTransformed] = useState(true);
   const [isDragging, setIsDragging] = useState(false);
+  const { t, isRTL } = useTranslation();
   
   // Animation values - initialize to show hero state
   const slideX = useRef(new Animated.Value(-itemSize)).current; // Original image off-screen initially
@@ -288,7 +290,9 @@ const AnimatedGalleryItem: React.FC<AnimatedGalleryItemProps> = ({
             {item.status === 'processing' && (
               <View style={styles.processingOverlay}>
                 <ActivityIndicator color="#fff" size="small" />
-                <Text style={styles.processingText}>Processing...</Text>
+                <Text style={[styles.processingText, isRTL() && styles.textRTL]}>
+                  {t('gallery.processing')}
+                </Text>
               </View>
             )}
             {item.status === 'error' && (
@@ -366,27 +370,33 @@ const AnimatedGalleryItem: React.FC<AnimatedGalleryItemProps> = ({
             {/* Interaction Indicator for hero view */}
             {item.status === 'done' && isTransformed && (
               <View style={styles.swipeIndicator}>
-                <Text style={styles.swipeText}>👉 Swipe right or 👆👆 double tap for original!</Text>
+                <Text style={[styles.swipeText, isRTL() && styles.textRTL]}>
+                  {t('gallery.swipeRight')}
+                </Text>
               </View>
             )}
 
             {/* Transform Back Indicator for original view */}
             {item.status === 'done' && !isTransformed && (
               <View style={styles.swipeIndicator}>
-                <Text style={styles.swipeText}>👈 Swipe left or 👆👆 double tap for hero</Text>
+                <Text style={[styles.swipeText, isRTL() && styles.textRTL]}>
+                  {t('gallery.swipeLeft')}
+                </Text>
               </View>
             )}
           </View>
 
           {/* Item Info */}
           <View style={styles.itemInfo}>
-            <Text style={styles.themeText}>
-              {getThemeEmoji(item.theme)} {item.theme.split(' ').slice(0, 3).join(' ')}...
+            <Text style={[styles.themeText, isRTL() && styles.textRTL]}>
+              {getThemeEmoji(item.theme)} {t(`themes.${item.theme.split(' ')[0].toLowerCase()}`)}
             </Text>
-            <Text style={styles.dateText}>{formatDate(item.createdAt)}</Text>
+            <Text style={[styles.dateText, isRTL() && styles.textRTL]}>
+              {formatDate(item.createdAt)}
+            </Text>
             {item.status === 'done' && (
-              <Text style={styles.statusText}>
-                {isTransformed ? '🦸‍♀️ Hero Mode' : '📸 Original'}
+              <Text style={[styles.statusText, isRTL() && styles.textRTL]}>
+                {isTransformed ? t('gallery.heroMode') : t('gallery.original')}
               </Text>
             )}
           </View>
@@ -551,6 +561,9 @@ const styles = StyleSheet.create({
     fontSize: 9,
     color: '#8B5CF6',
     fontWeight: '500',
+  },
+  textRTL: {
+    textAlign: 'right',
   },
 });
 

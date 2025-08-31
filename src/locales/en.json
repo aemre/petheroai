@@ -1,0 +1,113 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "retry": "Retry",
+    "cancel": "Cancel",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "done": "Done",
+    "back": "Back",
+    "next": "Next",
+    "skip": "Skip",
+    "continue": "Continue"
+  },
+  "onboarding": {
+    "title": "Welcome to Pet Hero AI!",
+    "subtitle": "Transform your pets into amazing heroes",
+    "question": "Are you a dog or cat person?",
+    "dogButton": "I love dogs! 🐕",
+    "catButton": "I love cats! 🐱",
+    "getStarted": "Get Started"
+  },
+  "auth": {
+    "signIn": "Sign In",
+    "signUp": "Sign Up",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "forgotPassword": "Forgot Password?",
+    "createAccount": "Create Account",
+    "alreadyHaveAccount": "Already have an account?",
+    "dontHaveAccount": "Don't have an account?"
+  },
+  "home": {
+    "title": "📸 Create Pet Hero",
+    "subtitle": "Transform your pet into an amazing superhero!",
+    "selectPhoto": "Select a photo of your pet",
+    "fromCamera": "📷 Take Photo",
+    "fromGallery": "🖼️ Choose from Gallery",
+    "recentPhotos": "Recent Photos",
+    "noPhotos": "No recent photos",
+    "createFirst": "Create your first pet hero!"
+  },
+  "processing": {
+    "title": "Creating Magic...",
+    "subtitle": "AI is transforming your pet",
+    "preparing": "Preparing your photo...",
+    "aiWorking": "AI is working its magic...",
+    "complete": "Transformation complete!",
+    "creating": "Creating your pet hero transformation",
+    "getReady": "Get ready to see your hero pet!",
+    "pleaseWait": "Please wait...",
+    "transforming": "Transforming your pet into a hero...",
+    "magicInProgress": "🎭 AI Magic in Progress",
+    "description": "Watch as your pet transforms! Our AI is analyzing facial features and creating the perfect heroic version while keeping their adorable characteristics."
+  },
+  "result": {
+    "title": "🦸‍♀️ Your Pet Hero",
+    "subtitle": "Amazing transformation completed!",
+    "shareButton": "📤 Share Hero",
+    "saveButton": "💾 Save to Gallery",
+    "retryButton": "🔄 Try Another Theme",
+    "newPhoto": "📷 New Photo",
+    "showOriginal": "Show Original",
+    "showHero": "Show Hero",
+    "saved": "Saved to gallery!",
+    "shared": "Shared successfully!"
+  },
+  "gallery": {
+    "title": "🖼️ Your Hero Gallery",
+    "subtitle": "Swipe right or double-tap to see originals!",
+    "empty": "No Hero Images Yet",
+    "emptySubtitle": "Create your first pet hero transformation to see it here!",
+    "createButton": "Create Your First Hero",
+    "swipeRight": "👉 Swipe right or 👆👆 double tap for original!",
+    "swipeLeft": "👈 Swipe left or 👆👆 double tap for hero",
+    "doubleTap": "Double tap to toggle",
+    "heroMode": "🦸‍♀️ Hero Mode",
+    "original": "📸 Original",
+    "processing": "Processing...",
+    "today": "Today",
+    "yesterday": "Yesterday",
+    "daysAgo": "days ago"
+  },
+  "themes": {
+    "superhero": "Superhero with cape flying through the sky",
+    "knight": "Medieval knight in shining armor",
+    "astronaut": "Space astronaut exploring distant planets",
+    "wizard": "Fantasy wizard casting magical spells",
+    "pirate": "Pirate captain sailing the seven seas",
+    "ninja": "Ninja warrior in stealth mode",
+    "cowboy": "Cowboy sheriff in the wild west",
+    "gladiator": "Ancient gladiator in the colosseum",
+    "steampunk": "Steampunk inventor with mechanical gadgets",
+    "cyber": "Cyber warrior in a futuristic world",
+    "royal": "Royal king or queen with crown and robe",
+    "detective": "Detective with magnifying glass and coat",
+    "firefighter": "Firefighter hero saving the day",
+    "arctic": "Arctic explorer in winter gear",
+    "jungle": "Jungle adventurer with safari equipment"
+  },
+  "errors": {
+    "uploadFailed": "Failed to upload image",
+    "processingFailed": "Image processing failed",
+    "loadFailed": "Failed to load data",
+    "saveFailed": "Failed to save image",
+    "shareFailed": "Failed to share image",
+    "permissionDenied": "Permission denied",
+    "networkError": "Network connection error",
+    "unknownError": "An unknown error occurred"
+  }
+}

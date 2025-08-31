@@ -1,0 +1,113 @@
+{
+  "common": {
+    "loading": "Yükleniyor...",
+    "error": "Hata",
+    "retry": "Tekrar Dene",
+    "cancel": "İptal",
+    "save": "Kaydet",
+    "delete": "Sil",
+    "edit": "Düzenle",
+    "done": "Tamam",
+    "back": "Geri",
+    "next": "İleri",
+    "skip": "Atla",
+    "continue": "Devam Et"
+  },
+  "onboarding": {
+    "title": "Pet Hero AI'ya Hoş Geldin!",
+    "subtitle": "Evcil hayvanlarını muhteşem kahramanlara dönüştür",
+    "question": "Köpek mi kedi sevdalısısın?",
+    "dogButton": "Köpekleri seviyorum! 🐕",
+    "catButton": "Kedileri seviyorum! 🐱",
+    "getStarted": "Başla"
+  },
+  "auth": {
+    "signIn": "Giriş Yap",
+    "signUp": "Kayıt Ol",
+    "email": "E-posta",
+    "password": "Şifre",
+    "confirmPassword": "Şifreyi Onayla",
+    "forgotPassword": "Şifremi Unuttum?",
+    "createAccount": "Hesap Oluştur",
+    "alreadyHaveAccount": "Zaten hesabın var mı?",
+    "dontHaveAccount": "Hesabın yok mu?"
+  },
+  "home": {
+    "title": "📸 Evcil Hayvan Kahramanı Oluştur",
+    "subtitle": "Evcil hayvanını muhteşem bir süper kahramana dönüştür!",
+    "selectPhoto": "Evcil hayvanının fotoğrafını seç",
+    "fromCamera": "📷 Fotoğraf Çek",
+    "fromGallery": "🖼️ Galeriden Seç",
+    "recentPhotos": "Son Fotoğraflar",
+    "noPhotos": "Son fotoğraf yok",
+    "createFirst": "İlk evcil hayvan kahramanını oluştur!"
+  },
+  "processing": {
+    "title": "Sihir Yaratılıyor...",
+    "subtitle": "AI evcil hayvanını dönüştürüyor",
+    "preparing": "Fotoğrafın hazırlanıyor...",
+    "aiWorking": "AI sihirli işini yapıyor...",
+    "complete": "Dönüşüm tamamlandı!",
+    "creating": "Evcil hayvan kahraman dönüşümü oluşturuluyor",
+    "getReady": "Kahraman evcil hayvanını görmeye hazır ol!",
+    "pleaseWait": "Lütfen bekle...",
+    "transforming": "Evcil hayvanın kahramana dönüştürülüyor...",
+    "magicInProgress": "🎭 AI Sihri Devam Ediyor",
+    "description": "Evcil hayvanın dönüşümünü izle! AImız yüz özelliklerini analiz ediyor ve sevimli özelliklerini koruyarak mükemmel kahramanca versiyonu oluşturuyor."
+  },
+  "result": {
+    "title": "🦸‍♀️ Evcil Hayvan Kahramanın",
+    "subtitle": "Muhteşem dönüşüm tamamlandı!",
+    "shareButton": "📤 Kahramanı Paylaş",
+    "saveButton": "💾 Galeriye Kaydet",
+    "retryButton": "🔄 Başka Tema Dene",
+    "newPhoto": "📷 Yeni Fotoğraf",
+    "showOriginal": "Orijinali Göster",
+    "showHero": "Kahramanı Göster",
+    "saved": "Galeriye kaydedildi!",
+    "shared": "Başarıyla paylaşıldı!"
+  },
+  "gallery": {
+    "title": "🖼️ Kahraman Galerisi",
+    "subtitle": "Orijinalleri görmek için sağa kaydır veya çift dokun!",
+    "empty": "Henüz Kahraman Resmi Yok",
+    "emptySubtitle": "Burada görmek için ilk evcil hayvan kahraman dönüşümünü oluştur!",
+    "createButton": "İlk Kahramanını Oluştur",
+    "swipeRight": "👉 Orijinal için sağa kaydır veya 👆👆 çift dokun!",
+    "swipeLeft": "👈 Kahraman için sola kaydır veya 👆👆 çift dokun",
+    "doubleTap": "Değiştirmek için çift dokun",
+    "heroMode": "🦸‍♀️ Kahraman Modu",
+    "original": "📸 Orijinal",
+    "processing": "İşleniyor...",
+    "today": "Bugün",
+    "yesterday": "Dün",
+    "daysAgo": "gün önce"
+  },
+  "themes": {
+    "superhero": "Gökyüzünde uçan pelerinli süper kahraman",
+    "knight": "Parlak zırhlı ortaçağ şövalyesi",
+    "astronaut": "Uzak gezegenleri keşfeden uzay astronotu",
+    "wizard": "Büyülü büyüler yapan fantezi büyücü",
+    "pirate": "Yedi denizde seyr eden korsan kaptanı",
+    "ninja": "Gizlilik modunda ninja savaşçı",
+    "cowboy": "Vahşi batıda kovboy şerifi",
+    "gladiator": "Kolosemda antik gladyatör",
+    "steampunk": "Mekanik aletlerle steampunk mucit",
+    "cyber": "Fütüristik dünyada siber savaşçı",
+    "royal": "Taç ve cüppeli kral veya kraliçe",
+    "detective": "Büyüteç ve paltolu dedektif",
+    "firefighter": "Günü kurtaran itfaiyeci kahraman",
+    "arctic": "Kış teçhizatlı Arktik kaşif",
+    "jungle": "Safari ekipmanlarıyla orman maceracısı"
+  },
+  "errors": {
+    "uploadFailed": "Resim yükleme başarısız",
+    "processingFailed": "Resim işleme başarısız",
+    "loadFailed": "Veri yükleme başarısız",
+    "saveFailed": "Resim kaydetme başarısız",
+    "shareFailed": "Resim paylaşma başarısız",
+    "permissionDenied": "İzin reddedildi",
+    "networkError": "Ağ bağlantı hatası",
+    "unknownError": "Bilinmeyen bir hata oluştu"
+  }
+}

@@ -3299,6 +3299,8 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
+  - RNI18n (2.0.15):
+    - React
   - RNIap (13.0.4):
     - React-Core
   - RNReanimated (3.16.7):
@@ -3508,6 +3510,7 @@ DEPENDENCIES:
   - "RNFBMessaging (from `../node_modules/@react-native-firebase/messaging`)"
   - "RNFBStorage (from `../node_modules/@react-native-firebase/storage`)"
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
+  - RNI18n (from `../node_modules/react-native-i18n`)
   - RNIap (from `../node_modules/react-native-iap`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNScreens (from `../node_modules/react-native-screens`)
@@ -3729,6 +3732,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@react-native-firebase/storage"
   RNGestureHandler:
     :path: "../node_modules/react-native-gesture-handler"
+  RNI18n:
+    :path: "../node_modules/react-native-i18n"
   RNIap:
     :path: "../node_modules/react-native-iap"
   RNReanimated:
@@ -3857,6 +3862,7 @@ SPEC CHECKSUMS:
   RNFBMessaging: 05cf23163faa65a3a0003c1b22afd2e655b80040
   RNFBStorage: c244a44b2b18eae50e320ac2a352f0d54b86d435
   RNGestureHandler: 82c5ab302616348584b7563e06753b288a03fa7e
+  RNI18n: e2f7e76389fcc6e84f2c8733ea89b92502351fd8
   RNIap: c904e8acc2b97f929ab1fb7909b7f62214a64267
   RNReanimated: 0ef4195cae61084be15ba5f3f888962311bc115f
   RNScreens: 39d31613db654b41925342a10f50252780b839be
