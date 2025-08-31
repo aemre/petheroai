@@ -1,0 +1,13 @@
+{
+  "projects": {},
+  "targets": {
+    "pet-hero-ai": {
+      "storage": {
+        "default": [
+          "pet-hero-ai.appspot.com"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}

@@ -57,13 +57,68 @@ export const updateUserCredits = async (userId: string, credits: number) => {
 
 export const uploadImage = async (uri: string, userId: string) => {
   try {
-    const filename = `${userId}_${Date.now()}.jpg`;
+    console.log('📤 Starting BASIC image upload...', { uri, userId });
+    
+    // Check authentication first
+    const currentUser = auth().currentUser;
+    if (!currentUser) {
+      throw new Error('User not authenticated for storage upload');
+    }
+    console.log('👤 User authenticated:', currentUser.uid);
+    
+    // Use simple filename without userId for now
+    const filename = `image_${Date.now()}.jpg`;
     const reference = storage().ref(`images/${filename}`);
-    await reference.putFile(uri);
+    
+    console.log('📂 Storage reference created:', `images/${filename}`);
+    console.log('🏗️ Storage bucket:', storage().app.options.storageBucket);
+    
+    // Try simplest upload first - no metadata, no progress monitoring
+    console.log('⬆️ Starting basic putFile...');
+    const uploadTask = reference.putFile(uri);
+    
+    // Simple promise-based upload without event listeners
+    console.log('⏳ Waiting for upload completion...');
+    const snapshot = await uploadTask;
+    
+    console.log('✅ Upload completed successfully!');
+    console.log('📊 Final snapshot:', {
+      bytesTransferred: snapshot.bytesTransferred,
+      totalBytes: snapshot.totalBytes,
+      state: snapshot.state,
+    });
+    
+    // Try to get download URL
+    console.log('🔗 Getting download URL...');
     const downloadUrl = await reference.getDownloadURL();
+    
+    console.log('✅ Download URL obtained successfully:', downloadUrl);
     return downloadUrl;
-  } catch (error) {
-    console.error('Error uploading image:', error);
+    
+  } catch (error: any) {
+    console.error('❌ DETAILED ERROR ANALYSIS:');
+    console.error('❌ Error object:', error);
+    console.error('❌ Error code:', error?.code);
+    console.error('❌ Error message:', error?.message);
+    console.error('❌ Error name:', error?.name);
+    console.error('❌ Error stack:', error?.stack);
+    console.error('❌ Error toString:', error?.toString());
+    
+    // Log storage configuration
+    console.error('🏗️ Storage config:', {
+      bucket: storage().app.options.storageBucket,
+      projectId: storage().app.options.projectId,
+      appName: storage().app.name,
+    });
+    
+    // Log auth state
+    const user = auth().currentUser;
+    console.error('👤 Auth state:', {
+      isAuthenticated: !!user,
+      uid: user?.uid,
+      isAnonymous: user?.isAnonymous,
+    });
+    
     throw error;
   }
 };
