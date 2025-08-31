@@ -7,12 +7,17 @@ import {
   ScrollView,
   Alert,
   Modal,
+  Animated,
+  Dimensions,
+  Image,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import * as ImagePicker from 'expo-image-picker';
+
+const { width, height } = Dimensions.get('window');
 
 import { AppDispatch, RootState } from '../store/store';
 import { uploadAndProcessPhoto } from '../store/slices/photoSlice';
@@ -26,15 +31,67 @@ export default function HomeScreen() {
   const dispatch = useDispatch<AppDispatch>();
   const navigation = useNavigation<HomeScreenNavigationProp>();
   const { user } = useSelector((state: RootState) => state.auth);
-  const { profile } = useSelector((state: RootState) => state.user);
+  const { profile, petPreference } = useSelector((state: RootState) => state.user);
   const { isUploading } = useSelector((state: RootState) => state.photo);
 
   const [showPurchaseModal, setShowPurchaseModal] = useState(false);
   const [products, setProducts] = useState<any[]>([]);
+  
+  // Animation values
+  const fadeAnim = new Animated.Value(0);
+  const slideAnim = new Animated.Value(50);
+  const scaleAnim = new Animated.Value(0.9);
+
+  // Pet-specific content
+  const getPetContent = () => {
+    const isDog = petPreference === 'dog';
+    return {
+      emoji: isDog ? '🐕' : '🐱',
+      heroEmoji: isDog ? '🦸‍♂️' : '🦸‍♀️',
+      image: isDog ? require('../../assets/dog.jpg') : require('../../assets/cat.jpg'),
+      petName: isDog ? 'Dog' : 'Cat',
+      subtitle: isDog 
+        ? 'Transform your loyal companion into an epic hero!' 
+        : 'Transform your feline friend into an epic hero!',
+      actionText: isDog ? 'Transform Dog' : 'Transform Cat',
+      actionSubtext: isDog 
+        ? 'Create epic hero transformation for your dog' 
+        : 'Create epic hero transformation for your cat',
+      gradientColors: isDog 
+        ? ['#667eea', '#764ba2', '#f093fb'] as const
+        : ['#fa709a', '#fee140', '#fa709a'] as const,
+      iconGradient: isDog 
+        ? ['#ff9a9e', '#fecfef', '#fecfef'] as const
+        : ['#a8edea', '#fed6e3', '#a8edea'] as const,
+    };
+  };
+
+  const petContent = getPetContent();
 
   useEffect(() => {
     initializeIAP();
+    startEntryAnimation();
   }, []);
+
+  const startEntryAnimation = () => {
+    Animated.parallel([
+      Animated.timing(fadeAnim, {
+        toValue: 1,
+        duration: 800,
+        useNativeDriver: true,
+      }),
+      Animated.timing(slideAnim, {
+        toValue: 0,
+        duration: 600,
+        useNativeDriver: true,
+      }),
+      Animated.timing(scaleAnim, {
+        toValue: 1,
+        duration: 700,
+        useNativeDriver: true,
+      }),
+    ]).start();
+  };
 
   const initializeIAP = async () => {
     try {
@@ -172,23 +229,38 @@ export default function HomeScreen() {
     >
       <View style={styles.modalOverlay}>
         <View style={styles.modalContent}>
-          <Text style={styles.modalTitle}>Buy Credits</Text>
-          <Text style={styles.modalSubtitle}>Choose your credit package</Text>
+          <Text style={styles.modalTitle}>💎 Buy Credits</Text>
+          <Text style={styles.modalSubtitle}>Choose your credit package to continue transforming pets!</Text>
           
-          {products.map((product) => (
+          {products.map((product, index) => (
             <TouchableOpacity
               key={product.productId}
               style={styles.productButton}
               onPress={() => handlePurchase(product.productId)}
+              activeOpacity={0.8}
             >
-              <Text style={styles.productTitle}>{product.title}</Text>
-              <Text style={styles.productPrice}>{product.localizedPrice}</Text>
+              <LinearGradient
+                colors={[
+                  index % 2 === 0 ? '#ff6b6b' : '#4ecdc4',
+                  index % 2 === 0 ? '#ff8e8e' : '#6ee0d5'
+                ]}
+                style={styles.productGradient}
+              >
+                <View>
+                  <Text style={styles.productTitle}>{product.title}</Text>
+                  <Text style={[styles.productTitle, { fontSize: 14, opacity: 0.8 }]}>
+                    {IAPService.getCreditsFromProductId(product.productId)} Credits
+                  </Text>
+                </View>
+                <Text style={styles.productPrice}>{product.localizedPrice}</Text>
+              </LinearGradient>
             </TouchableOpacity>
           ))}
           
           <TouchableOpacity
             style={styles.closeButton}
             onPress={() => setShowPurchaseModal(false)}
+            activeOpacity={0.7}
           >
             <Text style={styles.closeButtonText}>Close</Text>
           </TouchableOpacity>
@@ -199,60 +271,181 @@ export default function HomeScreen() {
 
   return (
     <LinearGradient
-      colors={['#FFE8E8', '#FFD0D0', '#FFC1C1']}
+      colors={petContent.gradientColors}
+      start={{ x: 0, y: 0 }}
+      end={{ x: 1, y: 1 }}
       style={styles.container}
     >
-      <ScrollView contentContainerStyle={styles.scrollContent}>
-        <View style={styles.header}>
-          <Text style={styles.welcomeText}>🦸‍♀️ Pet Hero AI</Text>
-          <Text style={styles.subtitle}>Transform your pet into a hero!</Text>
-        </View>
+      <ScrollView 
+        contentContainerStyle={styles.scrollContent}
+        showsVerticalScrollIndicator={false}
+      >
+        {/* Animated Header */}
+        <Animated.View 
+          style={[
+            styles.header,
+            {
+              opacity: fadeAnim,
+              transform: [{ translateY: slideAnim }]
+            }
+          ]}
+        >
+          <View style={styles.heroIconContainer}>
+            <View style={styles.petImageContainer}>
+              <Image 
+                source={petContent.image} 
+                style={styles.petImage}
+                resizeMode="cover"
+              />
+            </View>
+          </View>
+          <Text style={styles.welcomeText}>{petContent.petName} Hero AI</Text>
+          <Text style={styles.subtitle}>{petContent.subtitle}</Text>
+          <View style={styles.decorativeLine} />
+        </Animated.View>
 
-        <View style={styles.creditsContainer}>
-          <Text style={styles.creditsText}>
-            Credits: {profile?.credits || 0}
-          </Text>
-          <View style={styles.creditsButtons}>
+        {/* Animated Credits Card */}
+        <Animated.View 
+          style={[
+            styles.creditsCard,
+            {
+              opacity: fadeAnim,
+              transform: [{ scale: scaleAnim }]
+            }
+          ]}
+        >
+          <LinearGradient
+            colors={['#ffffff', '#f8f9ff']}
+            style={styles.creditsGradient}
+          >
+            <View style={styles.creditsHeader}>
+              <View style={styles.creditsIconContainer}>
+                <Text style={styles.creditsIcon}>{petContent.emoji}</Text>
+              </View>
+              <View style={styles.creditsInfo}>
+                <Text style={styles.creditsLabel}>Your Credits</Text>
+                <Text style={styles.creditsValue}>{profile?.credits || 0}</Text>
+              </View>
+            </View>
+            
             <TouchableOpacity
               style={styles.buyCreditsButton}
               onPress={() => setShowPurchaseModal(true)}
             >
-              <Text style={styles.buyCreditsText}>+ Buy Credits</Text>
+              <LinearGradient
+                colors={['#ff6b6b', '#ff8e8e']}
+                style={styles.buyCreditsGradient}
+              >
+                <Text style={styles.buyCreditsIcon}>+</Text>
+                <Text style={styles.buyCreditsText}>Buy Credits</Text>
+              </LinearGradient>
             </TouchableOpacity>
-          </View>
-        </View>
+          </LinearGradient>
+        </Animated.View>
 
-        <View style={styles.actionContainer}>
-          <TouchableOpacity
-            style={styles.galleryButton}
-            onPress={() => navigation.navigate('Gallery')}
-          >
-            <Text style={styles.galleryButtonIcon}>🖼️</Text>
-            <Text style={styles.galleryButtonText}>My Hero Gallery</Text>
-          </TouchableOpacity>
-          
+        {/* Main Action Buttons */}
+        <Animated.View 
+          style={[
+            styles.actionContainer,
+            {
+              opacity: fadeAnim,
+              transform: [{ translateY: slideAnim }]
+            }
+          ]}
+        >
+          {/* Transform Pet Button */}
           <TouchableOpacity
             style={[
-              styles.uploadButton,
-              (!profile?.credits || profile.credits <= 0) && styles.uploadButtonDisabled
+              styles.primaryActionButton,
+              (!profile?.credits || profile.credits <= 0) && styles.buttonDisabled
             ]}
             onPress={handleUploadPhoto}
             disabled={isUploading || (!profile?.credits || profile.credits <= 0)}
+            activeOpacity={0.8}
           >
-            <Text style={styles.uploadButtonIcon}>📸</Text>
-            <Text style={styles.uploadButtonText}>
-              {isUploading ? 'Uploading...' : 'Transform Pet'}
-            </Text>
+            <LinearGradient
+              colors={
+                (!profile?.credits || profile.credits <= 0) 
+                  ? ['#cccccc', '#999999'] 
+                  : ['#4ecdc4', '#44a08d']
+              }
+              style={styles.primaryButtonGradient}
+            >
+              <View style={styles.buttonContent}>
+                <View style={styles.buttonIconContainer}>
+                  <Text style={styles.primaryButtonIcon}>
+                    {isUploading ? '⏳' : '📸'}
+                  </Text>
+                </View>
+                <Text style={styles.primaryButtonText}>
+                  {isUploading ? 'Uploading...' : petContent.actionText}
+                </Text>
+                <Text style={styles.primaryButtonSubtext}>
+                  {isUploading ? 'Please wait...' : petContent.actionSubtext}
+                </Text>
+              </View>
+            </LinearGradient>
           </TouchableOpacity>
-        </View>
 
-        <View style={styles.infoContainer}>
-          <Text style={styles.infoTitle}>How it works:</Text>
-          <Text style={styles.infoStep}>1. Purchase credits</Text>
-          <Text style={styles.infoStep}>2. Upload your pet's photo</Text>
-          <Text style={styles.infoStep}>3. AI transforms them into a hero</Text>
-          <Text style={styles.infoStep}>4. Download & share the result!</Text>
-        </View>
+          {/* Gallery Button */}
+          <TouchableOpacity
+            style={styles.secondaryActionButton}
+            onPress={() => navigation.navigate('Gallery')}
+            activeOpacity={0.8}
+          >
+            <LinearGradient
+              colors={['#a8edea', '#fed6e3']}
+              style={styles.secondaryButtonGradient}
+            >
+              <View style={styles.buttonContent}>
+                <View style={styles.buttonIconContainer}>
+                  <Text style={styles.secondaryButtonIcon}>🖼️</Text>
+                </View>
+                <Text style={styles.secondaryButtonText}>My Hero Gallery</Text>
+                <Text style={styles.secondaryButtonSubtext}>View all transformations</Text>
+              </View>
+            </LinearGradient>
+          </TouchableOpacity>
+        </Animated.View>
+
+        {/* How it Works Section */}
+        <Animated.View 
+          style={[
+            styles.infoCard,
+            {
+              opacity: fadeAnim,
+              transform: [{ translateY: slideAnim }]
+            }
+          ]}
+        >
+          <LinearGradient
+            colors={['#ffffff', '#f8f9ff']}
+            style={styles.infoGradient}
+          >
+            <View style={styles.infoHeader}>
+              <Text style={styles.infoTitle}>✨ How it works</Text>
+            </View>
+            
+            <View style={styles.stepsContainer}>
+              {[
+                { icon: '💎', text: 'Purchase credits', color: '#ff6b6b' },
+                { icon: '📸', text: `Upload ${petContent.petName.toLowerCase()} photo`, color: '#4ecdc4' },
+                { icon: '🤖', text: 'AI creates magic', color: '#a8edea' },
+                { icon: '🎉', text: 'Download & share!', color: '#ffd93d' },
+              ].map((step, index) => (
+                <View key={index} style={styles.stepItem}>
+                  <View style={[styles.stepIcon, { backgroundColor: step.color + '20' }]}>
+                    <Text style={styles.stepEmoji}>{step.icon}</Text>
+                  </View>
+                  <Text style={styles.stepText}>{step.text}</Text>
+                  <View style={styles.stepNumber}>
+                    <Text style={styles.stepNumberText}>{index + 1}</Text>
+                  </View>
+                </View>
+              ))}
+            </View>
+          </LinearGradient>
+        </Animated.View>
       </ScrollView>
 
       {renderPurchaseModal()}
@@ -267,146 +460,322 @@ const styles = StyleSheet.create({
   scrollContent: {
     padding: 20,
     paddingTop: 60,
+    paddingBottom: 40,
   },
+  
+  // Header Styles
   header: {
-    alignItems: 'center',
-    marginBottom: 30,
-  },
-  welcomeText: {
-    fontSize: 28,
-    fontWeight: 'bold',
-    color: '#FF6B6B',
-    marginBottom: 8,
-  },
-  subtitle: {
-    fontSize: 16,
-    color: '#666',
-    textAlign: 'center',
-  },
-  creditsContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    backgroundColor: 'white',
-    padding: 16,
-    borderRadius: 12,
-    marginBottom: 24,
-    elevation: 2,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-  },
-  creditsText: {
-    fontSize: 18,
-    fontWeight: '600',
-    color: '#333',
-  },
-  buyCreditsButton: {
-    backgroundColor: '#FF6B6B',
-    paddingHorizontal: 16,
-    paddingVertical: 8,
-    borderRadius: 8,
-  },
-  buyCreditsText: {
-    color: 'white',
-    fontWeight: '600',
-  },
-  creditsButtons: {
-    flexDirection: 'row',
-    gap: 8,
-  },
-  actionContainer: {
     alignItems: 'center',
     marginBottom: 32,
   },
-  galleryButton: {
-    backgroundColor: '#8B5CF6',
-    paddingHorizontal: 24,
-    paddingVertical: 16,
-    borderRadius: 12,
+  heroIconContainer: {
+    marginBottom: 16,
+  },
+  petImageContainer: {
+    width: 120,
+    height: 120,
+    borderRadius: 60,
+    overflow: 'hidden',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 8 },
+    shadowOpacity: 0.25,
+    shadowRadius: 16,
+    elevation: 12,
+    position: 'relative',
+  },
+  petImage: {
+    width: '100%',
+    height: '100%',
+    borderRadius: 60,
+  },
+  heroOverlay: {
+    position: 'absolute',
+    bottom: -5,
+    right: -5,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.2,
+    shadowRadius: 8,
+    elevation: 8,
+  },
+  heroIcon: {
+    width: 50,
+    height: 50,
+    borderRadius: 25,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderWidth: 3,
+    borderColor: '#ffffff',
+  },
+  heroEmoji: {
+    fontSize: 24,
+  },
+  welcomeText: {
+    fontSize: 32,
+    fontWeight: '800',
+    color: '#ffffff',
+    marginBottom: 8,
+    textAlign: 'center',
+    textShadowColor: 'rgba(0,0,0,0.3)',
+    textShadowOffset: { width: 0, height: 2 },
+    textShadowRadius: 4,
+  },
+  subtitle: {
+    fontSize: 16,
+    color: '#ffffff',
+    textAlign: 'center',
+    opacity: 0.9,
+    fontWeight: '500',
+    lineHeight: 22,
+  },
+  decorativeLine: {
+    width: 60,
+    height: 4,
+    backgroundColor: '#ffffff',
+    marginTop: 16,
+    borderRadius: 2,
+    opacity: 0.8,
+  },
+
+  // Credits Card Styles
+  creditsCard: {
+    marginBottom: 24,
+    borderRadius: 20,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 6 },
+    shadowOpacity: 0.15,
+    shadowRadius: 12,
+    elevation: 8,
+  },
+  creditsGradient: {
+    borderRadius: 20,
+    padding: 20,
+  },
+  creditsHeader: {
+    flexDirection: 'row',
     alignItems: 'center',
     marginBottom: 16,
-    minWidth: 200,
-    elevation: 2,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
   },
-  galleryButtonIcon: {
+  creditsIconContainer: {
+    width: 50,
+    height: 50,
+    borderRadius: 25,
+    backgroundColor: '#f0f0ff',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginRight: 16,
+  },
+  creditsIcon: {
     fontSize: 24,
-    marginBottom: 4,
   },
-  galleryButtonText: {
+  creditsInfo: {
+    flex: 1,
+  },
+  creditsLabel: {
+    fontSize: 14,
+    color: '#666',
+    marginBottom: 4,
+    fontWeight: '500',
+  },
+  creditsValue: {
+    fontSize: 28,
+    fontWeight: '800',
+    color: '#333',
+  },
+  buyCreditsButton: {
+    borderRadius: 12,
+    shadowColor: '#ff6b6b',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.3,
+    shadowRadius: 8,
+    elevation: 6,
+  },
+  buyCreditsGradient: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: 20,
+    paddingVertical: 12,
+    borderRadius: 12,
+  },
+  buyCreditsIcon: {
+    fontSize: 18,
+    color: 'white',
+    fontWeight: 'bold',
+    marginRight: 8,
+  },
+  buyCreditsText: {
     color: 'white',
     fontSize: 16,
-    fontWeight: '600',
+    fontWeight: '700',
   },
-  uploadButton: {
-    backgroundColor: '#4ECDC4',
-    paddingHorizontal: 32,
-    paddingVertical: 20,
-    borderRadius: 16,
-    alignItems: 'center',
-    width: '100%',
-    elevation: 3,
+
+  // Action Container
+  actionContainer: {
+    marginBottom: 32,
+  },
+
+  // Primary Action Button
+  primaryActionButton: {
+    marginBottom: 16,
+    borderRadius: 20,
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
+    shadowOffset: { width: 0, height: 8 },
     shadowOpacity: 0.2,
-    shadowRadius: 4,
+    shadowRadius: 16,
+    elevation: 10,
   },
-  uploadButtonDisabled: {
-    backgroundColor: '#ccc',
-    elevation: 0,
-    shadowOpacity: 0,
+  primaryButtonGradient: {
+    borderRadius: 20,
+    padding: 24,
   },
-  uploadButtonIcon: {
-    fontSize: 32,
-    marginBottom: 8,
+  buttonContent: {
+    alignItems: 'center',
   },
-  uploadButtonText: {
+  buttonIconContainer: {
+    width: 60,
+    height: 60,
+    borderRadius: 30,
+    backgroundColor: 'rgba(255,255,255,0.2)',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 16,
+  },
+  primaryButtonIcon: {
+    fontSize: 28,
+  },
+  primaryButtonText: {
     color: 'white',
-    fontSize: 18,
-    fontWeight: 'bold',
+    fontSize: 20,
+    fontWeight: '800',
+    marginBottom: 4,
+    textAlign: 'center',
   },
-  infoContainer: {
-    backgroundColor: 'white',
-    padding: 20,
-    borderRadius: 12,
-    elevation: 2,
+  primaryButtonSubtext: {
+    color: 'rgba(255,255,255,0.8)',
+    fontSize: 14,
+    fontWeight: '500',
+    textAlign: 'center',
+  },
+
+  // Secondary Action Button
+  secondaryActionButton: {
+    borderRadius: 16,
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
+    shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.1,
-    shadowRadius: 4,
+    shadowRadius: 8,
+    elevation: 6,
+  },
+  secondaryButtonGradient: {
+    borderRadius: 16,
+    padding: 20,
+  },
+  secondaryButtonIcon: {
+    fontSize: 24,
+  },
+  secondaryButtonText: {
+    color: '#333',
+    fontSize: 18,
+    fontWeight: '700',
+    marginBottom: 4,
+    textAlign: 'center',
+  },
+  secondaryButtonSubtext: {
+    color: '#666',
+    fontSize: 14,
+    fontWeight: '500',
+    textAlign: 'center',
+  },
+
+  buttonDisabled: {
+    opacity: 0.6,
+  },
+
+  // Info Card Styles
+  infoCard: {
+    borderRadius: 20,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 6 },
+    shadowOpacity: 0.1,
+    shadowRadius: 12,
+    elevation: 8,
+  },
+  infoGradient: {
+    borderRadius: 20,
+    padding: 24,
+  },
+  infoHeader: {
+    marginBottom: 20,
   },
   infoTitle: {
-    fontSize: 18,
-    fontWeight: '600',
+    fontSize: 20,
+    fontWeight: '800',
     color: '#333',
-    marginBottom: 12,
+    textAlign: 'center',
   },
-  infoStep: {
+  stepsContainer: {
+    gap: 16,
+  },
+  stepItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingVertical: 8,
+  },
+  stepIcon: {
+    width: 44,
+    height: 44,
+    borderRadius: 22,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginRight: 16,
+  },
+  stepEmoji: {
+    fontSize: 20,
+  },
+  stepText: {
+    flex: 1,
     fontSize: 16,
-    color: '#666',
-    marginBottom: 6,
+    color: '#333',
+    fontWeight: '600',
   },
+  stepNumber: {
+    width: 24,
+    height: 24,
+    borderRadius: 12,
+    backgroundColor: '#667eea',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  stepNumberText: {
+    fontSize: 12,
+    color: 'white',
+    fontWeight: '700',
+  },
+
+  // Modal Styles
   modalOverlay: {
     flex: 1,
-    backgroundColor: 'rgba(0,0,0,0.5)',
+    backgroundColor: 'rgba(0,0,0,0.6)',
     justifyContent: 'center',
     alignItems: 'center',
   },
   modalContent: {
     backgroundColor: 'white',
     margin: 20,
-    padding: 24,
-    borderRadius: 16,
-    width: '90%',
+    padding: 28,
+    borderRadius: 24,
+    width: width * 0.9,
+    maxHeight: height * 0.8,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 12 },
+    shadowOpacity: 0.3,
+    shadowRadius: 24,
+    elevation: 16,
   },
   modalTitle: {
-    fontSize: 22,
-    fontWeight: 'bold',
+    fontSize: 24,
+    fontWeight: '800',
     color: '#333',
     textAlign: 'center',
     marginBottom: 8,
@@ -415,34 +784,45 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: '#666',
     textAlign: 'center',
-    marginBottom: 24,
+    marginBottom: 28,
+    fontWeight: '500',
   },
   productButton: {
-    backgroundColor: '#FF6B6B',
-    padding: 16,
-    borderRadius: 8,
-    marginBottom: 12,
+    borderRadius: 16,
+    marginBottom: 16,
+    shadowColor: '#ff6b6b',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.2,
+    shadowRadius: 8,
+    elevation: 6,
+  },
+  productGradient: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+    padding: 20,
+    borderRadius: 16,
   },
   productTitle: {
     color: 'white',
-    fontSize: 16,
-    fontWeight: '600',
+    fontSize: 18,
+    fontWeight: '700',
   },
   productPrice: {
     color: 'white',
-    fontSize: 16,
-    fontWeight: 'bold',
+    fontSize: 18,
+    fontWeight: '800',
   },
   closeButton: {
-    marginTop: 12,
+    marginTop: 16,
     padding: 16,
     alignItems: 'center',
+    borderRadius: 12,
+    backgroundColor: '#f5f5f5',
   },
   closeButtonText: {
     color: '#666',
     fontSize: 16,
+    fontWeight: '600',
   },
 });
