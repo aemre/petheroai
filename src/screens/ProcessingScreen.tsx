@@ -6,6 +6,7 @@ import {
   ActivityIndicator,
   Animated,
   Dimensions,
+  Image,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useDispatch, useSelector } from 'react-redux';
@@ -25,17 +26,19 @@ export default function ProcessingScreen() {
   const dispatch = useDispatch<AppDispatch>();
   const navigation = useNavigation<ProcessingScreenNavigationProp>();
   const route = useRoute<ProcessingScreenRouteProp>();
-  const { photoId } = route.params;
+  const { photoId, originalImageUri } = route.params;
 
   const { currentPhoto, isProcessing } = useSelector((state: RootState) => state.photo);
   
-  const pulseAnimation = useRef(new Animated.Value(1)).current;
-  const rotateAnimation = useRef(new Animated.Value(0)).current;
+  // Animation values
+  const overlayOpacity = useRef(new Animated.Value(0)).current;
+  const transformProgress = useRef(new Animated.Value(0)).current;
+  const sparkleScale = useRef(new Animated.Value(0)).current;
+  const sparkleRotation = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
-    // Start animations
-    startPulseAnimation();
-    startRotateAnimation();
+    // Start transformation animation
+    startTransformationAnimation();
 
     // Poll for photo status
     const interval = setInterval(() => {
@@ -49,41 +52,82 @@ export default function ProcessingScreen() {
 
   useEffect(() => {
     if (currentPhoto && currentPhoto.status === 'done') {
-      // Small delay to show completion state
+      // Complete the transformation animation first
+      completeTransformation();
+      
+      // Then navigate to result
       setTimeout(() => {
         navigation.replace('Result', { photoId });
-      }, 1500);
+      }, 2000);
     }
   }, [currentPhoto, navigation, photoId]);
 
-  const startPulseAnimation = () => {
+  const startTransformationAnimation = () => {
+    // Start sparkle animation
     Animated.loop(
       Animated.sequence([
-        Animated.timing(pulseAnimation, {
-          toValue: 1.2,
-          duration: 1000,
+        Animated.timing(sparkleScale, {
+          toValue: 1,
+          duration: 800,
           useNativeDriver: true,
         }),
-        Animated.timing(pulseAnimation, {
-          toValue: 1,
-          duration: 1000,
+        Animated.timing(sparkleScale, {
+          toValue: 0,
+          duration: 800,
           useNativeDriver: true,
         }),
       ])
     ).start();
-  };
 
-  const startRotateAnimation = () => {
+    // Continuous sparkle rotation
     Animated.loop(
-      Animated.timing(rotateAnimation, {
+      Animated.timing(sparkleRotation, {
         toValue: 1,
         duration: 3000,
         useNativeDriver: true,
       })
     ).start();
+
+    // Start the bottom-to-top transformation overlay
+    Animated.loop(
+      Animated.sequence([
+        Animated.timing(transformProgress, {
+          toValue: 1,
+          duration: 4000,
+          useNativeDriver: false,
+        }),
+        Animated.timing(transformProgress, {
+          toValue: 0,
+          duration: 2000,
+          useNativeDriver: false,
+        }),
+      ])
+    ).start();
+
+    // Overlay opacity animation
+    Animated.timing(overlayOpacity, {
+      toValue: 0.7,
+      duration: 1000,
+      useNativeDriver: false,
+    }).start();
   };
 
-  const spin = rotateAnimation.interpolate({
+  const completeTransformation = () => {
+    // Final completion animation
+    Animated.timing(transformProgress, {
+      toValue: 1,
+      duration: 1000,
+      useNativeDriver: false,
+    }).start();
+
+    Animated.timing(overlayOpacity, {
+      toValue: 1,
+      duration: 1000,
+      useNativeDriver: false,
+    }).start();
+  };
+
+  const sparkleRotate = sparkleRotation.interpolate({
     inputRange: [0, 1],
     outputRange: ['0deg', '360deg'],
   });
@@ -120,59 +164,102 @@ export default function ProcessingScreen() {
 
   return (
     <LinearGradient
-      colors={['#E8F4F8', '#D1E7E7', '#C4E1E1']}
+      colors={['#1a1a2e', '#16213e', '#0f3460']}
       style={styles.container}
     >
-      <View style={styles.animationContainer}>
-        <Animated.View
-          style={[
-            styles.outerCircle,
-            {
-              transform: [{ scale: pulseAnimation }],
-            },
-          ]}
-        >
-          <Animated.View
-            style={[
-              styles.innerCircle,
-              {
-                transform: [{ rotate: spin }],
-              },
-            ]}
-          >
-            <Text style={styles.heroIcon}>🦸‍♀️</Text>
-          </Animated.View>
-        </Animated.View>
+      {/* Main Image Container */}
+      <View style={styles.imageContainer}>
+        {originalImageUri && (
+          <View style={styles.imageWrapper}>
+            {/* Original Image */}
+            <Image 
+              source={{ uri: originalImageUri }} 
+              style={styles.originalImage}
+              resizeMode="cover"
+            />
+            
+            {/* Transformation Overlay with bottom-to-top animation */}
+            <Animated.View
+              style={[
+                styles.transformationOverlay,
+                {
+                  opacity: overlayOpacity,
+                  height: transformProgress.interpolate({
+                    inputRange: [0, 1],
+                    outputRange: ['0%', '100%'],
+                  }),
+                },
+              ]}
+            >
+              <LinearGradient
+                colors={['rgba(138, 43, 226, 0.8)', 'rgba(75, 0, 130, 0.9)', 'rgba(25, 25, 112, 0.8)']}
+                style={styles.gradientOverlay}
+              />
+            </Animated.View>
+
+            {/* Sparkle Effects */}
+            <Animated.View
+              style={[
+                styles.sparkleContainer,
+                {
+                  transform: [
+                    { scale: sparkleScale },
+                    { rotate: sparkleRotate },
+                  ],
+                },
+              ]}
+            >
+              <Text style={styles.sparkle}>✨</Text>
+              <Text style={[styles.sparkle, styles.sparkle2]}>⭐</Text>
+              <Text style={[styles.sparkle, styles.sparkle3]}>💫</Text>
+              <Text style={[styles.sparkle, styles.sparkle4]}>🌟</Text>
+            </Animated.View>
+
+            {/* Hero Transformation Indicator */}
+            <View style={styles.heroIndicator}>
+              <Text style={styles.heroIcon}>🦸‍♀️</Text>
+            </View>
+          </View>
+        )}
       </View>
 
+      {/* Status Text */}
       <View style={styles.textContainer}>
         <Text style={styles.statusText}>{getStatusText()}</Text>
         <Text style={styles.subtitleText}>{getSubtitleText()}</Text>
       </View>
 
-      <View style={styles.loadingContainer}>
-        <ActivityIndicator size="large" color="#FF6B6B" />
-      </View>
-
+      {/* Progress Indicator */}
       <View style={styles.progressContainer}>
         <View style={styles.progressBar}>
-          <View 
+          <Animated.View 
             style={[
               styles.progressFill,
-              { width: currentPhoto?.status === 'done' ? '100%' : '60%' }
+              { 
+                width: transformProgress.interpolate({
+                  inputRange: [0, 1],
+                  outputRange: ['10%', currentPhoto?.status === 'done' ? '100%' : '75%'],
+                }),
+              }
             ]} 
           />
         </View>
         <Text style={styles.progressText}>
-          {currentPhoto?.status === 'done' ? '100%' : '60%'} Complete
+          Transforming your pet into a hero...
         </Text>
       </View>
 
+      {/* Loading Indicator */}
+      <View style={styles.loadingContainer}>
+        <ActivityIndicator size="large" color="#FF6B6B" />
+      </View>
+
+      {/* Tips */}
       <View style={styles.tipsContainer}>
-        <Text style={styles.tipsTitle}>💡 Did you know?</Text>
+        <Text style={styles.tipsTitle}>🎭 AI Magic in Progress</Text>
         <Text style={styles.tipsText}>
-          Our AI analyzes your pet's features and automatically chooses the perfect hero theme - 
-          from superheroes to fantasy warriors!
+          Watch as your pet transforms! Our AI is analyzing facial features and creating 
+          the perfect heroic version while keeping their adorable characteristics.
         </Text>
       </View>
     </LinearGradient>
@@ -182,93 +269,146 @@ export default function ProcessingScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: 'space-between',
     alignItems: 'center',
     padding: 20,
   },
-  animationContainer: {
-    marginBottom: 40,
+  imageContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 40,
   },
-  outerCircle: {
-    width: 120,
-    height: 120,
-    borderRadius: 60,
-    backgroundColor: 'rgba(255, 107, 107, 0.1)',
+  imageWrapper: {
+    width: width * 0.8,
+    height: width * 0.8,
+    borderRadius: 20,
+    overflow: 'hidden',
+    position: 'relative',
+    elevation: 10,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 10 },
+    shadowOpacity: 0.3,
+    shadowRadius: 20,
+  },
+  originalImage: {
+    width: '100%',
+    height: '100%',
+    borderRadius: 20,
+  },
+  transformationOverlay: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    borderBottomLeftRadius: 20,
+    borderBottomRightRadius: 20,
+  },
+  gradientOverlay: {
+    flex: 1,
+    borderBottomLeftRadius: 20,
+    borderBottomRightRadius: 20,
+  },
+  sparkleContainer: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
     justifyContent: 'center',
     alignItems: 'center',
   },
-  innerCircle: {
-    width: 80,
-    height: 80,
-    borderRadius: 40,
-    backgroundColor: '#FF6B6B',
-    justifyContent: 'center',
-    alignItems: 'center',
+  sparkle: {
+    position: 'absolute',
+    fontSize: 20,
+  },
+  sparkle2: {
+    top: '20%',
+    right: '20%',
+    fontSize: 16,
+  },
+  sparkle3: {
+    bottom: '30%',
+    left: '15%',
+    fontSize: 18,
+  },
+  sparkle4: {
+    top: '60%',
+    right: '30%',
+    fontSize: 14,
+  },
+  heroIndicator: {
+    position: 'absolute',
+    top: 15,
+    right: 15,
+    backgroundColor: 'rgba(255, 255, 255, 0.9)',
+    borderRadius: 20,
+    padding: 8,
   },
   heroIcon: {
-    fontSize: 40,
+    fontSize: 24,
   },
   textContainer: {
     alignItems: 'center',
-    marginBottom: 30,
+    marginVertical: 20,
   },
   statusText: {
-    fontSize: 24,
+    fontSize: 22,
     fontWeight: 'bold',
-    color: '#FF6B6B',
+    color: '#FFFFFF',
     textAlign: 'center',
     marginBottom: 8,
   },
   subtitleText: {
     fontSize: 16,
-    color: '#666',
+    color: '#B0C4DE',
     textAlign: 'center',
     lineHeight: 22,
-  },
-  loadingContainer: {
-    marginBottom: 30,
   },
   progressContainer: {
     width: width - 40,
     alignItems: 'center',
-    marginBottom: 40,
+    marginBottom: 20,
   },
   progressBar: {
     width: '100%',
-    height: 4,
-    backgroundColor: '#E0E0E0',
-    borderRadius: 2,
+    height: 6,
+    backgroundColor: 'rgba(255, 255, 255, 0.2)',
+    borderRadius: 3,
     marginBottom: 8,
+    overflow: 'hidden',
   },
   progressFill: {
     height: '100%',
-    backgroundColor: '#4ECDC4',
-    borderRadius: 2,
+    backgroundColor: '#FF6B6B',
+    borderRadius: 3,
   },
   progressText: {
     fontSize: 14,
-    color: '#666',
+    color: '#B0C4DE',
+    textAlign: 'center',
+  },
+  loadingContainer: {
+    marginBottom: 20,
   },
   tipsContainer: {
-    backgroundColor: 'white',
+    backgroundColor: 'rgba(255, 255, 255, 0.1)',
     padding: 16,
     borderRadius: 12,
     width: '100%',
-    elevation: 2,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
+    marginBottom: 20,
   },
   tipsTitle: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#333',
+    color: '#FFFFFF',
     marginBottom: 8,
+    textAlign: 'center',
   },
   tipsText: {
     fontSize: 14,
-    color: '#666',
+    color: '#B0C4DE',
     lineHeight: 20,
+    textAlign: 'center',
   },
 });

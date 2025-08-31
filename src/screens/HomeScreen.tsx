@@ -136,7 +136,10 @@ export default function HomeScreen() {
         })).unwrap();
 
         if (result?.id) {
-          navigation.navigate('Processing', { photoId: result.id });
+          navigation.navigate('Processing', { 
+            photoId: result.id, 
+            originalImageUri: imageUri 
+          });
         }
       } catch (error) {
         console.error('Upload error:', error);

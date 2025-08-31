@@ -15,7 +15,7 @@ export type RootStackParamList = {
   Onboarding: undefined;
   Home: undefined;
   Gallery: undefined;
-  Processing: { photoId: string };
+  Processing: { photoId: string; originalImageUri?: string };
   Result: { photoId: string };
 };
 
