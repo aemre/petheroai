@@ -6,7 +6,6 @@ interface UserState {
   profile: UserProfileDTO | null;
   isLoading: boolean;
   error: string | null;
-  testMode: boolean; // Testing mode - bypasses credit checks
   onboardingCompleted: boolean;
   petPreference: 'dog' | 'cat' | null;
 }
@@ -15,7 +14,6 @@ const initialState: UserState = {
   profile: null,
   isLoading: false,
   error: null,
-  testMode: true, // Enable test mode by default for testing
   onboardingCompleted: false,
   petPreference: null,
 };
@@ -55,12 +53,9 @@ const userSlice = createSlice({
       state.error = null;
     },
     decrementCredits: (state) => {
-      if (state.profile && state.profile.credits > 0 && !state.testMode) {
+      if (state.profile && state.profile.credits > 0) {
         state.profile.credits -= 1;
       }
-    },
-    toggleTestMode: (state) => {
-      state.testMode = !state.testMode;
     },
     setOnboardingCompleted: (state, action: PayloadAction<boolean>) => {
       state.onboardingCompleted = action.payload;
@@ -91,5 +86,5 @@ const userSlice = createSlice({
   },
 });
 
-export const { setProfile, clearError, decrementCredits, toggleTestMode, setOnboardingCompleted, setPetPreference } = userSlice.actions;
+export const { setProfile, clearError, decrementCredits, setOnboardingCompleted, setPetPreference } = userSlice.actions;
 export default userSlice.reducer;

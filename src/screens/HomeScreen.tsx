@@ -16,7 +16,7 @@ import * as ImagePicker from 'expo-image-picker';
 
 import { AppDispatch, RootState } from '../store/store';
 import { uploadAndProcessPhoto } from '../store/slices/photoSlice';
-import { addCredits, decrementCredits, toggleTestMode } from '../store/slices/userSlice';
+import { addCredits, decrementCredits } from '../store/slices/userSlice';
 import { RootStackParamList } from '../navigation/AppNavigator';
 import IAPService, { itemSKUs } from '../services/iap';
 
@@ -26,7 +26,7 @@ export default function HomeScreen() {
   const dispatch = useDispatch<AppDispatch>();
   const navigation = useNavigation<HomeScreenNavigationProp>();
   const { user } = useSelector((state: RootState) => state.auth);
-  const { profile, testMode } = useSelector((state: RootState) => state.user);
+  const { profile } = useSelector((state: RootState) => state.user);
   const { isUploading } = useSelector((state: RootState) => state.photo);
 
   const [showPurchaseModal, setShowPurchaseModal] = useState(false);
@@ -102,7 +102,7 @@ export default function HomeScreen() {
   };
 
   const handleUploadPhoto = async () => {
-    if (!testMode && (!profile || profile.credits <= 0)) {
+    if (!profile || profile.credits <= 0) {
       Alert.alert(
         'No Credits',
         'You need credits to transform your pet. Please purchase credits first.',
@@ -210,17 +210,9 @@ export default function HomeScreen() {
 
         <View style={styles.creditsContainer}>
           <Text style={styles.creditsText}>
-            Credits: {testMode ? '∞ (Test Mode)' : (profile?.credits || 0)}
+            Credits: {profile?.credits || 0}
           </Text>
           <View style={styles.creditsButtons}>
-            <TouchableOpacity
-              style={[styles.testModeButton, testMode && styles.testModeButtonActive]}
-              onPress={() => dispatch(toggleTestMode())}
-            >
-              <Text style={[styles.testModeButtonText, testMode && styles.testModeButtonTextActive]}>
-                {testMode ? '🧪 Test ON' : '🧪 Test OFF'}
-              </Text>
-            </TouchableOpacity>
             <TouchableOpacity
               style={styles.buyCreditsButton}
               onPress={() => setShowPurchaseModal(true)}
@@ -242,10 +234,10 @@ export default function HomeScreen() {
           <TouchableOpacity
             style={[
               styles.uploadButton,
-              (!testMode && (!profile?.credits || profile.credits <= 0)) && styles.uploadButtonDisabled
+              (!profile?.credits || profile.credits <= 0) && styles.uploadButtonDisabled
             ]}
             onPress={handleUploadPhoto}
-            disabled={isUploading || (!testMode && (!profile?.credits || profile.credits <= 0))}
+            disabled={isUploading || (!profile?.credits || profile.credits <= 0)}
           >
             <Text style={styles.uploadButtonIcon}>📸</Text>
             <Text style={styles.uploadButtonText}>
@@ -323,26 +315,6 @@ const styles = StyleSheet.create({
   creditsButtons: {
     flexDirection: 'row',
     gap: 8,
-  },
-  testModeButton: {
-    backgroundColor: '#e0e0e0',
-    paddingHorizontal: 12,
-    paddingVertical: 8,
-    borderRadius: 8,
-    borderWidth: 1,
-    borderColor: '#ccc',
-  },
-  testModeButtonActive: {
-    backgroundColor: '#4CAF50',
-    borderColor: '#4CAF50',
-  },
-  testModeButtonText: {
-    color: '#666',
-    fontWeight: '600',
-    fontSize: 12,
-  },
-  testModeButtonTextActive: {
-    color: 'white',
   },
   actionContainer: {
     alignItems: 'center',
