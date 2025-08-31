@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "700317079232",
+    "project_id": "pet-hero-ai",
+    "storage_bucket": "pet-hero-ai.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:700317079232:android:abc123def456",
+        "android_client_info": {
+          "package_name": "com.pethero.ai"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBldCk_1gswQk6LZqB2VO6diWLpIfa6RXM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
