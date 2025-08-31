@@ -10,6 +10,7 @@ import {
   RefreshControl,
   Dimensions,
   ActivityIndicator,
+  SafeAreaView,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useDispatch, useSelector } from 'react-redux';
@@ -19,6 +20,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { AppDispatch, RootState } from '../store/store';
 import { RootStackParamList } from '../navigation/AppNavigator';
 import { getUserPhotos } from '../services/firebase';
+import AnimatedGalleryItem from '../components/AnimatedGalleryItem';
 
 type GalleryScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Gallery'>;
 
@@ -126,35 +128,13 @@ export default function GalleryScreen() {
   };
 
   const renderGalleryItem = ({ item }: { item: GalleryItem }) => (
-    <TouchableOpacity
-      style={styles.galleryItem}
-      onPress={() => handleItemPress(item)}
-    >
-      <View style={styles.imageContainer}>
-        {item.status === 'processing' && (
-          <View style={styles.processingOverlay}>
-            <ActivityIndicator color="#fff" size="small" />
-            <Text style={styles.processingText}>Processing...</Text>
-          </View>
-        )}
-        {item.status === 'error' && (
-          <View style={styles.errorOverlay}>
-            <Text style={styles.errorText}>❌</Text>
-          </View>
-        )}
-        <Image
-          source={{ uri: item.status === 'done' ? item.resultUrl : item.originalUrl }}
-          style={styles.galleryImage}
-          resizeMode="cover"
-        />
-      </View>
-      <View style={styles.itemInfo}>
-        <Text style={styles.themeText}>
-          {getThemeEmoji(item.theme)} {item.theme.split(' ').slice(0, 3).join(' ')}...
-        </Text>
-        <Text style={styles.dateText}>{formatDate(item.createdAt)}</Text>
-      </View>
-    </TouchableOpacity>
+    <AnimatedGalleryItem
+      item={item}
+      itemSize={itemSize}
+      onPress={handleItemPress}
+      getThemeEmoji={getThemeEmoji}
+      formatDate={formatDate}
+    />
   );
 
   const renderEmpty = () => (
@@ -190,14 +170,18 @@ export default function GalleryScreen() {
       colors={['#FDF4FF', '#FCE7F3', '#F9A8D4']}
       style={styles.container}
     >
-      <View style={styles.header}>
+      <SafeAreaView style={styles.safeArea}>
+        <View style={styles.header}>
         <TouchableOpacity
           style={styles.backButton}
           onPress={() => navigation.goBack()}
         >
           <Text style={styles.backIcon}>←</Text>
         </TouchableOpacity>
-        <Text style={styles.title}>🖼️ Your Hero Gallery</Text>
+        <View style={styles.titleContainer}>
+          <Text style={styles.title}>🖼️ Your Hero Gallery</Text>
+          <Text style={styles.subtitle}>Swipe right or double-tap to see originals!</Text>
+        </View>
         <View style={styles.placeholder} />
       </View>
 
@@ -206,13 +190,24 @@ export default function GalleryScreen() {
         renderItem={renderGalleryItem}
         keyExtractor={(item) => item.id}
         numColumns={2}
-        contentContainerStyle={styles.galleryContainer}
-        showsVerticalScrollIndicator={false}
+        contentContainerStyle={[
+          styles.galleryContainer,
+          galleryItems.length === 0 && styles.galleryContainerEmpty
+        ]}
+        style={styles.flatList}
+        showsVerticalScrollIndicator={true}
+        scrollEnabled={true}
+        bounces={true}
+        alwaysBounceVertical={true}
         refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }
         ListEmptyComponent={renderEmpty}
+        removeClippedSubviews={false}
+        maxToRenderPerBatch={10}
+        windowSize={10}
       />
+      </SafeAreaView>
     </LinearGradient>
   );
 }
@@ -221,14 +216,16 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
+  safeArea: {
+    flex: 1,
+  },
   header: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
     paddingHorizontal: 16,
-    paddingTop: 50,
-    paddingBottom: 16,
-    backgroundColor: '#fff',
+    paddingVertical: 16,
+    backgroundColor: 'rgba(255, 255, 255, 0.9)',
     borderBottomWidth: 1,
     borderBottomColor: '#e0e0e0',
   },
@@ -244,10 +241,20 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: '#333',
   },
+  titleContainer: {
+    alignItems: 'center',
+    flex: 1,
+  },
   title: {
     fontSize: 20,
     fontWeight: 'bold',
     color: '#333',
+  },
+  subtitle: {
+    fontSize: 12,
+    color: '#8B5CF6',
+    marginTop: 2,
+    textAlign: 'center',
   },
   placeholder: {
     width: 40,
@@ -262,72 +269,16 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: '#666',
   },
+  flatList: {
+    flex: 1,
+  },
   galleryContainer: {
     padding: 16,
+    paddingBottom: 32,
   },
-  galleryItem: {
-    width: itemSize,
-    marginBottom: 16,
-    marginHorizontal: 8,
-    backgroundColor: '#fff',
-    borderRadius: 12,
-    overflow: 'hidden',
-    elevation: 3,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-  },
-  imageContainer: {
-    position: 'relative',
-  },
-  galleryImage: {
-    width: '100%',
-    height: itemSize,
-  },
-  processingOverlay: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    backgroundColor: 'rgba(0,0,0,0.7)',
-    alignItems: 'center',
+  galleryContainerEmpty: {
+    flexGrow: 1,
     justifyContent: 'center',
-    zIndex: 1,
-  },
-  processingText: {
-    color: '#fff',
-    fontSize: 12,
-    marginTop: 4,
-  },
-  errorOverlay: {
-    position: 'absolute',
-    top: 8,
-    right: 8,
-    backgroundColor: 'rgba(255,0,0,0.8)',
-    borderRadius: 12,
-    width: 24,
-    height: 24,
-    alignItems: 'center',
-    justifyContent: 'center',
-    zIndex: 1,
-  },
-  errorText: {
-    fontSize: 12,
-  },
-  itemInfo: {
-    padding: 12,
-  },
-  themeText: {
-    fontSize: 12,
-    fontWeight: '600',
-    color: '#333',
-    marginBottom: 4,
-  },
-  dateText: {
-    fontSize: 10,
-    color: '#666',
   },
   emptyContainer: {
     flex: 1,
