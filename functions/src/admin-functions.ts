@@ -1,6 +1,9 @@
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
 
+// Note: Credit deduction is now handled automatically in photo-processing.ts
+// These manual functions are no longer needed since credits are deducted when processing completes
+
 // Admin function to add credits to a user (for testing)
 export const addCreditsToUser = functions.https.onCall(async (data, context) => {
   // Check authentication

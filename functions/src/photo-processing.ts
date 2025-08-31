@@ -245,16 +245,109 @@ async function updatePhotoResult(
   theme: string, 
   analysis: string
 ) {
-  await admin.firestore()
-    .collection('photos')
-    .doc(photoId)
-    .update({
-      status: 'done',
-      resultUrl: resultUrl,
-      theme: theme,
-      analysis: analysis,
-      processedAt: admin.firestore.FieldValue.serverTimestamp(),
+  try {
+    // Get the photo document to find the userId
+    const photoDoc = await admin.firestore()
+      .collection('photos')
+      .doc(photoId)
+      .get();
+
+    if (!photoDoc.exists) {
+      throw new Error(`Photo document ${photoId} not found`);
+    }
+
+    const photoData = photoDoc.data();
+    const userId = photoData?.userId;
+
+    if (!userId) {
+      throw new Error(`No userId found for photo ${photoId}`);
+    }
+
+    // Use a transaction to ensure both operations succeed or fail together
+    await admin.firestore().runTransaction(async (transaction) => {
+      // 1. Update photo status to done
+      const photoRef = admin.firestore().collection('photos').doc(photoId);
+      transaction.update(photoRef, {
+        status: 'done',
+        resultUrl: resultUrl,
+        theme: theme,
+        analysis: analysis,
+        processedAt: admin.firestore.FieldValue.serverTimestamp(),
+      });
+
+      // 2. Deduct 1 credit from user (only if processing succeeded)
+      const userRef = admin.firestore().collection('users').doc(userId);
+      const userDoc = await transaction.get(userRef);
+      
+      if (!userDoc.exists) {
+        console.warn(`⚠️ User ${userId} not found, skipping credit deduction`);
+        return;
+      }
+
+      const userData = userDoc.data();
+      const currentCredits = userData?.credits || 0;
+
+      if (currentCredits > 0) {
+        transaction.update(userRef, {
+          credits: admin.firestore.FieldValue.increment(-1),
+          lastUpdated: admin.firestore.FieldValue.serverTimestamp(),
+        });
+
+        // 3. Log the credit usage
+        const usageLogRef = admin.firestore().collection('creditUsage').doc();
+        transaction.set(usageLogRef, {
+          userId,
+          imageId: photoId,
+          creditsDeducted: 1,
+          purpose: 'image_generation_completed',
+          timestamp: admin.firestore.FieldValue.serverTimestamp(),
+          remainingCredits: currentCredits - 1,
+          theme: theme,
+        });
+
+        console.log(`💎 Deducted 1 credit from user ${userId} for completed photo ${photoId}. Remaining: ${currentCredits - 1}`);
+      } else {
+        console.warn(`⚠️ User ${userId} has no credits to deduct for photo ${photoId}`);
+        
+        // Log the attempt even with no credits
+        const usageLogRef = admin.firestore().collection('creditUsage').doc();
+        transaction.set(usageLogRef, {
+          userId,
+          imageId: photoId,
+          creditsDeducted: 0,
+          purpose: 'image_generation_completed_no_credits',
+          timestamp: admin.firestore.FieldValue.serverTimestamp(),
+          remainingCredits: 0,
+          theme: theme,
+          note: 'User had no credits to deduct',
+        });
+      }
     });
+
+    console.log(`✅ Photo ${photoId} completed and credits deducted successfully`);
+
+  } catch (error) {
+    console.error(`❌ Error updating photo result and deducting credits for ${photoId}:`, error);
+    
+    // Even if credit deduction fails, still try to update the photo status
+    try {
+      await admin.firestore()
+        .collection('photos')
+        .doc(photoId)
+        .update({
+          status: 'done',
+          resultUrl: resultUrl,
+          theme: theme,
+          analysis: analysis,
+          processedAt: admin.firestore.FieldValue.serverTimestamp(),
+          creditError: 'Failed to deduct credits - see logs',
+        });
+      console.log(`⚠️ Photo ${photoId} marked as done despite credit error`);
+    } catch (updateError) {
+      console.error(`❌ Failed to update photo ${photoId} even without credit deduction:`, updateError);
+      throw updateError;
+    }
+  }
 }
 
 async function generateHeroImage(

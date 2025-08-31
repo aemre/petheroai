@@ -36,6 +36,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.getUserPhotos = exports.listAllUsers = exports.getUserInfo = exports.addCreditsToUser = void 0;
 const functions = __importStar(require("firebase-functions"));
 const admin = __importStar(require("firebase-admin"));
+// Note: Credit deduction is now handled automatically in photo-processing.ts
+// These manual functions are no longer needed since credits are deducted when processing completes
 // Admin function to add credits to a user (for testing)
 exports.addCreditsToUser = functions.https.onCall(async (data, context) => {
     // Check authentication

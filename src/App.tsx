@@ -27,7 +27,10 @@ export default function App() {
           console.log('No saved language preference found');
         }
         
-        await initializeFirebase();
+        const firebaseReady = await initializeFirebase();
+        if (!firebaseReady) {
+          console.warn('⚠️ Firebase initialization failed, some features may not work');
+        }
         await PushNotificationService.initialize();
         await IAPService.initialize();
         await loadOnboardingState(store.dispatch);

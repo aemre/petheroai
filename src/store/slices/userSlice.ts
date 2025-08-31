@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
-import { getUserProfile, updateUserCredits } from '../../services/firebase';
+import { getUserProfile } from '../../services/firebase';
 import { UserProfileDTO, convertUserProfileToDTO } from '../../types/dto';
 
 interface UserState {
@@ -30,17 +30,10 @@ export const fetchUserProfile = createAsyncThunk(
   }
 );
 
-export const addCredits = createAsyncThunk(
-  'user/addCredits',
-  async ({ userId, credits }: { userId: string; credits: number }, { rejectWithValue }) => {
-    try {
-      await updateUserCredits(userId, credits);
-      return credits;
-    } catch (error: any) {
-      return rejectWithValue(error.message);
-    }
-  }
-);
+// Note: All credit management is now handled by cloud functions:
+// - Credits are deducted automatically when photo processing completes
+// - Credits are added automatically when purchases are verified
+// - No manual credit operations needed in the app
 
 const userSlice = createSlice({
   name: 'user',
@@ -77,11 +70,6 @@ const userSlice = createSlice({
       .addCase(fetchUserProfile.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload as string;
-      })
-      .addCase(addCredits.fulfilled, (state, action) => {
-        if (state.profile) {
-          state.profile.credits += action.payload;
-        }
       });
   },
 });

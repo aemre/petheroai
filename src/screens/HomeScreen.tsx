@@ -20,10 +20,12 @@ const { width, height } = Dimensions.get('window');
 
 import { AppDispatch, RootState } from '../store/store';
 import { uploadAndProcessPhoto } from '../store/slices/photoSlice';
-import { addCredits, decrementCredits } from '../store/slices/userSlice';
+import { fetchUserProfile } from '../store/slices/userSlice';
 import { RootStackParamList } from '../navigation/AppNavigator';
 import IAPService from '../services/iap';
 import { useTranslation } from '../hooks/useTranslation';
+import { verifyPurchase } from '../services/cloudFunctions';
+import { Platform } from 'react-native';
 
 type HomeScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Home'>;
 
@@ -66,6 +68,18 @@ export default function HomeScreen() {
   useEffect(() => {
     initializeIAP();
   }, []);
+
+  // Refresh user profile when screen comes into focus (to update credits after processing)
+  useEffect(() => {
+    const unsubscribe = navigation.addListener('focus', () => {
+      if (user?.uid) {
+        console.log('HomeScreen focused, refreshing user profile...');
+        dispatch(fetchUserProfile(user.uid));
+      }
+    });
+
+    return unsubscribe;
+  }, [navigation, user?.uid, dispatch]);
 
   const initializeIAP = async () => {
     try {
@@ -160,20 +174,29 @@ export default function HomeScreen() {
     const imageUri = await pickImage(useCamera);
     if (imageUri && user?.uid) {
       try {
-        dispatch(decrementCredits());
+        // Check if user has enough credits before uploading
+        if (!profile || profile.credits <= 0) {
+          Alert.alert(t('home.noCredits'), t('home.needCredits'));
+          return;
+        }
+
+        // Upload and process the image
+        // Credits will be automatically deducted by the cloud function when processing completes
+        console.log('Uploading image for processing. Credits will be deducted automatically upon completion.');
         const result = await dispatch(uploadAndProcessPhoto({
           uri: imageUri,
           userId: user.uid,
         })).unwrap();
 
         if (result?.id) {
+          console.log('Image uploaded successfully:', result.id);
           navigation.navigate('Processing', { 
             photoId: result.id, 
             originalImageUri: imageUri 
           });
         }
-      } catch (error) {
-        console.error('Upload error:', error);
+      } catch (uploadError) {
+        console.error('Upload error:', uploadError);
         Alert.alert(t('common.error'), t('home.failedToUpload'));
       }
     }
@@ -181,12 +204,38 @@ export default function HomeScreen() {
 
   const handlePurchase = async (productId: string) => {
     try {
+      console.log(`🛒 Starting purchase for product: ${productId}`);
       const purchase = await IAPService.purchaseProduct(productId);
+      
       if (purchase && user?.uid) {
-        const credits = IAPService.getCreditsFromProductId(productId);
-        await dispatch(addCredits({ userId: user.uid, credits }));
-        setShowPurchaseModal(false);
-        Alert.alert(t('common.success'), `${credits} ${t('home.purchaseModal.purchaseSuccess')}`);
+        console.log(`💳 Purchase successful, verifying with cloud function...`);
+        
+        // Verify purchase with secure cloud function
+        // Handle both single purchase and array response from RNIap
+        const purchaseData = Array.isArray(purchase) ? purchase[0] : purchase;
+        const receipt = purchaseData.transactionReceipt || purchaseData.purchaseToken || '';
+        
+        const verificationResult = await verifyPurchase(
+          receipt, 
+          productId, 
+          Platform.OS as 'ios' | 'android'
+        );
+        
+        if (verificationResult.success) {
+          console.log(`✅ Purchase verified! ${verificationResult.credits} credits added`);
+          
+          // Refresh user profile to get updated credits from server
+          await dispatch(fetchUserProfile(user.uid));
+          
+          setShowPurchaseModal(false);
+          Alert.alert(
+            t('common.success'), 
+            `${verificationResult.credits} ${t('home.purchaseModal.purchaseSuccess')}`
+          );
+        } else {
+          console.error('❌ Purchase verification failed:', verificationResult.message);
+          Alert.alert(t('common.error'), 'Purchase verification failed. Please contact support.');
+        }
       }
     } catch (error) {
       console.error('Purchase error:', error);

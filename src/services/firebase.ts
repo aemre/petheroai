@@ -4,11 +4,32 @@ import storage from '@react-native-firebase/storage';
 import messaging from '@react-native-firebase/messaging';
 import functions from '@react-native-firebase/functions';
 
+// Export functions instance for cloud function calls
+export { functions };
+
 // React Native Firebase automatically initializes from GoogleService-Info.plist
-// No manual initialization needed
-export const initializeFirebase = () => {
-  console.log('Firebase initialized from GoogleService-Info.plist');
-  return true;
+// But we need to ensure all services are ready
+export const initializeFirebase = async () => {
+  try {
+    console.log('🔥 Initializing Firebase services...');
+    
+    // Wait for Firebase to be ready
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    
+    // Test basic connectivity
+    const storageApp = storage();
+    const authApp = auth();
+    const firestoreApp = firestore();
+    
+    console.log('✅ Firebase services initialized successfully');
+    console.log('📱 App name:', storageApp.app.name);
+    console.log('🗄️ Storage bucket:', storageApp.app.options.storageBucket);
+    
+    return true;
+  } catch (error) {
+    console.error('❌ Firebase initialization error:', error);
+    return false;
+  }
 };
 
 export const signInAnonymously = async () => {
@@ -24,7 +45,7 @@ export const signInAnonymously = async () => {
 export const createUserProfile = async (userId: string) => {
   try {
     await firestore().collection('users').doc(userId).set({
-      credits: 0,
+      credits: 3, // Give new users 3 free credits to start
       premium: false,
       createdAt: firestore.FieldValue.serverTimestamp()
     });
@@ -55,9 +76,13 @@ export const updateUserCredits = async (userId: string, credits: number) => {
   }
 };
 
+
+
+
+
 export const uploadImage = async (uri: string, userId: string) => {
   try {
-    console.log('📤 Starting BASIC image upload...', { uri, userId });
+    console.log('📤 Starting FILE-READY upload...', { uri, userId });
     
     // Check authentication first
     const currentUser = auth().currentUser;
@@ -66,29 +91,38 @@ export const uploadImage = async (uri: string, userId: string) => {
     }
     console.log('👤 User authenticated:', currentUser.uid);
     
-    // Use simple filename without userId for now
+    // CRITICAL: Wait for temp file to be fully written by iOS
+    // This is the likely root cause - temp files need time to be accessible
+    console.log('⏳ Waiting for temp file to be ready...');
+    await new Promise(resolve => setTimeout(resolve, 1000)); // Wait 1 second
+    
+    // Verify file is accessible
+    console.log('🔍 Verifying file accessibility...');
+    try {
+      const response = await fetch(uri);
+      console.log('✅ File is accessible, content-length:', response.headers.get('content-length'));
+    } catch (fileError) {
+      console.error('❌ File not accessible:', fileError);
+      throw new Error('Temporary file not ready for upload');
+    }
+    
+    // Simple upload without retry - should work now
     const filename = `image_${Date.now()}.jpg`;
     const reference = storage().ref(`images/${filename}`);
     
     console.log('📂 Storage reference created:', `images/${filename}`);
-    console.log('🏗️ Storage bucket:', storage().app.options.storageBucket);
+    console.log('⬆️ Starting direct upload...');
     
-    // Try simplest upload first - no metadata, no progress monitoring
-    console.log('⬆️ Starting basic putFile...');
     const uploadTask = reference.putFile(uri);
-    
-    // Simple promise-based upload without event listeners
-    console.log('⏳ Waiting for upload completion...');
     const snapshot = await uploadTask;
     
-    console.log('✅ Upload completed successfully!');
     console.log('📊 Final snapshot:', {
       bytesTransferred: snapshot.bytesTransferred,
       totalBytes: snapshot.totalBytes,
       state: snapshot.state,
     });
     
-    // Try to get download URL
+    // Get download URL directly
     console.log('🔗 Getting download URL...');
     const downloadUrl = await reference.getDownloadURL();
     
