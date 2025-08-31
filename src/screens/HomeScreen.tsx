@@ -7,7 +7,6 @@ import {
   ScrollView,
   Alert,
   Modal,
-  Animated,
   Dimensions,
   Image,
 } from 'react-native';
@@ -31,22 +30,20 @@ type HomeScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Home'>;
 export default function HomeScreen() {
   const dispatch = useDispatch<AppDispatch>();
   const navigation = useNavigation<HomeScreenNavigationProp>();
-  const { user } = useSelector((state: RootState) => state.auth);
-  const { profile, petPreference } = useSelector((state: RootState) => state.user);
+  const { user, isLoading: authLoading } = useSelector((state: RootState) => state.auth);
+  const { profile, petPreference, isLoading: userLoading } = useSelector((state: RootState) => state.user);
   const { isUploading } = useSelector((state: RootState) => state.photo);
   const { t, isRTL } = useTranslation();
 
   const [showPurchaseModal, setShowPurchaseModal] = useState(false);
   const [products, setProducts] = useState<any[]>([]);
   
-  // Animation values
-  const fadeAnim = new Animated.Value(0);
-  const slideAnim = new Animated.Value(50);
-  const scaleAnim = new Animated.Value(0.9);
+  // No animations needed
 
   // Pet-specific content
   const getPetContent = () => {
-    const isDog = petPreference === 'dog';
+    // Default to dog if petPreference is null or undefined
+    const isDog = petPreference === 'dog' || petPreference === null;
     return {
       emoji: isDog ? '🐕' : '🐱',
       heroEmoji: isDog ? '🦸‍♂️' : '🦸‍♀️',
@@ -68,28 +65,7 @@ export default function HomeScreen() {
 
   useEffect(() => {
     initializeIAP();
-    startEntryAnimation();
   }, []);
-
-  const startEntryAnimation = () => {
-    Animated.parallel([
-      Animated.timing(fadeAnim, {
-        toValue: 1,
-        duration: 800,
-        useNativeDriver: true,
-      }),
-      Animated.timing(slideAnim, {
-        toValue: 0,
-        duration: 600,
-        useNativeDriver: true,
-      }),
-      Animated.timing(scaleAnim, {
-        toValue: 1,
-        duration: 700,
-        useNativeDriver: true,
-      }),
-    ]).start();
-  };
 
   const initializeIAP = async () => {
     try {
@@ -218,6 +194,30 @@ export default function HomeScreen() {
     }
   };
 
+  // Debug logging
+  console.log('HomeScreen render:', { 
+    authLoading, 
+    userLoading, 
+    hasUser: !!user, 
+    petPreference,
+    profileCredits: profile?.credits 
+  });
+
+  // Show loading state only if auth is loading or no user
+  if (authLoading || !user) {
+    return (
+      <LinearGradient
+        colors={['#667eea', '#764ba2', '#f093fb']}
+        style={styles.container}
+      >
+        <View style={styles.loadingContainer}>
+          <Text style={styles.loadingEmoji}>🐕</Text>
+          <Text style={styles.loadingText}>Loading...</Text>
+        </View>
+      </LinearGradient>
+    );
+  }
+
   const renderPurchaseModal = () => (
     <Modal
       visible={showPurchaseModal}
@@ -278,16 +278,9 @@ export default function HomeScreen() {
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}
       >
-        {/* Animated Header */}
-        <Animated.View 
-          style={[
-            styles.header,
-            {
-              opacity: fadeAnim,
-              transform: [{ translateY: slideAnim }]
-            }
-          ]}
-        >
+        
+        {/* Header */}
+        <View style={styles.header}>
           <View style={styles.heroIconContainer}>
             <View style={styles.petImageContainer}>
               <Image 
@@ -300,18 +293,10 @@ export default function HomeScreen() {
           <Text style={styles.welcomeText}>{petContent.petName} Hero AI</Text>
           <Text style={styles.subtitle}>{petContent.subtitle}</Text>
           <View style={styles.decorativeLine} />
-        </Animated.View>
+        </View>
 
-        {/* Animated Credits Card */}
-        <Animated.View 
-          style={[
-            styles.creditsCard,
-            {
-              opacity: fadeAnim,
-              transform: [{ scale: scaleAnim }]
-            }
-          ]}
-        >
+        {/* Credits Card */}
+        <View style={styles.creditsCard}>
           <LinearGradient
             colors={['#ffffff', '#f8f9ff']}
             style={styles.creditsGradient}
@@ -339,18 +324,10 @@ export default function HomeScreen() {
               </LinearGradient>
             </TouchableOpacity>
           </LinearGradient>
-        </Animated.View>
+        </View>
 
         {/* Main Action Buttons */}
-        <Animated.View 
-          style={[
-            styles.actionContainer,
-            {
-              opacity: fadeAnim,
-              transform: [{ translateY: slideAnim }]
-            }
-          ]}
-        >
+        <View style={styles.actionContainer}>
           {/* Transform Pet Button */}
           <TouchableOpacity
             style={[
@@ -404,18 +381,10 @@ export default function HomeScreen() {
               </View>
             </LinearGradient>
           </TouchableOpacity>
-        </Animated.View>
+        </View>
 
         {/* How it Works Section */}
-        <Animated.View 
-          style={[
-            styles.infoCard,
-            {
-              opacity: fadeAnim,
-              transform: [{ translateY: slideAnim }]
-            }
-          ]}
-        >
+        <View style={styles.infoCard}>
           <LinearGradient
             colors={['#ffffff', '#f8f9ff']}
             style={styles.infoGradient}
@@ -443,7 +412,7 @@ export default function HomeScreen() {
               ))}
             </View>
           </LinearGradient>
-        </Animated.View>
+        </View>
       </ScrollView>
 
       {renderPurchaseModal()}
@@ -474,6 +443,7 @@ const styles = StyleSheet.create({
     height: 120,
     borderRadius: 60,
     overflow: 'hidden',
+    backgroundColor: '#ffffff',
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 8 },
     shadowOpacity: 0.25,
@@ -539,6 +509,7 @@ const styles = StyleSheet.create({
   creditsCard: {
     marginBottom: 24,
     borderRadius: 20,
+    backgroundColor: '#ffffff',
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 6 },
     shadowOpacity: 0.15,
@@ -582,6 +553,7 @@ const styles = StyleSheet.create({
   },
   buyCreditsButton: {
     borderRadius: 12,
+    backgroundColor: '#ff6b6b',
     shadowColor: '#ff6b6b',
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.3,
@@ -617,6 +589,7 @@ const styles = StyleSheet.create({
   primaryActionButton: {
     marginBottom: 16,
     borderRadius: 20,
+    backgroundColor: '#00b894',
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 8 },
     shadowOpacity: 0.3,
@@ -667,6 +640,7 @@ const styles = StyleSheet.create({
   // Secondary Action Button
   secondaryActionButton: {
     borderRadius: 16,
+    backgroundColor: '#ffffff',
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 6 },
     shadowOpacity: 0.2,
@@ -709,6 +683,7 @@ const styles = StyleSheet.create({
   // Info Card Styles
   infoCard: {
     borderRadius: 20,
+    backgroundColor: '#ffffff',
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 6 },
     shadowOpacity: 0.1,
@@ -838,5 +813,24 @@ const styles = StyleSheet.create({
     color: '#666',
     fontSize: 16,
     fontWeight: '600',
+  },
+  
+  // Loading Styles
+  loadingContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  loadingEmoji: {
+    fontSize: 60,
+    marginBottom: 16,
+  },
+  loadingText: {
+    color: '#ffffff',
+    fontSize: 18,
+    fontWeight: '600',
+    textShadowColor: 'rgba(0,0,0,0.3)',
+    textShadowOffset: { width: 0, height: 2 },
+    textShadowRadius: 4,
   },
 });
