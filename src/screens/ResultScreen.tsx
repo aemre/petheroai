@@ -9,6 +9,7 @@ import {
   Dimensions,
   ScrollView,
 } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigation, useRoute, RouteProp } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
@@ -193,14 +194,21 @@ export default function ResultScreen() {
 
   if (!currentPhoto || !currentPhoto.resultUrl) {
     return (
-      <View style={styles.loadingContainer}>
+      <LinearGradient
+        colors={['#F0F9FF', '#E0F2FE', '#BAE6FD']}
+        style={styles.loadingContainer}
+      >
         <Text style={styles.loadingText}>Loading your hero transformation...</Text>
-      </View>
+      </LinearGradient>
     );
   }
 
   return (
-    <ScrollView style={styles.container} contentContainerStyle={styles.scrollContent}>
+    <LinearGradient
+      colors={['#F0F9FF', '#E0F2FE', '#BAE6FD']}
+      style={styles.container}
+    >
+      <ScrollView contentContainerStyle={styles.scrollContent}>
       <View style={styles.header}>
         <Text style={styles.title}>🎉 Transformation Complete!</Text>
         <Text style={styles.subtitle}>Your pet is now a hero!</Text>
@@ -242,14 +250,14 @@ export default function ResultScreen() {
           <Text style={styles.brandingText}>Made with Pet Hero AI ✨</Text>
         </View>
       </View>
-    </ScrollView>
+      </ScrollView>
+    </LinearGradient>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FFF5F5',
   },
   scrollContent: {
     padding: 20,
@@ -259,7 +267,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#FFF5F5',
   },
   loadingText: {
     fontSize: 16,

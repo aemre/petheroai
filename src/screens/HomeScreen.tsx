@@ -8,6 +8,7 @@ import {
   Alert,
   Modal,
 } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
@@ -194,7 +195,10 @@ export default function HomeScreen() {
   );
 
   return (
-    <View style={styles.container}>
+    <LinearGradient
+      colors={['#FFE8E8', '#FFD0D0', '#FFC1C1']}
+      style={styles.container}
+    >
       <ScrollView contentContainerStyle={styles.scrollContent}>
         <View style={styles.header}>
           <Text style={styles.welcomeText}>🦸‍♀️ Pet Hero AI</Text>
@@ -257,14 +261,13 @@ export default function HomeScreen() {
       </ScrollView>
 
       {renderPurchaseModal()}
-    </View>
+    </LinearGradient>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FFF5F5',
   },
   scrollContent: {
     padding: 20,

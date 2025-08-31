@@ -11,6 +11,7 @@ import {
   Dimensions,
   ActivityIndicator,
 } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
@@ -174,15 +175,21 @@ export default function GalleryScreen() {
 
   if (loading) {
     return (
-      <View style={styles.loadingContainer}>
+      <LinearGradient
+        colors={['#FDF4FF', '#FCE7F3', '#F9A8D4']}
+        style={styles.loadingContainer}
+      >
         <ActivityIndicator size="large" color="#FF6B6B" />
         <Text style={styles.loadingText}>Loading your gallery...</Text>
-      </View>
+      </LinearGradient>
     );
   }
 
   return (
-    <View style={styles.container}>
+    <LinearGradient
+      colors={['#FDF4FF', '#FCE7F3', '#F9A8D4']}
+      style={styles.container}
+    >
       <View style={styles.header}>
         <TouchableOpacity
           style={styles.backButton}
@@ -206,14 +213,13 @@ export default function GalleryScreen() {
         }
         ListEmptyComponent={renderEmpty}
       />
-    </View>
+    </LinearGradient>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f8f9fa',
   },
   header: {
     flexDirection: 'row',
@@ -250,7 +256,6 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#f8f9fa',
   },
   loadingText: {
     marginTop: 16,

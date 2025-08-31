@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { View, Text, StyleSheet, ActivityIndicator, Image } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../store/store';
 import { signInAnonymouslyThunk } from '../store/slices/authSlice';
@@ -25,7 +26,10 @@ export default function SplashScreen() {
   }, [dispatch]);
 
   return (
-    <View style={styles.container}>
+    <LinearGradient
+      colors={['#FFE5E5', '#FFB3B3', '#FF8A80']}
+      style={styles.container}
+    >
       <View style={styles.logoContainer}>
         <Text style={styles.logoText}>🦸‍♀️</Text>
         <Text style={styles.title}>Pet Hero AI</Text>
@@ -38,14 +42,13 @@ export default function SplashScreen() {
           {error ? 'Connection error...' : 'Loading...'}
         </Text>
       </View>
-    </View>
+    </LinearGradient>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FFF5F5',
     justifyContent: 'center',
     alignItems: 'center',
     padding: 20,

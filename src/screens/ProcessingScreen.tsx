@@ -7,6 +7,7 @@ import {
   Animated,
   Dimensions,
 } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigation, useRoute, RouteProp } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
@@ -118,7 +119,10 @@ export default function ProcessingScreen() {
   };
 
   return (
-    <View style={styles.container}>
+    <LinearGradient
+      colors={['#E8F4F8', '#D1E7E7', '#C4E1E1']}
+      style={styles.container}
+    >
       <View style={styles.animationContainer}>
         <Animated.View
           style={[
@@ -171,14 +175,13 @@ export default function ProcessingScreen() {
           from superheroes to fantasy warriors!
         </Text>
       </View>
-    </View>
+    </LinearGradient>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FFF5F5',
     justifyContent: 'center',
     alignItems: 'center',
     padding: 20,
