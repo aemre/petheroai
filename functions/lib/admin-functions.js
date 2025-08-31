@@ -38,9 +38,15 @@ const functions = __importStar(require("firebase-functions"));
 const admin = __importStar(require("firebase-admin"));
 // Admin function to add credits to a user (for testing)
 exports.addCreditsToUser = functions.https.onCall(async (data, context) => {
+    // Check authentication
+    if (!context.auth) {
+        throw new functions.https.HttpsError('unauthenticated', 'User must be authenticated');
+    }
     const { userId, credits } = data;
-    // In production, you'd want authentication checks here
-    // For testing, we'll allow it
+    // Users can only add credits to their own account
+    if (context.auth.uid !== userId) {
+        throw new functions.https.HttpsError('permission-denied', 'Users can only add credits to their own account');
+    }
     if (!userId || typeof credits !== 'number') {
         throw new functions.https.HttpsError('invalid-argument', 'userId and credits are required');
     }
@@ -88,9 +94,17 @@ exports.addCreditsToUser = functions.https.onCall(async (data, context) => {
 // Admin function to get user info (for testing)
 exports.getUserInfo = functions.https.onCall(async (data, context) => {
     var _a, _b, _c, _d;
+    // Check authentication
+    if (!context.auth) {
+        throw new functions.https.HttpsError('unauthenticated', 'User must be authenticated');
+    }
     const { userId } = data;
     if (!userId) {
         throw new functions.https.HttpsError('invalid-argument', 'userId is required');
+    }
+    // Users can only access their own info
+    if (context.auth.uid !== userId) {
+        throw new functions.https.HttpsError('permission-denied', 'Users can only access their own info');
     }
     try {
         const userDoc = await admin.firestore().collection('users').doc(userId).get();
@@ -117,34 +131,44 @@ exports.getUserInfo = functions.https.onCall(async (data, context) => {
         throw new functions.https.HttpsError('internal', 'Failed to get user info');
     }
 });
-// Admin function to list all users (for testing)
+// Admin function to list all users (DISABLED for security)
 exports.listAllUsers = functions.https.onCall(async (data, context) => {
-    try {
-        const usersSnapshot = await admin.firestore().collection('users').limit(10).get();
-        const users = [];
-        usersSnapshot.forEach(doc => {
-            var _a, _b;
-            const userData = doc.data();
-            users.push({
-                userId: doc.id,
-                credits: userData.credits || 0,
-                premium: userData.premium || false,
-                createdAt: ((_b = (_a = userData.createdAt) === null || _a === void 0 ? void 0 : _a.toDate) === null || _b === void 0 ? void 0 : _b.call(_a)) || null,
-            });
+    // This function is disabled for security - users should not see other users
+    throw new functions.https.HttpsError('permission-denied', 'This function is not available for security reasons');
+    /*try {
+      const usersSnapshot = await admin.firestore().collection('users').limit(10).get();
+      const users: any[] = [];
+      
+      usersSnapshot.forEach(doc => {
+        const userData = doc.data();
+        users.push({
+          userId: doc.id,
+          credits: userData.credits || 0,
+          premium: userData.premium || false,
+          createdAt: userData.createdAt?.toDate?.() || null,
         });
-        console.log(`📋 Found ${users.length} users`);
-        return { users, total: users.length };
-    }
-    catch (error) {
-        console.error('❌ Error listing users:', error);
-        throw new functions.https.HttpsError('internal', 'Failed to list users');
-    }
+      });
+      
+      console.log(`📋 Found ${users.length} users`);
+      return { users, total: users.length };
+    } catch (error) {
+      console.error('❌ Error listing users:', error);
+      throw new functions.https.HttpsError('internal', 'Failed to list users');
+    }*/
 });
 // Function to get user's photo gallery
 exports.getUserPhotos = functions.https.onCall(async (data, context) => {
+    // Check authentication
+    if (!context.auth) {
+        throw new functions.https.HttpsError('unauthenticated', 'User must be authenticated');
+    }
     const { userId } = data;
     if (!userId) {
         throw new functions.https.HttpsError('invalid-argument', 'userId is required');
+    }
+    // Users can only access their own photos
+    if (context.auth.uid !== userId) {
+        throw new functions.https.HttpsError('permission-denied', 'Users can only access their own photos');
     }
     try {
         let photosSnapshot;
