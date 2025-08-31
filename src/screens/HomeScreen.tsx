@@ -365,7 +365,7 @@ export default function HomeScreen() {
               colors={
                 (!profile?.credits || profile.credits <= 0) 
                   ? ['#cccccc', '#999999'] 
-                  : ['#4ecdc4', '#44a08d']
+                  : ['#00b894', '#00a085']
               }
               style={styles.primaryButtonGradient}
             >
@@ -392,7 +392,7 @@ export default function HomeScreen() {
             activeOpacity={0.8}
           >
             <LinearGradient
-              colors={['#a8edea', '#fed6e3']}
+              colors={['#ffffff', '#f8f9fa']}
               style={styles.secondaryButtonGradient}
             >
               <View style={styles.buttonContent}>
@@ -619,9 +619,11 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 8 },
-    shadowOpacity: 0.2,
+    shadowOpacity: 0.3,
     shadowRadius: 16,
-    elevation: 10,
+    elevation: 12,
+    borderWidth: 2,
+    borderColor: 'rgba(255,255,255,0.3)',
   },
   primaryButtonGradient: {
     borderRadius: 20,
@@ -648,22 +650,30 @@ const styles = StyleSheet.create({
     fontWeight: '800',
     marginBottom: 4,
     textAlign: 'center',
+    textShadowColor: 'rgba(0,0,0,0.5)',
+    textShadowOffset: { width: 0, height: 2 },
+    textShadowRadius: 4,
   },
   primaryButtonSubtext: {
-    color: 'rgba(255,255,255,0.8)',
+    color: 'rgba(255,255,255,0.9)',
     fontSize: 14,
     fontWeight: '500',
     textAlign: 'center',
+    textShadowColor: 'rgba(0,0,0,0.3)',
+    textShadowOffset: { width: 0, height: 1 },
+    textShadowRadius: 2,
   },
 
   // Secondary Action Button
   secondaryActionButton: {
     borderRadius: 16,
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.1,
-    shadowRadius: 8,
-    elevation: 6,
+    shadowOffset: { width: 0, height: 6 },
+    shadowOpacity: 0.2,
+    shadowRadius: 12,
+    elevation: 8,
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.5)',
   },
   secondaryButtonGradient: {
     borderRadius: 16,
@@ -673,17 +683,23 @@ const styles = StyleSheet.create({
     fontSize: 24,
   },
   secondaryButtonText: {
-    color: '#333',
+    color: '#2c3e50',
     fontSize: 18,
     fontWeight: '700',
     marginBottom: 4,
     textAlign: 'center',
+    textShadowColor: 'rgba(255,255,255,0.7)',
+    textShadowOffset: { width: 0, height: 1 },
+    textShadowRadius: 1,
   },
   secondaryButtonSubtext: {
-    color: '#666',
+    color: '#34495e',
     fontSize: 14,
     fontWeight: '500',
     textAlign: 'center',
+    textShadowColor: 'rgba(255,255,255,0.5)',
+    textShadowOffset: { width: 0, height: 1 },
+    textShadowRadius: 1,
   },
 
   buttonDisabled: {

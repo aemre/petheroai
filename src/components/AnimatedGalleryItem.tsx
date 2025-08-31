@@ -341,10 +341,7 @@ const AnimatedGalleryItem: React.FC<AnimatedGalleryItemProps> = ({
                   <Text style={[styles.sparkle, styles.sparkle4]}>🌟</Text>
                 </Animated.View>
 
-                {/* Hero Indicator - always visible for hero */}
-                <View style={styles.heroIndicator}>
-                  <Text style={styles.heroIcon}>🦸‍♀️</Text>
-                </View>
+                
               </View>
             )}
 
@@ -383,21 +380,6 @@ const AnimatedGalleryItem: React.FC<AnimatedGalleryItemProps> = ({
                   {t('gallery.swipeLeft')}
                 </Text>
               </View>
-            )}
-          </View>
-
-          {/* Item Info */}
-          <View style={styles.itemInfo}>
-            <Text style={[styles.themeText, isRTL() && styles.textRTL]}>
-              {getThemeEmoji(item.theme)} {t(`themes.${item.theme.split(' ')[0].toLowerCase()}`)}
-            </Text>
-            <Text style={[styles.dateText, isRTL() && styles.textRTL]}>
-              {formatDate(item.createdAt)}
-            </Text>
-            {item.status === 'done' && (
-              <Text style={[styles.statusText, isRTL() && styles.textRTL]}>
-                {isTransformed ? t('gallery.heroMode') : t('gallery.original')}
-              </Text>
             )}
           </View>
             </TouchableOpacity>
