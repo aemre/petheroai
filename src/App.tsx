@@ -8,6 +8,7 @@ import AppNavigator from './navigation/AppNavigator';
 import { initializeFirebase } from './services/firebase';
 import PushNotificationService from './services/pushNotifications';
 import IAPService from './services/iap';
+import { loadOnboardingState } from './services/onboarding';
 
 export default function App() {
   useEffect(() => {
@@ -16,6 +17,7 @@ export default function App() {
         await initializeFirebase();
         await PushNotificationService.initialize();
         await IAPService.initialize();
+        await loadOnboardingState(store.dispatch);
       } catch (error) {
         console.error('App initialization error:', error);
       }

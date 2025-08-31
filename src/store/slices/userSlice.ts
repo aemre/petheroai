@@ -7,6 +7,8 @@ interface UserState {
   isLoading: boolean;
   error: string | null;
   testMode: boolean; // Testing mode - bypasses credit checks
+  onboardingCompleted: boolean;
+  petPreference: 'dog' | 'cat' | null;
 }
 
 const initialState: UserState = {
@@ -14,6 +16,8 @@ const initialState: UserState = {
   isLoading: false,
   error: null,
   testMode: true, // Enable test mode by default for testing
+  onboardingCompleted: false,
+  petPreference: null,
 };
 
 export const fetchUserProfile = createAsyncThunk(
@@ -58,6 +62,12 @@ const userSlice = createSlice({
     toggleTestMode: (state) => {
       state.testMode = !state.testMode;
     },
+    setOnboardingCompleted: (state, action: PayloadAction<boolean>) => {
+      state.onboardingCompleted = action.payload;
+    },
+    setPetPreference: (state, action: PayloadAction<'dog' | 'cat'>) => {
+      state.petPreference = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -81,5 +91,5 @@ const userSlice = createSlice({
   },
 });
 
-export const { setProfile, clearError, decrementCredits, toggleTestMode } = userSlice.actions;
+export const { setProfile, clearError, decrementCredits, toggleTestMode, setOnboardingCompleted, setPetPreference } = userSlice.actions;
 export default userSlice.reducer;
