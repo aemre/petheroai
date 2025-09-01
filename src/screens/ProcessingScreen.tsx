@@ -143,13 +143,13 @@ export default function ProcessingScreen() {
       case 'done':
         return 'Transformation complete!';
       default:
-        return 'Processing...';
+        return t('processing.processing');
     }
   };
 
   const getSubtitleText = () => {
     if (!currentPhoto) {
-      return 'This may take a few moments';
+      return t('processing.patience');
     }
     
     switch (currentPhoto.status) {

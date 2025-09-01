@@ -1,4 +1,8 @@
 {
+  "app": {
+    "name": "Pet Hero AI",
+    "tagline": "Transform your pet into a hero"
+  },
   "common": {
     "loading": "Loading...",
     "error": "Error",
@@ -17,7 +21,8 @@
     "close": "Close",
     "success": "Success",
     "camera": "Camera",
-    "gallery": "Gallery"
+    "gallery": "Gallery",
+    "connectionError": "Connection error..."
   },
   "onboarding": {
     "title": "Welcome to Pet Hero AI!",
@@ -79,7 +84,8 @@
       "credits": "Credits",
       "purchaseSuccess": "credits added to your account!",
       "purchaseError": "Purchase failed"
-    }
+    },
+    "purchaseVerificationFailed": "Purchase verification failed. Please contact support."
   },
   "processing": {
     "title": "Creating Magic...",
@@ -92,19 +98,33 @@
     "pleaseWait": "Please wait...",
     "transforming": "Transforming your pet into a hero...",
     "magicInProgress": "🎭 AI Magic in Progress",
-    "description": "Watch as your pet transforms! Our AI is analyzing facial features and creating the perfect heroic version while keeping their adorable characteristics."
+    "description": "Watch as your pet transforms! Our AI is analyzing facial features and creating the perfect heroic version while keeping their adorable characteristics.",
+    "processing": "Processing...",
+    "patience": "This may take a few moments"
   },
   "result": {
-    "title": "🦸‍♀️ Your Pet Hero",
-    "subtitle": "Amazing transformation completed!",
-    "shareButton": "📤 Share Hero",
+    "title": "🎉 Transformation Complete!",
+    "subtitle": "Your pet is now a hero!",
+    "shareButton": "Share",
     "saveButton": "💾 Save to Gallery",
     "retryButton": "🔄 Try Another Theme",
     "newPhoto": "📷 New Photo",
     "showOriginal": "Show Original",
     "showHero": "Show Hero",
     "saved": "Saved to gallery!",
-    "shared": "Shared successfully!"
+    "shared": "Shared successfully!",
+    "downloadButton": "Download",
+    "createAnother": "Create Another Hero",
+    "branding": "Made with Pet Hero AI ✨",
+    "noImageDownload": "No image to download",
+    "noImageShare": "No image to share",
+    "permissionRequired": "Permission Required",
+    "permissionMessage": "Media library permission is needed to save the image",
+    "savedSuccess": "Hero image saved to your gallery! 🦸‍♀️",
+    "saveFailed": "Failed to save image. Please try again.",
+    "shareFailed": "Failed to share image. Please try again.",
+    "sharingUnavailable": "Sharing is not available on this device",
+    "loadingTransformation": "Loading your hero transformation..."
   },
   "gallery": {
     "title": "🖼️ Your Hero Gallery",
@@ -121,6 +141,11 @@
     "today": "Today",
     "yesterday": "Yesterday",
     "daysAgo": "days ago"
+  },
+  "notifications": {
+    "disabled": "Notifications Disabled",
+    "enableMessage": "Enable notifications to get updates when your pet transformations are complete!",
+    "defaultMessage": "You have a new notification"
   },
   "themes": {
     "superhero": "Superhero with cape flying through the sky",

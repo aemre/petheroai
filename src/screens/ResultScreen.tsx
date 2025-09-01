@@ -48,7 +48,7 @@ export default function ResultScreen() {
 
   const handleDownload = async () => {
     if (!currentPhoto?.resultUrl) {
-      Alert.alert('Error', 'No image to download');
+      Alert.alert(t('common.error'), t('result.noImageDownload'));
       return;
     }
 
@@ -56,8 +56,8 @@ export default function ResultScreen() {
       const hasPermission = await requestMediaLibraryPermission();
       if (!hasPermission) {
         Alert.alert(
-          'Permission Required',
-          'Media library permission is needed to save the image'
+          t('result.permissionRequired'),
+          t('result.permissionMessage')
         );
         return;
       }
@@ -118,23 +118,23 @@ export default function ResultScreen() {
         console.log('Failed to delete temp file:', deleteError);
       }
       
-      Alert.alert('Success', 'Hero image saved to your gallery! 🦸‍♀️');
+      Alert.alert(t('common.success'), t('result.savedSuccess'));
     } catch (error) {
       console.error('Download error:', error);
-      Alert.alert('Error', 'Failed to save image. Please try again.');
+      Alert.alert(t('common.error'), t('result.saveFailed'));
     }
   };
 
   const handleShare = async () => {
     if (!currentPhoto?.resultUrl) {
-      Alert.alert('Error', 'No image to share');
+      Alert.alert(t('common.error'), t('result.noImageShare'));
       return;
     }
 
     try {
       const isAvailable = await Sharing.isAvailableAsync();
       if (!isAvailable) {
-        Alert.alert('Error', 'Sharing is not available on this device');
+        Alert.alert(t('common.error'), t('result.sharingUnavailable'));
         return;
       }
 
@@ -183,7 +183,7 @@ export default function ResultScreen() {
 
     } catch (error) {
       console.error('Share error:', error);
-      Alert.alert('Error', 'Failed to share image. Please try again.');
+      Alert.alert(t('common.error'), t('result.shareFailed'));
     }
   };
 
@@ -198,7 +198,7 @@ export default function ResultScreen() {
         colors={['#F0F9FF', '#E0F2FE', '#BAE6FD']}
         style={styles.loadingContainer}
       >
-        <Text style={styles.loadingText}>Loading your hero transformation...</Text>
+        <Text style={styles.loadingText}>{t('result.loadingTransformation')}</Text>
       </LinearGradient>
     );
   }
@@ -210,14 +210,14 @@ export default function ResultScreen() {
     >
       <ScrollView contentContainerStyle={styles.scrollContent}>
       <View style={styles.header}>
-        <Text style={styles.title}>🎉 Transformation Complete!</Text>
-        <Text style={styles.subtitle}>Your pet is now a hero!</Text>
+        <Text style={styles.title}>{t('result.title')}</Text>
+        <Text style={styles.subtitle}>{t('result.subtitle')}</Text>
       </View>
 
       <View style={styles.imageContainer}>
         {imageLoading && (
           <View style={styles.imageLoadingOverlay}>
-            <Text style={styles.imageLoadingText}>Loading...</Text>
+            <Text style={styles.imageLoadingText}>{t('common.loading')}</Text>
           </View>
         )}
         <Image
@@ -232,22 +232,22 @@ export default function ResultScreen() {
       <View style={styles.actionsContainer}>
         <TouchableOpacity style={styles.downloadButton} onPress={handleDownload}>
           <Text style={styles.downloadIcon}>💾</Text>
-          <Text style={styles.downloadText}>Download</Text>
+          <Text style={styles.downloadText}>{t('result.downloadButton')}</Text>
         </TouchableOpacity>
 
         <TouchableOpacity style={styles.shareButton} onPress={handleShare}>
           <Text style={styles.shareIcon}>📤</Text>
-          <Text style={styles.shareText}>Share</Text>
+          <Text style={styles.shareText}>{t('result.shareButton')}</Text>
         </TouchableOpacity>
       </View>
 
       <View style={styles.bottomContainer}>
         <TouchableOpacity style={styles.createAnotherButton} onPress={handleCreateAnother}>
-          <Text style={styles.createAnotherText}>Create Another Hero</Text>
+          <Text style={styles.createAnotherText}>{t('result.createAnother')}</Text>
         </TouchableOpacity>
 
         <View style={styles.brandingContainer}>
-          <Text style={styles.brandingText}>Made with Pet Hero AI ✨</Text>
+          <Text style={styles.brandingText}>{t('result.branding')}</Text>
         </View>
       </View>
       </ScrollView>

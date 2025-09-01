@@ -234,7 +234,7 @@ export default function HomeScreen() {
           );
         } else {
           console.error('❌ Purchase verification failed:', verificationResult.message);
-          Alert.alert(t('common.error'), 'Purchase verification failed. Please contact support.');
+          Alert.alert(t('common.error'), t('home.purchaseVerificationFailed'));
         }
       }
     } catch (error) {

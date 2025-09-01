@@ -5,10 +5,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../store/store';
 import { signInAnonymouslyThunk } from '../store/slices/authSlice';
 import { fetchUserProfile } from '../store/slices/userSlice';
+import { useTranslation } from '../hooks/useTranslation';
 
 export default function SplashScreen() {
   const dispatch = useDispatch<AppDispatch>();
   const { isLoading, error } = useSelector((state: RootState) => state.auth);
+  const { t } = useTranslation();
 
   useEffect(() => {
     const initializeApp = async () => {
@@ -32,14 +34,14 @@ export default function SplashScreen() {
     >
       <View style={styles.logoContainer}>
         <Text style={styles.logoText}>🦸‍♀️</Text>
-        <Text style={styles.title}>Pet Hero AI</Text>
-        <Text style={styles.subtitle}>Transform your pet into a hero</Text>
+        <Text style={styles.title}>{t('app.name')}</Text>
+        <Text style={styles.subtitle}>{t('app.tagline')}</Text>
       </View>
       
       <View style={styles.loadingContainer}>
         <ActivityIndicator size="large" color="#FF6B6B" />
         <Text style={styles.loadingText}>
-          {error ? 'Connection error...' : 'Loading...'}
+          {error ? t('common.connectionError') : t('common.loading')}
         </Text>
       </View>
     </LinearGradient>

@@ -1,4 +1,8 @@
 {
+  "app": {
+    "name": "Pet Hero AI",
+    "tagline": "Evcil hayvanını kahramana dönüştür"
+  },
   "common": {
     "loading": "Yükleniyor...",
     "error": "Hata",
@@ -17,7 +21,8 @@
     "close": "Kapat",
     "success": "Başarılı",
     "camera": "Kamera",
-    "gallery": "Galeri"
+    "gallery": "Galeri",
+    "connectionError": "Bağlantı hatası..."
   },
   "onboarding": {
     "title": "Pet Hero AI'ya Hoş Geldin!",
@@ -79,7 +84,8 @@
       "credits": "Kredi",
       "purchaseSuccess": "kredi hesabına eklendi!",
       "purchaseError": "Satın alma başarısız"
-    }
+    },
+    "purchaseVerificationFailed": "Satın alma doğrulaması başarısız. Lütfen destek ile iletişime geçin."
   },
   "processing": {
     "title": "Sihir Yaratılıyor...",
@@ -92,19 +98,33 @@
     "pleaseWait": "Lütfen bekle...",
     "transforming": "Evcil hayvanın kahramana dönüştürülüyor...",
     "magicInProgress": "🎭 AI Sihri Devam Ediyor",
-    "description": "Evcil hayvanın dönüşümünü izle! AImız yüz özelliklerini analiz ediyor ve sevimli özelliklerini koruyarak mükemmel kahramanca versiyonu oluşturuyor."
+    "description": "Evcil hayvanın dönüşümünü izle! AImız yüz özelliklerini analiz ediyor ve sevimli özelliklerini koruyarak mükemmel kahramanca versiyonu oluşturuyor.",
+    "processing": "İşleniyor...",
+    "patience": "Bu birkaç dakika sürebilir"
   },
   "result": {
-    "title": "🦸‍♀️ Evcil Hayvan Kahramanın",
-    "subtitle": "Muhteşem dönüşüm tamamlandı!",
-    "shareButton": "📤 Kahramanı Paylaş",
+    "title": "🎉 Dönüşüm Tamamlandı!",
+    "subtitle": "Evcil hayvanın artık bir kahraman!",
+    "shareButton": "Paylaş",
     "saveButton": "💾 Galeriye Kaydet",
     "retryButton": "🔄 Başka Tema Dene",
     "newPhoto": "📷 Yeni Fotoğraf",
     "showOriginal": "Orijinali Göster",
     "showHero": "Kahramanı Göster",
     "saved": "Galeriye kaydedildi!",
-    "shared": "Başarıyla paylaşıldı!"
+    "shared": "Başarıyla paylaşıldı!",
+    "downloadButton": "İndir",
+    "createAnother": "Başka Kahraman Oluştur",
+    "branding": "Pet Hero AI ile yapıldı ✨",
+    "noImageDownload": "İndirilecek resim yok",
+    "noImageShare": "Paylaşılacak resim yok",
+    "permissionRequired": "İzin Gerekli",
+    "permissionMessage": "Resmi kaydetmek için medya kütüphanesi izni gerekli",
+    "savedSuccess": "Kahraman resmi galerine kaydedildi! 🦸‍♀️",
+    "saveFailed": "Resim kaydetme başarısız. Lütfen tekrar dene.",
+    "shareFailed": "Resim paylaşma başarısız. Lütfen tekrar dene.",
+    "sharingUnavailable": "Bu cihazda paylaşım mevcut değil",
+    "loadingTransformation": "Kahraman dönüşümün yükleniyor..."
   },
   "gallery": {
     "title": "🖼️ Kahraman Galerisi",
@@ -121,6 +141,11 @@
     "today": "Bugün",
     "yesterday": "Dün",
     "daysAgo": "gün önce"
+  },
+  "notifications": {
+    "disabled": "Bildirimler Devre Dışı",
+    "enableMessage": "Evcil hayvan dönüşümlerin tamamlandığında güncellemeler almak için bildirimleri etkinleştir!",
+    "defaultMessage": "Yeni bir bildirimin var"
   },
   "themes": {
     "superhero": "Gökyüzünde uçan pelerinli süper kahraman",
