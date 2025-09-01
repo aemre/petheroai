@@ -265,17 +265,7 @@ async function updatePhotoResult(
 
     // Use a transaction to ensure both operations succeed or fail together
     await admin.firestore().runTransaction(async (transaction) => {
-      // 1. Update photo status to done
-      const photoRef = admin.firestore().collection('photos').doc(photoId);
-      transaction.update(photoRef, {
-        status: 'done',
-        resultUrl: resultUrl,
-        theme: theme,
-        analysis: analysis,
-        processedAt: admin.firestore.FieldValue.serverTimestamp(),
-      });
-
-      // 2. Deduct 1 credit from user (only if processing succeeded)
+      // 1. First, read user data (all reads must come before writes)
       const userRef = admin.firestore().collection('users').doc(userId);
       const userDoc = await transaction.get(userRef);
       
@@ -287,13 +277,25 @@ async function updatePhotoResult(
       const userData = userDoc.data();
       const currentCredits = userData?.credits || 0;
 
+      // 2. Now perform all writes
+      // Update photo status to done
+      const photoRef = admin.firestore().collection('photos').doc(photoId);
+      transaction.update(photoRef, {
+        status: 'done',
+        resultUrl: resultUrl,
+        theme: theme,
+        analysis: analysis,
+        processedAt: admin.firestore.FieldValue.serverTimestamp(),
+      });
+
+      // 3. Deduct credits and log usage
       if (currentCredits > 0) {
         transaction.update(userRef, {
           credits: admin.firestore.FieldValue.increment(-1),
           lastUpdated: admin.firestore.FieldValue.serverTimestamp(),
         });
 
-        // 3. Log the credit usage
+        // 4. Log the credit usage
         const usageLogRef = admin.firestore().collection('creditUsage').doc();
         transaction.set(usageLogRef, {
           userId,

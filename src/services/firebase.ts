@@ -82,7 +82,7 @@ export const updateUserCredits = async (userId: string, credits: number) => {
 
 export const uploadImage = async (uri: string, userId: string) => {
   try {
-    console.log('📤 Starting FILE-READY upload...', { uri, userId });
+    console.log('📤 Starting image upload...', { uri, userId });
     
     // Check authentication first
     const currentUser = auth().currentUser;
@@ -91,66 +91,97 @@ export const uploadImage = async (uri: string, userId: string) => {
     }
     console.log('👤 User authenticated:', currentUser.uid);
     
-    // CRITICAL: Wait for temp file to be fully written by iOS
-    // This is the likely root cause - temp files need time to be accessible
+    // Wait for temp file to be ready
     console.log('⏳ Waiting for temp file to be ready...');
-    await new Promise(resolve => setTimeout(resolve, 1000)); // Wait 1 second
+    await new Promise(resolve => setTimeout(resolve, 1500));
     
-    // Verify file is accessible
-    console.log('🔍 Verifying file accessibility...');
-    try {
-      const response = await fetch(uri);
-      console.log('✅ File is accessible, content-length:', response.headers.get('content-length'));
-    } catch (fileError) {
-      console.error('❌ File not accessible:', fileError);
-      throw new Error('Temporary file not ready for upload');
-    }
+    // Initialize storage with explicit bucket
+    const storageInstance = storage();
+    console.log('🗄️ Storage bucket:', storageInstance.app.options.storageBucket);
     
-    // Simple upload without retry - should work now
-    const filename = `image_${Date.now()}.jpg`;
-    const reference = storage().ref(`images/${filename}`);
+    // Detect file extension from URI
+    const fileExtension = uri.toLowerCase().includes('.png') ? 'png' : 'jpg';
+    const filename = `${userId}_${Date.now()}.${fileExtension}`;
+    const reference = storageInstance.ref(`images/${filename}`);
     
     console.log('📂 Storage reference created:', `images/${filename}`);
-    console.log('⬆️ Starting direct upload...');
+    console.log('⬆️ Starting upload...');
     
-    const uploadTask = reference.putFile(uri);
-    const snapshot = await uploadTask;
+    // Simple upload without event listeners to avoid race conditions
+    console.log('⬆️ Starting Firebase Storage upload...');
     
-    console.log('📊 Final snapshot:', {
+    let snapshot: any;
+    try {
+      // Try upload with minimal metadata first
+      snapshot = await reference.putFile(uri);
+      console.log('✅ Upload completed successfully');
+    } catch (uploadError: any) {
+      console.error('❌ Initial upload failed, trying with different metadata:', uploadError);
+      
+      // Retry with different approach - sometimes metadata causes issues
+      try {
+        snapshot = await reference.putFile(uri, {
+          contentType: fileExtension === 'png' ? 'image/png' : 'image/jpeg',
+        });
+        console.log('✅ Upload completed successfully on retry');
+      } catch (retryError: any) {
+        console.error('❌ Retry upload also failed:', retryError);
+        
+        // Check for specific error codes
+        if (retryError.code === 'storage/unauthorized') {
+          throw new Error('Storage access denied. Check Firebase Storage rules.');
+        } else if (retryError.code === 'storage/canceled') {
+          throw new Error('Upload was canceled');
+        } else if (retryError.code === 'storage/quota-exceeded') {
+          throw new Error('Storage quota exceeded');
+        } else {
+          throw new Error(`Upload failed: ${retryError.message || retryError.code || 'Unknown error'}`);
+        }
+      }
+    }
+    
+    console.log('📊 Upload completed:', {
       bytesTransferred: snapshot.bytesTransferred,
       totalBytes: snapshot.totalBytes,
       state: snapshot.state,
     });
     
-    // Get download URL directly
+    // Get download URL
     console.log('🔗 Getting download URL...');
-    const downloadUrl = await reference.getDownloadURL();
+    let downloadUrl: string;
+    try {
+      downloadUrl = await reference.getDownloadURL();
+      console.log('✅ Download URL obtained:', downloadUrl);
+    } catch (urlError) {
+      console.error('❌ Failed to get download URL:', urlError);
+      throw new Error(`Failed to get download URL: ${urlError}`);
+    }
     
-    console.log('✅ Download URL obtained successfully:', downloadUrl);
     return downloadUrl;
     
   } catch (error: any) {
-    console.error('❌ DETAILED ERROR ANALYSIS:');
-    console.error('❌ Error object:', error);
-    console.error('❌ Error code:', error?.code);
-    console.error('❌ Error message:', error?.message);
-    console.error('❌ Error name:', error?.name);
-    console.error('❌ Error stack:', error?.stack);
-    console.error('❌ Error toString:', error?.toString());
+    console.error('❌ Upload error:', error);
+    
+    // Log detailed error information
+    console.error('❌ Error details:', {
+      code: error?.code,
+      message: error?.message,
+      name: error?.name,
+    });
     
     // Log storage configuration
     console.error('🏗️ Storage config:', {
+      appName: storage().app.name,
       bucket: storage().app.options.storageBucket,
       projectId: storage().app.options.projectId,
-      appName: storage().app.name,
     });
     
     // Log auth state
     const user = auth().currentUser;
     console.error('👤 Auth state:', {
+      isAnonymous: user?.isAnonymous,
       isAuthenticated: !!user,
       uid: user?.uid,
-      isAnonymous: user?.isAnonymous,
     });
     
     throw error;
