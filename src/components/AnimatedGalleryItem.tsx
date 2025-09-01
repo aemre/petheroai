@@ -281,7 +281,7 @@ const AnimatedGalleryItem: React.FC<AnimatedGalleryItemProps> = ({
         >
           <Animated.View>
             <TouchableOpacity
-              style={[styles.galleryItem, { width: itemSize, height: itemSize + 60 }]}
+              style={[styles.galleryItem, { width: itemSize, height: itemSize }]}
               onPress={handlePress}
               activeOpacity={0.9}
             >
@@ -364,23 +364,6 @@ const AnimatedGalleryItem: React.FC<AnimatedGalleryItemProps> = ({
               />
             </Animated.View>
 
-            {/* Interaction Indicator for hero view */}
-            {item.status === 'done' && isTransformed && (
-              <View style={styles.swipeIndicator}>
-                <Text style={[styles.swipeText, isRTL() && styles.textRTL]}>
-                  {t('gallery.swipeRight')}
-                </Text>
-              </View>
-            )}
-
-            {/* Transform Back Indicator for original view */}
-            {item.status === 'done' && !isTransformed && (
-              <View style={styles.swipeIndicator}>
-                <Text style={[styles.swipeText, isRTL() && styles.textRTL]}>
-                  {t('gallery.swipeLeft')}
-                </Text>
-              </View>
-            )}
           </View>
             </TouchableOpacity>
           </Animated.View>
@@ -509,21 +492,6 @@ const styles = StyleSheet.create({
   },
   heroIcon: {
     fontSize: 16,
-  },
-  swipeIndicator: {
-    position: 'absolute',
-    bottom: 8,
-    left: 8,
-    right: 8,
-    backgroundColor: 'rgba(0, 0, 0, 0.7)',
-    borderRadius: 8,
-    padding: 4,
-    alignItems: 'center',
-  },
-  swipeText: {
-    color: '#fff',
-    fontSize: 10,
-    textAlign: 'center',
   },
   itemInfo: {
     padding: 12,

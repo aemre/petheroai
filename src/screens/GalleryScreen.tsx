@@ -219,6 +219,15 @@ export default function GalleryScreen() {
         maxToRenderPerBatch={10}
         windowSize={10}
       />
+      
+      {/* Bottom swipe instruction */}
+      {galleryItems.length > 0 && (
+        <View style={styles.bottomInstruction}>
+          <Text style={[styles.instructionText, isRTL() && styles.textRTL]}>
+            {t('gallery.swipeRight')}
+          </Text>
+        </View>
+      )}
       </SafeAreaView>
     </LinearGradient>
   );
@@ -336,5 +345,23 @@ const styles = StyleSheet.create({
   },
   emptyContainerRTL: {
     alignItems: 'flex-end',
+  },
+  bottomInstruction: {
+    position: 'absolute',
+    bottom: 40,
+    left: 0,
+    right: 0,
+    alignItems: 'center',
+    paddingHorizontal: 20,
+  },
+  instructionText: {
+    backgroundColor: 'rgba(0, 0, 0, 0.7)',
+    color: '#fff',
+    fontSize: 14,
+    paddingHorizontal: 16,
+    paddingVertical: 8,
+    borderRadius: 20,
+    textAlign: 'center',
+    overflow: 'hidden',
   },
 });
