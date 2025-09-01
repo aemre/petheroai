@@ -140,7 +140,12 @@
     "processing": "جاري المعالجة...",
     "today": "اليوم",
     "yesterday": "أمس",
-    "daysAgo": "منذ أيام"
+    "daysAgo": "منذ أيام",
+    "delete": "حذف",
+    "deleteConfirmTitle": "حذف الصورة",
+    "deleteConfirmMessage": "هل أنت متأكد من حذف هذه الصورة؟ لا يمكن التراجع عن هذا الإجراء.",
+    "deleteSuccess": "تم حذف الصورة بنجاح",
+    "deleteError": "فشل في حذف الصورة. الرجاء المحاولة مرة أخرى."
   },
   "notifications": {
     "disabled": "الإشعارات معطلة",

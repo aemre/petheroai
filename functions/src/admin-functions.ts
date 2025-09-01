@@ -207,3 +207,112 @@ export const getUserPhotos = functions.https.onCall(async (data, context) => {
     throw new functions.https.HttpsError('internal', 'Failed to get user photos');
   }
 });
+
+// Function to securely delete a user's photo
+export const deleteUserPhoto = functions.https.onCall(async (data, context) => {
+  // Check authentication
+  if (!context.auth) {
+    throw new functions.https.HttpsError('unauthenticated', 'User must be authenticated');
+  }
+
+  const { photoId } = data;
+  
+  if (!photoId) {
+    throw new functions.https.HttpsError('invalid-argument', 'photoId is required');
+  }
+
+  try {
+    // Get the photo document first to verify ownership
+    const photoDoc = await admin.firestore().collection('photos').doc(photoId).get();
+    
+    if (!photoDoc.exists) {
+      throw new functions.https.HttpsError('not-found', 'Photo not found');
+    }
+
+    const photoData = photoDoc.data();
+    
+    if (!photoData) {
+      throw new functions.https.HttpsError('not-found', 'Photo data not found');
+    }
+    
+    // Verify that the authenticated user owns this photo
+    if (photoData.userId !== context.auth.uid) {
+      throw new functions.https.HttpsError('permission-denied', 'You can only delete your own photos');
+    }
+
+    console.log(`🗑️ Deleting photo ${photoId} for user ${context.auth.uid}`);
+
+    // Delete from Storage (both original and result images if they exist)
+    const bucket = admin.storage().bucket();
+    
+    const deletePromises: Promise<any>[] = [];
+    
+    // Extract file paths from URLs and delete from storage
+    if (photoData.originalUrl) {
+      try {
+        const originalPath = extractStoragePathFromUrl(photoData.originalUrl);
+        if (originalPath) {
+          deletePromises.push(bucket.file(originalPath).delete().catch(err => {
+            console.warn(`⚠️ Failed to delete original image: ${err.message}`);
+          }));
+        }
+      } catch (err) {
+        console.warn(`⚠️ Could not extract original image path: ${err}`);
+      }
+    }
+
+    if (photoData.resultUrl && photoData.resultUrl !== photoData.originalUrl) {
+      try {
+        const resultPath = extractStoragePathFromUrl(photoData.resultUrl);
+        if (resultPath) {
+          deletePromises.push(bucket.file(resultPath).delete().catch(err => {
+            console.warn(`⚠️ Failed to delete result image: ${err.message}`);
+          }));
+        }
+      } catch (err) {
+        console.warn(`⚠️ Could not extract result image path: ${err}`);
+      }
+    }
+
+    // Wait for storage deletions to complete (or fail gracefully)
+    await Promise.allSettled(deletePromises);
+
+    // Delete the photo document from Firestore
+    await admin.firestore().collection('photos').doc(photoId).delete();
+
+    console.log(`✅ Successfully deleted photo ${photoId}`);
+    
+    return {
+      success: true,
+      message: 'Photo deleted successfully'
+    };
+
+  } catch (error: any) {
+    console.error('Error deleting photo:', error);
+    
+    // Re-throw known errors
+    if (error instanceof functions.https.HttpsError) {
+      throw error;
+    }
+    
+    throw new functions.https.HttpsError('internal', 'Failed to delete photo');
+  }
+});
+
+// Helper function to extract storage path from download URL
+function extractStoragePathFromUrl(downloadUrl: string): string | null {
+  try {
+    // Firebase Storage download URLs follow this pattern:
+    // https://firebasestorage.googleapis.com/v0/b/{bucket}/o/{path}?alt=media&token={token}
+    const url = new URL(downloadUrl);
+    const pathMatch = url.pathname.match(/\/o\/(.+)$/);
+    if (pathMatch) {
+      // Decode the URL-encoded path
+      return decodeURIComponent(pathMatch[1]);
+    }
+    return null;
+  } catch (error) {
+    console.error('Error extracting storage path:', error);
+    return null;
+  }
+}

@@ -140,7 +140,12 @@
     "processing": "İşleniyor...",
     "today": "Bugün",
     "yesterday": "Dün",
-    "daysAgo": "gün önce"
+    "daysAgo": "gün önce",
+    "delete": "Sil",
+    "deleteConfirmTitle": "Fotoğrafı Sil",
+    "deleteConfirmMessage": "Bu fotoğrafı silmek istediğinizden emin misiniz? Bu işlem geri alınamaz.",
+    "deleteSuccess": "Fotoğraf başarıyla silindi",
+    "deleteError": "Fotoğraf silinemedi. Lütfen tekrar deneyin."
   },
   "notifications": {
     "disabled": "Bildirimler Devre Dışı",

@@ -20,6 +20,7 @@ import * as FileSystem from 'expo-file-system';
 import { AppDispatch, RootState } from '../store/store';
 import { checkPhotoStatus, clearCurrentPhoto } from '../store/slices/photoSlice';
 import { RootStackParamList } from '../navigation/AppNavigator';
+import { useTranslation } from '../hooks/useTranslation';
 
 type ResultScreenRouteProp = RouteProp<RootStackParamList, 'Result'>;
 type ResultScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Result'>;
@@ -31,6 +32,7 @@ export default function ResultScreen() {
   const navigation = useNavigation<ResultScreenNavigationProp>();
   const route = useRoute<ResultScreenRouteProp>();
   const { photoId } = route.params;
+  const { t } = useTranslation();
 
   const { currentPhoto } = useSelector((state: RootState) => state.photo);
   const [imageLoading, setImageLoading] = useState(true);

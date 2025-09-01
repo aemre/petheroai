@@ -140,7 +140,12 @@
     "processing": "Processing...",
     "today": "Today",
     "yesterday": "Yesterday",
-    "daysAgo": "days ago"
+    "daysAgo": "days ago",
+    "delete": "Delete",
+    "deleteConfirmTitle": "Delete Photo",
+    "deleteConfirmMessage": "Are you sure you want to delete this photo? This action cannot be undone.",
+    "deleteSuccess": "Photo deleted successfully",
+    "deleteError": "Failed to delete photo. Please try again."
   },
   "notifications": {
     "disabled": "Notifications Disabled",

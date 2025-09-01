@@ -11,10 +11,12 @@ import {
 import {
   PanGestureHandler,
   TapGestureHandler,
+  LongPressGestureHandler,
   State,
   PanGestureHandlerGestureEvent,
   PanGestureHandlerStateChangeEvent,
   TapGestureHandlerStateChangeEvent,
+  LongPressGestureHandlerStateChangeEvent,
 } from 'react-native-gesture-handler';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useTranslation } from '../hooks/useTranslation';
@@ -32,6 +34,7 @@ interface AnimatedGalleryItemProps {
   item: GalleryItem;
   itemSize: number;
   onPress: (item: GalleryItem) => void;
+  onDelete?: (item: GalleryItem) => void;
   getThemeEmoji: (theme: string) => string;
   formatDate: (dateString: string) => string;
 }
@@ -40,11 +43,13 @@ const AnimatedGalleryItem: React.FC<AnimatedGalleryItemProps> = ({
   item,
   itemSize,
   onPress,
+  onDelete,
   getThemeEmoji,
   formatDate,
 }) => {
   const [isTransformed, setIsTransformed] = useState(true);
   const [isDragging, setIsDragging] = useState(false);
+  const [showDeleteButton, setShowDeleteButton] = useState(false);
   const { t, isRTL } = useTranslation();
   
   // Animation values - initialize to show hero state
@@ -253,6 +258,23 @@ const AnimatedGalleryItem: React.FC<AnimatedGalleryItemProps> = ({
     }
   };
 
+  const handleLongPress = (event: LongPressGestureHandlerStateChangeEvent) => {
+    if (event.nativeEvent.state === State.ACTIVE && onDelete) {
+      setShowDeleteButton(true);
+    }
+  };
+
+  const handleDelete = () => {
+    if (onDelete) {
+      onDelete(item);
+    }
+    setShowDeleteButton(false);
+  };
+
+  const hideDeleteButton = () => {
+    setShowDeleteButton(false);
+  };
+
   // Start sparkle animation on mount
   useEffect(() => {
     startSparkleAnimation();
@@ -264,22 +286,28 @@ const AnimatedGalleryItem: React.FC<AnimatedGalleryItemProps> = ({
   });
 
   return (
-    <TapGestureHandler
-      onHandlerStateChange={handleDoubleTap}
-      numberOfTaps={2}
-      enabled={item.status === 'done'}
+    <LongPressGestureHandler
+      onHandlerStateChange={handleLongPress}
+      enabled={!!onDelete}
+      minDurationMs={800}
     >
       <Animated.View>
-        <PanGestureHandler
-          onGestureEvent={handleGestureEvent}
-          onHandlerStateChange={handleStateChange}
+        <TapGestureHandler
+          onHandlerStateChange={handleDoubleTap}
+          numberOfTaps={2}
           enabled={item.status === 'done'}
-          shouldCancelWhenOutside={true}
-          activeOffsetX={[-20, 20]}
-          failOffsetY={[-35, 35]}
-          maxPointers={1}
         >
           <Animated.View>
+            <PanGestureHandler
+              onGestureEvent={handleGestureEvent}
+              onHandlerStateChange={handleStateChange}
+              enabled={item.status === 'done'}
+              shouldCancelWhenOutside={true}
+              activeOffsetX={[-20, 20]}
+              failOffsetY={[-35, 35]}
+              maxPointers={1}
+            >
+              <Animated.View>
             <TouchableOpacity
               style={[styles.galleryItem, { width: itemSize, height: itemSize }]}
               onPress={handlePress}
@@ -365,11 +393,41 @@ const AnimatedGalleryItem: React.FC<AnimatedGalleryItemProps> = ({
             </Animated.View>
 
           </View>
+              {/* Delete Button Overlay */}
+              {showDeleteButton && (
+                <TouchableOpacity
+                  style={styles.deleteOverlay}
+                  onPress={hideDeleteButton}
+                  activeOpacity={1}
+                >
+                  <View style={styles.deleteButtonContainer}>
+                    <TouchableOpacity
+                      style={styles.deleteButton}
+                      onPress={handleDelete}
+                    >
+                      <Text style={styles.deleteIcon}>🗑️</Text>
+                      <Text style={[styles.deleteText, isRTL() && styles.textRTL]}>
+                        {t('gallery.delete')}
+                      </Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                      style={styles.cancelButton}
+                      onPress={hideDeleteButton}
+                    >
+                      <Text style={[styles.cancelText, isRTL() && styles.textRTL]}>
+                        {t('common.cancel')}
+                      </Text>
+                    </TouchableOpacity>
+                  </View>
+                </TouchableOpacity>
+              )}
             </TouchableOpacity>
+              </Animated.View>
+            </PanGestureHandler>
           </Animated.View>
-        </PanGestureHandler>
+        </TapGestureHandler>
       </Animated.View>
-    </TapGestureHandler>
+    </LongPressGestureHandler>
   );
 };
 
@@ -514,6 +572,50 @@ const styles = StyleSheet.create({
   },
   textRTL: {
     textAlign: 'right',
+  },
+  deleteOverlay: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: 'rgba(0, 0, 0, 0.8)',
+    justifyContent: 'center',
+    alignItems: 'center',
+    zIndex: 1000,
+    borderRadius: 12,
+  },
+  deleteButtonContainer: {
+    alignItems: 'center',
+    gap: 12,
+  },
+  deleteButton: {
+    backgroundColor: '#FF4444',
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    borderRadius: 20,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+  },
+  deleteIcon: {
+    fontSize: 16,
+  },
+  deleteText: {
+    color: '#fff',
+    fontSize: 14,
+    fontWeight: '600',
+  },
+  cancelButton: {
+    backgroundColor: 'rgba(255, 255, 255, 0.2)',
+    paddingHorizontal: 16,
+    paddingVertical: 8,
+    borderRadius: 16,
+  },
+  cancelText: {
+    color: '#fff',
+    fontSize: 12,
+    fontWeight: '500',
   },
 });
 

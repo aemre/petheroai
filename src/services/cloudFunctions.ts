@@ -20,6 +20,21 @@ export const verifyPurchase = async (receipt: string, productId: string, platfor
 };
 
 // Note: addCreditsToUser is now only available as a cloud function for admin use
+
+// Cloud function to securely delete a user's photo
+export const deleteUserPhoto = async (photoId: string) => {
+  try {
+    const deletePhotoFunc = functions().httpsCallable('deleteUserPhoto');
+    const result = await deletePhotoFunc({ photoId });
+    return result.data as {
+      success: boolean;
+      message: string;
+    };
+  } catch (error: any) {
+    console.error('Error deleting photo:', error);
+    throw new Error(error.message || 'Failed to delete photo');
+  }
+};
 // App should not directly add credits - only through verified purchases
 
 // Cloud function to get user info

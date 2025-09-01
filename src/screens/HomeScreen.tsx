@@ -213,7 +213,7 @@ export default function HomeScreen() {
         // Verify purchase with secure cloud function
         // Handle both single purchase and array response from RNIap
         const purchaseData = Array.isArray(purchase) ? purchase[0] : purchase;
-        const receipt = purchaseData.transactionReceipt || purchaseData.purchaseToken || '';
+        const receipt = purchaseData.transactionReceipt || (purchaseData as any).purchaseToken || (purchaseData as any).purchaseTokenAndroid || '';
         
         const verificationResult = await verifyPurchase(
           receipt, 
@@ -276,40 +276,80 @@ export default function HomeScreen() {
     >
       <View style={styles.modalOverlay}>
         <View style={styles.modalContent}>
-          <Text style={styles.modalTitle}>💎 Buy Credits</Text>
-          <Text style={styles.modalSubtitle}>Choose your credit package to continue transforming pets!</Text>
+          <Text style={styles.modalTitle}>{t('home.purchaseModal.title')}</Text>
+          <Text style={styles.modalSubtitle}>{t('home.purchaseModal.subtitle')}</Text>
           
-          {products.map((product, index) => (
-            <TouchableOpacity
-              key={product.productId}
-              style={styles.productButton}
-              onPress={() => handlePurchase(product.productId)}
-              activeOpacity={0.8}
-            >
-              <LinearGradient
-                colors={[
-                  index % 2 === 0 ? '#ff6b6b' : '#4ecdc4',
-                  index % 2 === 0 ? '#ff8e8e' : '#6ee0d5'
-                ]}
-                style={styles.productGradient}
+          {products
+            .sort((a, b) => {
+              // Sort by credits amount: 5, 10, 20
+              const creditsA = IAPService.getCreditsFromProductId(a.productId || a.id);
+              const creditsB = IAPService.getCreditsFromProductId(b.productId || b.id);
+              return creditsA - creditsB;
+            })
+            .map((product, index) => {
+            // Handle both productId and id properties
+            const productId = product.productId || product.id;
+            const displayInfo = IAPService.getProductDisplayInfo(productId);
+            const credits = displayInfo.credits;
+            
+            // Handle different price properties
+            const productPrice = product.price || parseFloat(product.displayPrice?.replace('$', '') || '0');
+            
+            const pricePerCredit = credits > 0 ? productPrice / credits : 0;
+            const isPopular = displayInfo.badge === 'POPULAR';
+            const isBestValue = displayInfo.badge === 'BEST VALUE';
+            
+            return (
+              <TouchableOpacity
+                key={productId}
+                style={[styles.productButton, isPopular && styles.popularProduct]}
+                onPress={() => handlePurchase(productId)}
+                activeOpacity={0.8}
               >
-                <View>
-                  <Text style={styles.productTitle}>{product.title}</Text>
-                  <Text style={[styles.productTitle, { fontSize: 14, opacity: 0.8 }]}>
-                    {IAPService.getCreditsFromProductId(product.productId)} Credits
-                  </Text>
-                </View>
-                <Text style={styles.productPrice}>{product.localizedPrice}</Text>
-              </LinearGradient>
-            </TouchableOpacity>
-          ))}
+                {isPopular && (
+                  <View style={styles.popularBadge}>
+                    <Text style={styles.popularBadgeText}>POPULAR</Text>
+                  </View>
+                )}
+                {isBestValue && (
+                  <View style={styles.bestValueBadge}>
+                    <Text style={styles.bestValueBadgeText}>BEST VALUE</Text>
+                  </View>
+                )}
+                <LinearGradient
+                  colors={[
+                    index % 2 === 0 ? '#ff6b6b' : '#4ecdc4',
+                    index % 2 === 0 ? '#ff8e8e' : '#6ee0d5'
+                  ]}
+                  style={styles.productGradient}
+                >
+                  <View style={styles.productInfo}>
+                    <Text style={styles.productTitle}>
+                      {credits} {t('home.purchaseModal.credits')}
+                    </Text>
+                    <Text style={styles.productDescription}>
+                      {displayInfo.description}
+                    </Text>
+                    <Text style={styles.productValueText}>
+                      ${pricePerCredit.toFixed(2)} per credit
+                    </Text>
+                  </View>
+                  <View style={styles.productPriceContainer}>
+                    <Text style={styles.productPrice}>
+                      {product.localizedPrice || product.displayPrice || `$${productPrice.toFixed(2)}`}
+                    </Text>
+                  </View>
+                </LinearGradient>
+              </TouchableOpacity>
+            );
+          })}
           
           <TouchableOpacity
             style={styles.closeButton}
             onPress={() => setShowPurchaseModal(false)}
             activeOpacity={0.7}
           >
-            <Text style={styles.closeButtonText}>Close</Text>
+            <Text style={styles.closeButtonText}>{t('common.close')}</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -833,6 +873,45 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.2,
     shadowRadius: 8,
     elevation: 6,
+    position: 'relative',
+  },
+  popularProduct: {
+    shadowColor: '#4ecdc4',
+    shadowOpacity: 0.3,
+    shadowRadius: 12,
+    elevation: 8,
+  },
+  popularBadge: {
+    position: 'absolute',
+    top: -8,
+    right: 8,
+    backgroundColor: '#ff6b6b',
+    paddingHorizontal: 12,
+    paddingVertical: 4,
+    borderRadius: 12,
+    zIndex: 1,
+  },
+  popularBadgeText: {
+    color: 'white',
+    fontSize: 10,
+    fontWeight: '800',
+    letterSpacing: 0.5,
+  },
+  bestValueBadge: {
+    position: 'absolute',
+    top: -8,
+    right: 8,
+    backgroundColor: '#4CAF50',
+    paddingHorizontal: 12,
+    paddingVertical: 4,
+    borderRadius: 12,
+    zIndex: 1,
+  },
+  bestValueBadgeText: {
+    color: 'white',
+    fontSize: 10,
+    fontWeight: '800',
+    letterSpacing: 0.5,
   },
   productGradient: {
     flexDirection: 'row',
@@ -840,16 +919,41 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 20,
     borderRadius: 16,
+    minHeight: 80,
+  },
+  productInfo: {
+    flex: 1,
+    marginRight: 16,
   },
   productTitle: {
     color: 'white',
-    fontSize: 18,
-    fontWeight: '700',
+    fontSize: 20,
+    fontWeight: '800',
+    marginBottom: 4,
+  },
+  productDescription: {
+    color: 'white',
+    fontSize: 13,
+    opacity: 0.9,
+    marginBottom: 6,
+    lineHeight: 18,
+  },
+  productValueText: {
+    color: 'white',
+    fontSize: 11,
+    opacity: 0.8,
+    fontWeight: '600',
+  },
+  productPriceContainer: {
+    alignItems: 'flex-end',
   },
   productPrice: {
     color: 'white',
-    fontSize: 18,
-    fontWeight: '800',
+    fontSize: 22,
+    fontWeight: '900',
+    textShadowColor: 'rgba(0,0,0,0.2)',
+    textShadowOffset: { width: 1, height: 1 },
+    textShadowRadius: 2,
   },
   closeButton: {
     marginTop: 16,

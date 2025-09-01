@@ -1,0 +1,125 @@
+{
+  "appPolicies" : {
+    "eula" : "",
+    "policies" : [
+      {
+        "locale" : "en_US",
+        "policyText" : "",
+        "policyURL" : ""
+      }
+    ]
+  },
+  "identifier" : "178CB269",
+  "nonRenewingSubscriptions" : [
+
+  ],
+  "products" : [
+    {
+      "displayPrice" : "1.99",
+      "familyShareable" : false,
+      "internalID" : "6751798124",
+      "localizations" : [
+        {
+          "description" : "10 credits for ai pet hero",
+          "displayName" : "10 credits ",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "com.pethero.credits10",
+      "referenceName" : "credits-10",
+      "type" : "Consumable"
+    },
+    {
+      "displayPrice" : "4.99",
+      "familyShareable" : false,
+      "internalID" : "6751798162",
+      "localizations" : [
+        {
+          "description" : "20 credits for ai pet hero",
+          "displayName" : "20 credits ",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "com.pethero.credits20",
+      "referenceName" : "credits-20",
+      "type" : "Consumable"
+    },
+    {
+      "displayPrice" : "0.99",
+      "familyShareable" : false,
+      "internalID" : "6751798037",
+      "localizations" : [
+        {
+          "description" : "20 credits for ai pet hero",
+          "displayName" : "20 credits ",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "com.pethero.credits5",
+      "referenceName" : "credits-5",
+      "type" : "Consumable"
+    }
+  ],
+  "settings" : {
+    "_applicationInternalID" : "6751797920",
+    "_developerTeamID" : "46448844W4",
+    "_failTransactionsEnabled" : false,
+    "_lastSynchronizedDate" : 778440104.53731096,
+    "_locale" : "en_US",
+    "_storefront" : "USA",
+    "_storeKitErrors" : [
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Load Products"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Purchase"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Verification"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "App Store Sync"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Subscription Status"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "App Transaction"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Manage Subscriptions Sheet"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Refund Request Sheet"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Offer Code Redeem Sheet"
+      }
+    ]
+  },
+  "subscriptionGroups" : [
+
+  ],
+  "version" : {
+    "major" : 4,
+    "minor" : 0
+  }
+}

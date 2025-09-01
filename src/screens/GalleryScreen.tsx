@@ -20,6 +20,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { AppDispatch, RootState } from '../store/store';
 import { RootStackParamList } from '../navigation/AppNavigator';
 import { getUserPhotos } from '../services/firebase';
+import { deleteUserPhoto } from '../services/cloudFunctions';
 import AnimatedGalleryItem from '../components/AnimatedGalleryItem';
 import { useTranslation } from '../hooks/useTranslation';
 
@@ -93,6 +94,40 @@ export default function GalleryScreen() {
     }
   };
 
+  const handleDeleteItem = (item: GalleryItem) => {
+    Alert.alert(
+      t('gallery.deleteConfirmTitle'),
+      t('gallery.deleteConfirmMessage'),
+      [
+        {
+          text: t('common.cancel'),
+          style: 'cancel',
+        },
+        {
+          text: t('gallery.delete'),
+          style: 'destructive',
+          onPress: () => performDelete(item),
+        },
+      ],
+      { cancelable: true }
+    );
+  };
+
+  const performDelete = async (item: GalleryItem) => {
+    try {
+      console.log('Deleting photo:', item.id);
+      await deleteUserPhoto(item.id);
+      
+      // Remove item from local state
+      setGalleryItems(prev => prev.filter(photo => photo.id !== item.id));
+      
+      Alert.alert(t('common.success'), t('gallery.deleteSuccess'));
+    } catch (error) {
+      console.error('Error deleting photo:', error);
+      Alert.alert(t('common.error'), t('gallery.deleteError'));
+    }
+  };
+
   const getThemeEmoji = (theme: string): string => {
     const themeEmojis: { [key: string]: string } = {
       'superhero with cape flying through the sky': '🦸‍♀️',
@@ -134,6 +169,7 @@ export default function GalleryScreen() {
       item={item}
       itemSize={itemSize}
       onPress={handleItemPress}
+      onDelete={handleDeleteItem}
       getThemeEmoji={getThemeEmoji}
       formatDate={formatDate}
     />

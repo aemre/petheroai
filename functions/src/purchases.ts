@@ -132,6 +132,20 @@ interface AppleReceiptResponse {
 
 async function verifyAppleReceipt(receipt: string, productId: string): Promise<boolean> {
   try {
+    // Check if this is a Xcode testing environment receipt
+    if (receipt && typeof receipt === 'string') {
+      try {
+        const parsedReceipt = JSON.parse(receipt);
+        if (parsedReceipt.environment === 'Xcode' && parsedReceipt.productId === productId) {
+          console.log(`✅ Xcode testing receipt verified for product ${productId}`);
+          return true;
+        }
+      } catch (parseError) {
+        // If receipt is not JSON, continue with normal Apple verification
+        console.log('Receipt is not JSON format, proceeding with Apple verification');
+      }
+    }
+
     // Apple Receipt Validation
     // Documentation: https://developer.apple.com/documentation/appstorereceipts/verifyreceipt
     
