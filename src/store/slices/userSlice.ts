@@ -8,6 +8,7 @@ interface UserState {
   error: string | null;
   onboardingCompleted: boolean;
   petPreference: 'dog' | 'cat' | null;
+  onboardingStatusLoading: boolean;
 }
 
 const initialState: UserState = {
@@ -16,6 +17,7 @@ const initialState: UserState = {
   error: null,
   onboardingCompleted: false,
   petPreference: null,
+  onboardingStatusLoading: true, // Start as loading to prevent premature rendering
 };
 
 export const fetchUserProfile = createAsyncThunk(
@@ -56,6 +58,9 @@ const userSlice = createSlice({
     setPetPreference: (state, action: PayloadAction<'dog' | 'cat'>) => {
       state.petPreference = action.payload;
     },
+    setOnboardingStatusLoaded: (state) => {
+      state.onboardingStatusLoading = false;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -74,5 +79,5 @@ const userSlice = createSlice({
   },
 });
 
-export const { setProfile, clearError, decrementCredits, setOnboardingCompleted, setPetPreference } = userSlice.actions;
+export const { setProfile, clearError, decrementCredits, setOnboardingCompleted, setPetPreference, setOnboardingStatusLoaded } = userSlice.actions;
 export default userSlice.reducer;

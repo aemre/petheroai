@@ -1,5 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { setOnboardingCompleted, setPetPreference } from '../store/slices/userSlice';
+import { setOnboardingCompleted, setPetPreference, setOnboardingStatusLoaded } from '../store/slices/userSlice';
 import { Dispatch } from '@reduxjs/toolkit';
 
 export const loadOnboardingState = async (dispatch: Dispatch) => {
@@ -18,5 +18,8 @@ export const loadOnboardingState = async (dispatch: Dispatch) => {
     }
   } catch (error) {
     console.error('Error loading onboarding state:', error);
+  } finally {
+    // Always mark onboarding status as loaded, regardless of success/failure
+    dispatch(setOnboardingStatusLoaded());
   }
 };

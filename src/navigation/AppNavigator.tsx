@@ -23,9 +23,9 @@ const Stack = createStackNavigator<RootStackParamList>();
 
 export default function AppNavigator() {
   const { isAuthenticated, isLoading } = useSelector((state: RootState) => state.auth);
-  const { onboardingCompleted } = useSelector((state: RootState) => state.user);
+  const { onboardingCompleted, onboardingStatusLoading } = useSelector((state: RootState) => state.user);
 
-  if (isLoading) {
+  if (isLoading || onboardingStatusLoading) {
     return (
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen name="Splash" component={SplashScreen} />
