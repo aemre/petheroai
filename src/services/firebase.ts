@@ -45,7 +45,7 @@ export const signInAnonymously = async () => {
 export const createUserProfile = async (userId: string) => {
   try {
     await firestore().collection('users').doc(userId).set({
-      credits: 3, // Give new users 3 free credits to start
+      credits: 1, // Give new users 1 free credits to start
       premium: false,
       createdAt: firestore.FieldValue.serverTimestamp()
     });

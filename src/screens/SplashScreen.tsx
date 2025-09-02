@@ -33,7 +33,11 @@ export default function SplashScreen() {
       style={styles.container}
     >
       <View style={styles.logoContainer}>
-        <Text style={styles.logoText}>🦸‍♀️</Text>
+        <Image 
+          source={require('../../assets/appstore.jpeg')} 
+          style={styles.logoImage}
+          resizeMode="contain"
+        />
         <Text style={styles.title}>{t('app.name')}</Text>
         <Text style={styles.subtitle}>{t('app.tagline')}</Text>
       </View>
@@ -59,9 +63,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 100,
   },
-  logoText: {
-    fontSize: 80,
+  logoImage: {
+    width: 120,
+    height: 120,
     marginBottom: 20,
+    borderRadius: 20,
   },
   title: {
     fontSize: 32,
