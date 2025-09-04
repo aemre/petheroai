@@ -130,19 +130,44 @@ export default function HomeScreen() {
         }
       }
 
-      const result = await ImagePicker.launchImageLibraryAsync({
-        mediaTypes: ImagePicker.MediaTypeOptions.Images,
-        allowsEditing: true,
-        aspect: [1, 1],
-        quality: 0.8,
+      // Add timeout protection for iPad compatibility
+      const timeoutPromise = new Promise<null>((_, reject) => {
+        setTimeout(() => reject(new Error('Image picker timeout')), 30000);
       });
 
-      if (!result.canceled && result.assets[0]) {
+      const pickerPromise = useCamera 
+        ? ImagePicker.launchCameraAsync({
+            mediaTypes: ImagePicker.MediaTypeOptions.Images,
+            allowsEditing: true,
+            aspect: [1, 1],
+            quality: 0.8,
+            exif: false, // Reduce processing overhead
+          })
+        : ImagePicker.launchImageLibraryAsync({
+            mediaTypes: ImagePicker.MediaTypeOptions.Images,
+            allowsEditing: true,
+            aspect: [1, 1],
+            quality: 0.8,
+            exif: false, // Reduce processing overhead
+          });
+
+      const result = await Promise.race([pickerPromise, timeoutPromise]);
+
+      if (result && !result.canceled && result.assets && result.assets[0]) {
         return result.assets[0].uri;
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error('Error picking image:', error);
-      Alert.alert(t('common.error'), t('home.failedToPickImage'));
+      
+      // Provide more specific error messages
+      let errorMessage = t('home.failedToPickImage');
+      if (error?.message?.includes('timeout')) {
+        errorMessage = 'Camera operation timed out. Please try again.';
+      } else if (error?.message?.includes('Camera')) {
+        errorMessage = 'Camera not available. Please try using photo library instead.';
+      }
+      
+      Alert.alert(t('common.error'), errorMessage);
     }
   };
 
