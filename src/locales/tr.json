@@ -18,8 +18,10 @@
     "continue": "Devam Et",
     "dog": "Köpek",
     "cat": "Kedi",
+    "bird": "Kuş",
     "close": "Kapat",
     "success": "Başarılı",
+    "loading": "Yükleniyor...",
     "camera": "Kamera",
     "gallery": "Galeri",
     "connectionError": "Bağlantı hatası..."
@@ -27,10 +29,36 @@
   "onboarding": {
     "title": "Pet Hero AI'ya Hoş Geldin!",
     "subtitle": "Evcil hayvanlarını muhteşem kahramanlara dönüştür",
-    "question": "Köpek mi kedi sevdalısısın?",
+    "question": "Köpek, kedi mi yoksa kuş sevdalısısın?",
     "dogButton": "Köpekleri seviyorum! 🐕",
     "catButton": "Kedileri seviyorum! 🐱",
-    "getStarted": "Başla"
+    "getStarted": "Başla",
+    "speciesQuestion": "Evcil hayvanınız hangi tür?",
+    "dogSpeciesQuestion": "Köpeğinizin cinsi nedir?",
+    "catSpeciesQuestion": "Kedinizin cinsi nedir?",
+    "birdSpeciesQuestion": "Kuşunuzun türü nedir?",
+    "searchSpecies": "Tür/cins ara...",
+    "noSpeciesFound": "Aramanıza uygun tür bulunamadı",
+    "lifespan": "Yaşam Süresi",
+    "petNameQuestion": "Evcil hayvanınızın adı nedir?",
+    "petNamePlaceholder": "Evcil hayvanınızın adını girin",
+    "nameValidationError": "Lütfen sadece harf kullanın (en az 2 karakter)",
+    "ageQuestion": "Evcil hayvanınız kaç yaşında?",
+    "ageOptions": {
+      "puppy": "Yavru",
+      "youngDescription": "< 1 yaş",
+      "seniorDescription": "veya daha yaşlı"
+    },
+    "weightQuestion": "Evcil hayvanınızın kilosu ne kadar?",
+    "weightOptions": {
+      "tiny": "Çok Küçük",
+      "small": "Küçük",
+      "medium": "Orta",
+      "large": "Büyük",
+      "xlarge": "Çok Büyük",
+      "giant": "Dev"
+    },
+    "complete": "Kurulumu Tamamla"
   },
   "auth": {
     "signIn": "Giriş Yap",

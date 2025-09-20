@@ -1,56 +1,63 @@
-import React from 'react';
-import { createStackNavigator } from '@react-navigation/stack';
-import { useSelector } from 'react-redux';
-import { RootState } from '../store/store';
+import React from "react";
+import {createStackNavigator} from "@react-navigation/stack";
+import {useSelector} from "react-redux";
+import {RootState} from "../store/store";
 
-import SplashScreen from '../screens/SplashScreen';
-import OnboardingScreen from '../screens/OnboardingScreen';
-import HomeScreen from '../screens/HomeScreen';
-import ProcessingScreen from '../screens/ProcessingScreen';
-import ResultScreen from '../screens/ResultScreen';
-import GalleryScreen from '../screens/GalleryScreen';
+import SplashScreen from "../screens/SplashScreen";
+import OnboardingScreen from "../screens/OnboardingScreen";
+import PetSpeciesScreen from "../screens/PetSpeciesScreen";
+import PetNameScreen from "../screens/PetNameScreen";
+import PetAgeScreen from "../screens/PetAgeScreen";
+import PetWeightScreen from "../screens/PetWeightScreen";
+import TabNavigator from "./TabNavigator";
 
 export type RootStackParamList = {
   Splash: undefined;
   Onboarding: undefined;
-  Home: undefined;
-  Gallery: undefined;
-  Processing: { photoId: string; originalImageUri?: string };
-  Result: { photoId: string };
+  PetSpecies: undefined;
+  PetName: undefined;
+  PetAge: undefined;
+  PetWeight: undefined;
+  MainApp: {showPurchaseModal?: boolean} | undefined;
 };
 
 const Stack = createStackNavigator<RootStackParamList>();
 
 export default function AppNavigator() {
-  const { isAuthenticated, isLoading } = useSelector((state: RootState) => state.auth);
-  const { onboardingCompleted, onboardingStatusLoading } = useSelector((state: RootState) => state.user);
+  const {isAuthenticated, isLoading} = useSelector(
+    (state: RootState) => state.auth
+  );
+  const {onboardingCompleted, onboardingStatusLoading} = useSelector(
+    (state: RootState) => state.user
+  );
 
   if (isLoading || onboardingStatusLoading) {
     return (
-      <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Navigator screenOptions={{headerShown: false}}>
         <Stack.Screen name="Splash" component={SplashScreen} />
       </Stack.Navigator>
     );
   }
 
   return (
-    <Stack.Navigator 
-      screenOptions={{ 
+    <Stack.Navigator
+      screenOptions={{
         headerShown: false,
-        cardStyle: { backgroundColor: '#fff' }
+        cardStyle: {backgroundColor: "#fff"},
       }}
     >
       {isAuthenticated ? (
         <>
           {!onboardingCompleted ? (
-            <Stack.Screen name="Onboarding" component={OnboardingScreen} />
-          ) : (
             <>
-              <Stack.Screen name="Home" component={HomeScreen} />
-              <Stack.Screen name="Gallery" component={GalleryScreen} />
-              <Stack.Screen name="Processing" component={ProcessingScreen} />
-              <Stack.Screen name="Result" component={ResultScreen} />
+              <Stack.Screen name="Onboarding" component={OnboardingScreen} />
+              <Stack.Screen name="PetSpecies" component={PetSpeciesScreen} />
+              <Stack.Screen name="PetName" component={PetNameScreen} />
+              <Stack.Screen name="PetAge" component={PetAgeScreen} />
+              <Stack.Screen name="PetWeight" component={PetWeightScreen} />
             </>
+          ) : (
+            <Stack.Screen name="MainApp" component={TabNavigator} />
           )}
         </>
       ) : (

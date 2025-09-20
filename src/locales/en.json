@@ -18,8 +18,10 @@
     "continue": "Continue",
     "dog": "Dog",
     "cat": "Cat",
+    "bird": "Bird",
     "close": "Close",
     "success": "Success",
+    "loading": "Loading...",
     "camera": "Camera",
     "gallery": "Gallery",
     "connectionError": "Connection error..."
@@ -27,10 +29,36 @@
   "onboarding": {
     "title": "Welcome to Pet Hero AI!",
     "subtitle": "Transform your pets into amazing heroes",
-    "question": "Are you a dog or cat person?",
+    "question": "Are you a dog, cat, or bird person?",
     "dogButton": "I love dogs! 🐕",
     "catButton": "I love cats! 🐱",
-    "getStarted": "Get Started"
+    "getStarted": "Get Started",
+    "speciesQuestion": "What species is your pet?",
+    "dogSpeciesQuestion": "What breed is your dog?",
+    "catSpeciesQuestion": "What breed is your cat?",
+    "birdSpeciesQuestion": "What species is your bird?",
+    "searchSpecies": "Search for species/breed...",
+    "noSpeciesFound": "No species found matching your search",
+    "lifespan": "Lifespan",
+    "petNameQuestion": "What's your pet's name?",
+    "petNamePlaceholder": "Enter your pet's name",
+    "nameValidationError": "Please use only letters (minimum 2 characters)",
+    "ageQuestion": "How old is your pet?",
+    "ageOptions": {
+      "puppy": "Puppy/Kitten",
+      "youngDescription": "< 1 year",
+      "seniorDescription": "or older"
+    },
+    "weightQuestion": "What's your pet's weight?",
+    "weightOptions": {
+      "tiny": "Tiny",
+      "small": "Small",
+      "medium": "Medium",
+      "large": "Large",
+      "xlarge": "Extra Large",
+      "giant": "Giant"
+    },
+    "complete": "Complete Setup"
   },
   "auth": {
     "signIn": "Sign In",

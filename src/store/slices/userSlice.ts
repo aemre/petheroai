@@ -1,13 +1,17 @@
-import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
-import { getUserProfile } from '../../services/firebase';
-import { UserProfileDTO, convertUserProfileToDTO } from '../../types/dto';
+import {createSlice, createAsyncThunk, PayloadAction} from "@reduxjs/toolkit";
+import {getUserProfile} from "../../services/firebase";
+import {UserProfileDTO, convertUserProfileToDTO} from "../../types/dto";
 
 interface UserState {
   profile: UserProfileDTO | null;
   isLoading: boolean;
   error: string | null;
   onboardingCompleted: boolean;
-  petPreference: 'dog' | 'cat' | null;
+  petPreference: "dog" | "cat" | "bird" | null;
+  petSpecies: string | null;
+  petName: string | null;
+  petAge: number | null;
+  petWeight: string | null;
   onboardingStatusLoading: boolean;
 }
 
@@ -17,12 +21,16 @@ const initialState: UserState = {
   error: null,
   onboardingCompleted: false,
   petPreference: null,
+  petSpecies: null,
+  petName: null,
+  petAge: null,
+  petWeight: null,
   onboardingStatusLoading: true, // Start as loading to prevent premature rendering
 };
 
 export const fetchUserProfile = createAsyncThunk(
-  'user/fetchProfile',
-  async (userId: string, { rejectWithValue }) => {
+  "user/fetchProfile",
+  async (userId: string, {rejectWithValue}) => {
     try {
       const profile = await getUserProfile(userId);
       return profile ? convertUserProfileToDTO(profile) : null;
@@ -38,7 +46,7 @@ export const fetchUserProfile = createAsyncThunk(
 // - No manual credit operations needed in the app
 
 const userSlice = createSlice({
-  name: 'user',
+  name: "user",
   initialState,
   reducers: {
     setProfile: (state, action: PayloadAction<UserProfileDTO | null>) => {
@@ -55,8 +63,23 @@ const userSlice = createSlice({
     setOnboardingCompleted: (state, action: PayloadAction<boolean>) => {
       state.onboardingCompleted = action.payload;
     },
-    setPetPreference: (state, action: PayloadAction<'dog' | 'cat'>) => {
+    setPetPreference: (
+      state,
+      action: PayloadAction<"dog" | "cat" | "bird">
+    ) => {
       state.petPreference = action.payload;
+    },
+    setPetSpecies: (state, action: PayloadAction<string>) => {
+      state.petSpecies = action.payload;
+    },
+    setPetName: (state, action: PayloadAction<string>) => {
+      state.petName = action.payload;
+    },
+    setPetAge: (state, action: PayloadAction<number>) => {
+      state.petAge = action.payload;
+    },
+    setPetWeight: (state, action: PayloadAction<string>) => {
+      state.petWeight = action.payload;
     },
     setOnboardingStatusLoaded: (state) => {
       state.onboardingStatusLoading = false;
@@ -79,5 +102,16 @@ const userSlice = createSlice({
   },
 });
 
-export const { setProfile, clearError, decrementCredits, setOnboardingCompleted, setPetPreference, setOnboardingStatusLoaded } = userSlice.actions;
+export const {
+  setProfile,
+  clearError,
+  decrementCredits,
+  setOnboardingCompleted,
+  setPetPreference,
+  setPetSpecies,
+  setPetName,
+  setPetAge,
+  setPetWeight,
+  setOnboardingStatusLoaded,
+} = userSlice.actions;
 export default userSlice.reducer;

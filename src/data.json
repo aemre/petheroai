@@ -1,0 +1,2441 @@
+{
+  "cats": [
+    {
+      "english": "Abyssinian",
+      "latin": "Felis catus",
+      "lifespan": "9-15 years",
+      "vaccination_schedule": [
+        "Kitten series (FVRCP, FeLV)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "American Bobtail",
+      "latin": "Felis catus",
+      "lifespan": "13-15 years",
+      "vaccination_schedule": [
+        "Kitten series (FVRCP, FeLV)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "American Curl",
+      "latin": "Felis catus",
+      "lifespan": "12-16 years",
+      "vaccination_schedule": [
+        "Kitten series (FVRCP, FeLV)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "American Shorthair",
+      "latin": "Felis catus",
+      "lifespan": "15-20 years",
+      "vaccination_schedule": [
+        "Kitten series (FVRCP, FeLV)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "American Wirehair",
+      "latin": "Felis catus",
+      "lifespan": "14-18 years",
+      "vaccination_schedule": [
+        "Kitten series (FVRCP, FeLV)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Balinese",
+      "latin": "Felis catus",
+      "lifespan": "12-18 years",
+      "vaccination_schedule": [
+        "Kitten series (FVRCP, FeLV)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Bengal",
+      "latin": "Felis catus × Prionailurus bengalensis",
+      "lifespan": "12-16 years",
+      "vaccination_schedule": [
+        "Kitten series (FVRCP, FeLV)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Birman",
+      "latin": "Felis catus",
+      "lifespan": "12-16 years",
+      "vaccination_schedule": [
+        "Kitten series (FVRCP, FeLV)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Bombay",
+      "latin": "Felis catus",
+      "lifespan": "12-16 years",
+      "vaccination_schedule": [
+        "Kitten series (FVRCP, FeLV)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "British Longhair",
+      "latin": "Felis catus",
+      "lifespan": "12-15 years",
+      "vaccination_schedule": [
+        "Kitten series (FVRCP, FeLV)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "British Shorthair",
+      "latin": "Felis catus",
+      "lifespan": "12-20 years",
+      "vaccination_schedule": [
+        "Kitten series (FVRCP, FeLV)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Burmese",
+      "latin": "Felis catus",
+      "lifespan": "16-18 years",
+      "vaccination_schedule": [
+        "Kitten series (FVRCP, FeLV)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Burmilla",
+      "latin": "Felis catus",
+      "lifespan": "12-15 years",
+      "vaccination_schedule": [
+        "Kitten series (FVRCP, FeLV)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Chartreux",
+      "latin": "Felis catus",
+      "lifespan": "12-15 years",
+      "vaccination_schedule": [
+        "Kitten series (FVRCP, FeLV)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Chausie",
+      "latin": "Felis catus × Felis chaus",
+      "lifespan": "12-14 years",
+      "vaccination_schedule": [
+        "Kitten series (FVRCP, FeLV)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Cornish Rex",
+      "latin": "Felis catus",
+      "lifespan": "11-15 years",
+      "vaccination_schedule": [
+        "Kitten series (FVRCP, FeLV)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Cymric",
+      "latin": "Felis catus",
+      "lifespan": "8-14 years",
+      "vaccination_schedule": [
+        "Kitten series (FVRCP, FeLV)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Devon Rex",
+      "latin": "Felis catus",
+      "lifespan": "10-15 years",
+      "vaccination_schedule": [
+        "Kitten series (FVRCP, FeLV)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Egyptian Mau",
+      "latin": "Felis catus",
+      "lifespan": "12-15 years",
+      "vaccination_schedule": [
+        "Kitten series (FVRCP, FeLV)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "European Shorthair",
+      "latin": "Felis catus",
+      "lifespan": "15-20 years",
+      "vaccination_schedule": [
+        "Kitten series (FVRCP, FeLV)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Exotic Shorthair",
+      "latin": "Felis catus",
+      "lifespan": "8-15 years",
+      "vaccination_schedule": [
+        "Kitten series (FVRCP, FeLV)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Havana Brown",
+      "latin": "Felis catus",
+      "lifespan": "12-15 years",
+      "vaccination_schedule": [
+        "Kitten series (FVRCP, FeLV)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Himalayan",
+      "latin": "Felis catus",
+      "lifespan": "9-15 years",
+      "vaccination_schedule": [
+        "Kitten series (FVRCP, FeLV)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Japanese Bobtail",
+      "latin": "Felis catus",
+      "lifespan": "15-18 years",
+      "vaccination_schedule": [
+        "Kitten series (FVRCP, FeLV)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Javanese",
+      "latin": "Felis catus",
+      "lifespan": "10-15 years",
+      "vaccination_schedule": [
+        "Kitten series (FVRCP, FeLV)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Khao Manee",
+      "latin": "Felis catus",
+      "lifespan": "10-12 years",
+      "vaccination_schedule": [
+        "Kitten series (FVRCP, FeLV)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Korat",
+      "latin": "Felis catus",
+      "lifespan": "10-15 years",
+      "vaccination_schedule": [
+        "Kitten series (FVRCP, FeLV)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Kurilian Bobtail",
+      "latin": "Felis catus",
+      "lifespan": "15-20 years",
+      "vaccination_schedule": [
+        "Kitten series (FVRCP, FeLV)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "LaPerm",
+      "latin": "Felis catus",
+      "lifespan": "10-15 years",
+      "vaccination_schedule": [
+        "Kitten series (FVRCP, FeLV)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Lykoi",
+      "latin": "Felis catus",
+      "lifespan": "12-15 years",
+      "vaccination_schedule": [
+        "Kitten series (FVRCP, FeLV)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Maine Coon",
+      "latin": "Felis catus",
+      "lifespan": "12-15 years",
+      "vaccination_schedule": [
+        "Kitten series (FVRCP, FeLV)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Manx",
+      "latin": "Felis catus",
+      "lifespan": "8-14 years",
+      "vaccination_schedule": [
+        "Kitten series (FVRCP, FeLV)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Minskin",
+      "latin": "Felis catus",
+      "lifespan": "12-15 years",
+      "vaccination_schedule": [
+        "Kitten series (FVRCP, FeLV)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Napoleon",
+      "latin": "Felis catus",
+      "lifespan": "9-15 years",
+      "vaccination_schedule": [
+        "Kitten series (FVRCP, FeLV)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Norwegian Forest Cat",
+      "latin": "Felis catus",
+      "lifespan": "14-16 years",
+      "vaccination_schedule": [
+        "Kitten series (FVRCP, FeLV)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Ocicat",
+      "latin": "Felis catus",
+      "lifespan": "12-15 years",
+      "vaccination_schedule": [
+        "Kitten series (FVRCP, FeLV)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Oriental Longhair",
+      "latin": "Felis catus",
+      "lifespan": "12-15 years",
+      "vaccination_schedule": [
+        "Kitten series (FVRCP, FeLV)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Oriental Shorthair",
+      "latin": "Felis catus",
+      "lifespan": "12-15 years",
+      "vaccination_schedule": [
+        "Kitten series (FVRCP, FeLV)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Persian",
+      "latin": "Felis catus",
+      "lifespan": "10-17 years",
+      "vaccination_schedule": [
+        "Kitten series (FVRCP, FeLV)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Peterbald",
+      "latin": "Felis catus",
+      "lifespan": "12-15 years",
+      "vaccination_schedule": [
+        "Kitten series (FVRCP, FeLV)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Pixie-bob",
+      "latin": "Felis catus",
+      "lifespan": "13-15 years",
+      "vaccination_schedule": [
+        "Kitten series (FVRCP, FeLV)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Ragdoll",
+      "latin": "Felis catus",
+      "lifespan": "12-17 years",
+      "vaccination_schedule": [
+        "Kitten series (FVRCP, FeLV)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Russian Blue",
+      "latin": "Felis catus",
+      "lifespan": "15-20 years",
+      "vaccination_schedule": [
+        "Kitten series (FVRCP, FeLV)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Savannah",
+      "latin": "Felis catus × Leptailurus serval",
+      "lifespan": "12-20 years",
+      "vaccination_schedule": [
+        "Kitten series (FVRCP, FeLV)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Scottish Fold",
+      "latin": "Felis catus",
+      "lifespan": "11-15 years",
+      "vaccination_schedule": [
+        "Kitten series (FVRCP, FeLV)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Selkirk Rex",
+      "latin": "Felis catus",
+      "lifespan": "10-15 years",
+      "vaccination_schedule": [
+        "Kitten series (FVRCP, FeLV)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Serengeti",
+      "latin": "Felis catus",
+      "lifespan": "10-12 years",
+      "vaccination_schedule": [
+        "Kitten series (FVRCP, FeLV)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Siamese",
+      "latin": "Felis catus",
+      "lifespan": "12-20 years",
+      "vaccination_schedule": [
+        "Kitten series (FVRCP, FeLV)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Siberian",
+      "latin": "Felis catus",
+      "lifespan": "12-15 years",
+      "vaccination_schedule": [
+        "Kitten series (FVRCP, FeLV)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Singapura",
+      "latin": "Felis catus",
+      "lifespan": "11-15 years",
+      "vaccination_schedule": [
+        "Kitten series (FVRCP, FeLV)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Snowshoe",
+      "latin": "Felis catus",
+      "lifespan": "12-15 years",
+      "vaccination_schedule": [
+        "Kitten series (FVRCP, FeLV)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Somali",
+      "latin": "Felis catus",
+      "lifespan": "12-14 years",
+      "vaccination_schedule": [
+        "Kitten series (FVRCP, FeLV)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Sphynx",
+      "latin": "Felis catus",
+      "lifespan": "8-14 years",
+      "vaccination_schedule": [
+        "Kitten series (FVRCP, FeLV)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Tonkinese",
+      "latin": "Felis catus",
+      "lifespan": "12-16 years",
+      "vaccination_schedule": [
+        "Kitten series (FVRCP, FeLV)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Toyger",
+      "latin": "Felis catus",
+      "lifespan": "10-15 years",
+      "vaccination_schedule": [
+        "Kitten series (FVRCP, FeLV)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Turkish Angora",
+      "latin": "Felis catus",
+      "lifespan": "12-18 years",
+      "vaccination_schedule": [
+        "Kitten series (FVRCP, FeLV)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Turkish Van",
+      "latin": "Felis catus",
+      "lifespan": "12-17 years",
+      "vaccination_schedule": [
+        "Kitten series (FVRCP, FeLV)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    }
+  ],
+  "dogs": [
+    {
+      "english": "Airedale Terrier",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "10-13 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Akita",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "10-13 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Alaskan Malamute",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "10-14 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "American Bulldog",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "10-15 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "American Cocker Spaniel",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "12-15 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "American Eskimo Dog",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "13-15 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "American Pit Bull Terrier",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "12-14 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Australian Cattle Dog",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "12-16 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Australian Shepherd",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "12-15 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Australian Terrier",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "12-15 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Basenji",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "13-14 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Basset Hound",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "10-12 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Beagle",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "12-15 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Bearded Collie",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "12-14 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Bedlington Terrier",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "12-16 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Belgian Malinois",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "12-14 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Belgian Sheepdog",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "12-14 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Bernese Mountain Dog",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "7-10 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Bichon Frise",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "12-15 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Black Russian Terrier",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "10-12 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Bloodhound",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "10-12 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Border Collie",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "12-15 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Border Terrier",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "12-15 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Borzoi",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "9-14 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Boston Terrier",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "11-13 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Boxer",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "10-12 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Boykin Spaniel",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "14-16 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Briard",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "10-12 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Brittany",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "12-14 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Brussels Griffon",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "12-15 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Bull Terrier",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "10-14 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Bulldog",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "8-10 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Bullmastiff",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "7-9 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Cairn Terrier",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "13-15 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Canaan Dog",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "12-15 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Cane Corso",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "9-12 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Cardigan Welsh Corgi",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "12-15 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Cavalier King Charles Spaniel",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "9-14 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Chesapeake Bay Retriever",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "10-13 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Chihuahua",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "14-16 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Chinese Crested",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "13-18 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Chinese Shar-Pei",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "8-12 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Chow Chow",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "8-12 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Clumber Spaniel",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "10-12 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Cockapoo",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "14-18 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Collie",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "12-14 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Curly-Coated Retriever",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "9-14 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Dachshund",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "12-16 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Dalmatian",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "11-13 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Dandie Dinmont Terrier",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "12-15 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Doberman Pinscher",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "10-12 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Dogo Argentino",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "9-15 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Dutch Shepherd",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "11-14 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "English Bulldog",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "8-10 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "English Cocker Spaniel",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "12-14 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "English Setter",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "10-12 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "English Springer Spaniel",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "12-14 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Field Spaniel",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "11-13 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Finnish Lapphund",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "12-15 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Finnish Spitz",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "12-15 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Flat-Coated Retriever",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "8-10 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "French Bulldog",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "10-12 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "German Pinscher",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "12-14 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "German Shepherd",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "9-13 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "German Shorthaired Pointer",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "12-14 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "German Wirehaired Pointer",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "12-14 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Giant Schnauzer",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "10-12 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Glen of Imaal Terrier",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "12-15 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Golden Retriever",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "10-12 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Gordon Setter",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "10-12 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Great Dane",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "7-10 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Great Pyrenees",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "10-12 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Greyhound",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "10-14 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Harrier",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "12-15 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Havanese",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "14-16 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Ibizan Hound",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "11-14 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Irish Setter",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "12-15 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Irish Terrier",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "13-15 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Irish Wolfhound",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "6-10 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Italian Greyhound",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "14-15 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Jack Russell Terrier",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "13-16 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Japanese Chin",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "10-12 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Keeshond",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "12-15 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Kerry Blue Terrier",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "12-15 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "King Charles Spaniel",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "10-12 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Komondor",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "10-12 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Kuvasz",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "10-12 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Labrador Retriever",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "10-12 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Lakeland Terrier",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "12-16 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Lhasa Apso",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "12-15 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Lowchen",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "13-15 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Maltese",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "12-15 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Manchester Terrier",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "14-16 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Mastiff",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "6-10 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Miniature Bull Terrier",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "11-14 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Miniature Pinscher",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "12-16 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Miniature Schnauzer",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "12-15 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Neapolitan Mastiff",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "7-9 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Newfoundland",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "9-10 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Norfolk Terrier",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "12-15 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Norwich Terrier",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "12-15 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Nova Scotia Duck Tolling Retriever",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "12-14 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Old English Sheepdog",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "10-12 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Otterhound",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "10-13 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Papillon",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "13-16 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Pekingese",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "12-14 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "annual boosters"
+      ]
+    },
+    {
+      "english": "Pembroke Welsh Corgi",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "12-15 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Petit Basset Griffon Vendeen",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "12-14 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Pharaoh Hound",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "11-14 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Plott Hound",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "12-14 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Pointer",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "12-15 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Pomeranian",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "12-16 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Poodle",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "10-18 years (size dependent)",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Portuguese Water Dog",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "11-13 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Pug",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "13-15 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Puli",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "10-15 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Pumi",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "12-13 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Rat Terrier",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "12-18 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Redbone Coonhound",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "12-14 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Rhodesian Ridgeback",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "10-12 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Rottweiler",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "9-10 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Saint Bernard",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "8-10 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Saluki",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "12-14 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Samoyed",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "12-14 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Schipperke",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "13-15 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Scottish Terrier",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "11-13 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Sealyham Terrier",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "12-14 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Shetland Sheepdog",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "12-14 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Shiba Inu",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "13-16 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Shih Tzu",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "10-16 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Siberian Husky",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "12-14 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Silky Terrier",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "13-15 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Skye Terrier",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "12-14 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Sloughi",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "10-15 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Soft-Coated Wheaten Terrier",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "12-14 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Spanish Water Dog",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "12-14 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Spinone Italiano",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "10-12 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Staffordshire Bull Terrier",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "12-14 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Standard Schnauzer",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "13-16 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Sussex Spaniel",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "11-13 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Swedish Vallhund",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "12-14 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Tibetan Mastiff",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "10-12 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Tibetan Spaniel",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "12-15 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Tibetan Terrier",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "12-15 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Toy Fox Terrier",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "13-15 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Treeing Walker Coonhound",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "12-13 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Vizsla",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "12-14 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Weimaraner",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "10-13 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Welsh Springer Spaniel",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "12-15 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Welsh Terrier",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "12-15 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "West Highland White Terrier",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "12-16 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Whippet",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "12-15 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Wire Fox Terrier",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "12-15 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Wirehaired Pointing Griffon",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "12-14 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Xoloitzcuintli",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "13-18 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    },
+    {
+      "english": "Yorkshire Terrier",
+      "latin": "Canis lupus familiaris",
+      "lifespan": "13-16 years",
+      "vaccination_schedule": [
+        "Puppy series (DHPP, Bordetella)",
+        "Rabies at 12-16 weeks",
+        "Annual boosters"
+      ]
+    }
+  ],
+  "birds": [
+    {
+      "english": "Budgerigar",
+      "latin": "Melopsittacus undulatus",
+      "lifespan": "5-10 years",
+      "vaccination_schedule": ["Consult an Avian Vet (e.g., Polyomavirus)"]
+    },
+    {
+      "english": "Cockatiel",
+      "latin": "Nymphicus hollandicus",
+      "lifespan": "15-20 years",
+      "vaccination_schedule": ["Consult an Avian Vet"]
+    },
+    {
+      "english": "African Grey Parrot",
+      "latin": "Psittacus erithacus",
+      "lifespan": "40-60 years",
+      "vaccination_schedule": [
+        "Consult an Avian Vet (e.g., Polyomavirus, Pacheco's)"
+      ]
+    },
+    {
+      "english": "Lovebird",
+      "latin": "Agapornis roseicollis",
+      "lifespan": "10-15 years",
+      "vaccination_schedule": ["Consult an Avian Vet"]
+    },
+    {
+      "english": "Canary",
+      "latin": "Serinus canaria",
+      "lifespan": "7-10 years",
+      "vaccination_schedule": ["Consult an Avian Vet"]
+    },
+    {
+      "english": "Finch (Zebra)",
+      "latin": "Taeniopygia guttata",
+      "lifespan": "3-7 years",
+      "vaccination_schedule": ["Consult an Avian Vet"]
+    },
+    {
+      "english": "Macaw (Blue and Gold)",
+      "latin": "Ara ararauna",
+      "lifespan": "30-35 years",
+      "vaccination_schedule": ["Consult an Avian Vet (e.g., Polyomavirus)"]
+    },
+    {
+      "english": "Macaw (Scarlet)",
+      "latin": "Ara macao",
+      "lifespan": "40-50 years",
+      "vaccination_schedule": ["Consult an Avian Vet (e.g., Polyomavirus)"]
+    },
+    {
+      "english": "Cockatoo (Sulphur-crested)",
+      "latin": "Cacatua galerita",
+      "lifespan": "40-70 years",
+      "vaccination_schedule": ["Consult an Avian Vet (e.g., Polyomavirus)"]
+    },
+    {
+      "english": "Cockatoo (Umbrella)",
+      "latin": "Cacatua alba",
+      "lifespan": "40-60 years",
+      "vaccination_schedule": ["Consult an Avian Vet (e.g., Polyomavirus)"]
+    },
+    {
+      "english": "Parakeet (Monk)",
+      "latin": "Myiopsitta monachus",
+      "lifespan": "20-30 years",
+      "vaccination_schedule": ["Consult an Avian Vet"]
+    },
+    {
+      "english": "Rosella",
+      "latin": "Platycercus elegans",
+      "lifespan": "15-20 years",
+      "vaccination_schedule": ["Consult an Avian Vet"]
+    },
+    {
+      "english": "Amazon Parrot (Blue-fronted)",
+      "latin": "Amazona aestiva",
+      "lifespan": "40-60 years",
+      "vaccination_schedule": ["Consult an Avian Vet (e.g., Polyomavirus)"]
+    },
+    {
+      "english": "Amazon Parrot (Yellow-naped)",
+      "latin": "Amazona auropalliata",
+      "lifespan": "60-80 years",
+      "vaccination_schedule": ["Consult an Avian Vet (e.g., Polyomavirus)"]
+    },
+    {
+      "english": "Ring-necked Parakeet",
+      "latin": "Psittacula krameri",
+      "lifespan": "25-30 years",
+      "vaccination_schedule": ["Consult an Avian Vet"]
+    },
+    {
+      "english": "Senegal Parrot",
+      "latin": "Poicephalus senegalus",
+      "lifespan": "25-30 years",
+      "vaccination_schedule": ["Consult an Avian Vet"]
+    },
+    {
+      "english": "Indian Ringneck Parakeet",
+      "latin": "Psittacula eupatria",
+      "lifespan": "25-30 years",
+      "vaccination_schedule": ["Consult an Avian Vet"]
+    },
+    {
+      "english": "Peach-faced Lovebird",
+      "latin": "Agapornis roseicollis",
+      "lifespan": "10-15 years",
+      "vaccination_schedule": ["Consult an Avian Vet"]
+    },
+    {
+      "english": "Fischer's Lovebird",
+      "latin": "Agapornis fischeri",
+      "lifespan": "10-15 years",
+      "vaccination_schedule": ["Consult an Avian Vet"]
+    },
+    {
+      "english": "Masked Lovebird",
+      "latin": "Agapornis personatus",
+      "lifespan": "10-15 years",
+      "vaccination_schedule": ["Consult an Avian Vet"]
+    },
+    {
+      "english": "Eclectus Parrot",
+      "latin": "Eclectus roratus",
+      "lifespan": "30-50 years",
+      "vaccination_schedule": ["Consult an Avian Vet (e.g., Polyomavirus)"]
+    },
+    {
+      "english": "Pionus Parrot",
+      "latin": "Pionus menstruus",
+      "lifespan": "25-30 years",
+      "vaccination_schedule": ["Consult an Avian Vet"]
+    },
+    {
+      "english": "Quaker Parrot",
+      "latin": "Myiopsitta monachus",
+      "lifespan": "20-30 years",
+      "vaccination_schedule": ["Consult an Avian Vet"]
+    },
+    {
+      "english": "Sun Conure",
+      "latin": "Aratinga solstitialis",
+      "lifespan": "25-30 years",
+      "vaccination_schedule": ["Consult an Avian Vet"]
+    },
+    {
+      "english": "Jenday Conure",
+      "latin": "Aratinga jandaya",
+      "latin": "Aratinga jandaya",
+      "lifespan": "20-30 years",
+      "vaccination_schedule": ["Consult an Avian Vet"]
+    },
+    {
+      "english": "Green-cheeked Conure",
+      "latin": "Pyrrhura molinae",
+      "lifespan": "25-30 years",
+      "vaccination_schedule": ["Consult an Avian Vet"]
+    },
+    {
+      "english": "Patagonian Conure",
+      "latin": "Cyanoliseus patagonus",
+      "lifespan": "25-30 years",
+      "vaccination_schedule": ["Consult an Avian Vet"]
+    },
+    {
+      "english": "Scarlet-chested Parrot",
+      "latin": "Neophema splendida",
+      "lifespan": "10-15 years",
+      "vaccination_schedule": ["Consult an Avian Vet"]
+    },
+    {
+      "english": "Bourke's Parrot",
+      "latin": "Neopsephotus bourkii",
+      "lifespan": "10-15 years",
+      "vaccination_schedule": ["Consult an Avian Vet"]
+    },
+    {
+      "english": "Princess Parrot",
+      "latin": "Polytelis alexandrae",
+      "lifespan": "15-20 years",
+      "vaccination_schedule": ["Consult an Avian Vet"]
+    },
+    {
+      "english": "Regent Parrot",
+      "latin": "Polytelis anthopeplus",
+      "lifespan": "15-20 years",
+      "vaccination_schedule": ["Consult an Avian Vet"]
+    },
+    {
+      "english": "Major Mitchell's Cockatoo",
+      "latin": "Lophochroa leadbeateri",
+      "lifespan": "40-60 years",
+      "vaccination_schedule": ["Consult an Avian Vet (e.g., Polyomavirus)"]
+    },
+    {
+      "english": "Galah",
+      "latin": "Eolophus roseicapilla",
+      "lifespan": "40-50 years",
+      "vaccination_schedule": ["Consult an Avian Vet (e.g., Polyomavirus)"]
+    },
+    {
+      "english": "Kakariki",
+      "latin": "Cyanoramphus novaezelandiae",
+      "lifespan": "10-15 years",
+      "vaccination_schedule": ["Consult an Avian Vet"]
+    },
+    {
+      "english": "Alexandrine Parakeet",
+      "latin": "Psittacula eupatria",
+      "lifespan": "25-30 years",
+      "vaccination_schedule": ["Consult an Avian Vet"]
+    },
+    {
+      "english": "Derbyan Parakeet",
+      "latin": "Psittacula derbiana",
+      "lifespan": "20-30 years",
+      "vaccination_schedule": ["Consult an Avian Vet"]
+    },
+    {
+      "english": "Budgie (English Show)",
+      "latin": "Melopsittacus undulatus",
+      "lifespan": "7-12 years",
+      "vaccination_schedule": ["Consult an Avian Vet (e.g., Polyomavirus)"]
+    },
+    {
+      "english": "White Cockatiel",
+      "latin": "Nymphicus hollandicus",
+      "lifespan": "15-20 years",
+      "vaccination_schedule": ["Consult an Avian Vet"]
+    },
+    {
+      "english": "Grey Cockatiel",
+      "latin": "Nymphicus hollandicus",
+      "lifespan": "15-20 years",
+      "vaccination_schedule": ["Consult an Avian Vet"]
+    },
+    {
+      "english": "Yellow Canary",
+      "latin": "Serinus canaria domestica",
+      "lifespan": "7-10 years",
+      "vaccination_schedule": ["Consult an Avian Vet"]
+    },
+    {
+      "english": "Gloster Canary",
+      "latin": "Serinus canaria",
+      "lifespan": "7-10 years",
+      "vaccination_schedule": ["Consult an Avian Vet"]
+    },
+    {
+      "english": "Roller Canary",
+      "latin": "Serinus canaria",
+      "lifespan": "7-10 years",
+      "vaccination_schedule": ["Consult an Avian Vet"]
+    },
+    {
+      "english": "Society Finch",
+      "latin": "Lonchura striata domestica",
+      "lifespan": "4-7 years",
+      "vaccination_schedule": ["Consult an Avian Vet"]
+    },
+    {
+      "english": "Gouldian Finch",
+      "latin": "Erythrura gouldiae",
+      "lifespan": "6-8 years",
+      "vaccination_schedule": ["Consult an Avian Vet"]
+    },
+    {
+      "english": "Owl Finch",
+      "latin": "Taeniopygia bichenovii",
+      "lifespan": "5-7 years",
+      "vaccination_schedule": ["Consult an Avian Vet"]
+    },
+    {
+      "english": "Star Finch",
+      "latin": "Neochmia ruficauda",
+      "lifespan": "5-8 years",
+      "vaccination_schedule": ["Consult an Avian Vet"]
+    },
+    {
+      "english": "Zebra Dove",
+      "latin": "Geopelia striata",
+      "lifespan": "5-10 years",
+      "vaccination_schedule": ["Consult an Avian Vet"]
+    },
+    {
+      "english": "Diamond Dove",
+      "latin": "Geopelia cuneata",
+      "lifespan": "10-15 years",
+      "vaccination_schedule": ["Consult an Avian Vet"]
+    },
+    {
+      "english": "Ringneck Dove",
+      "latin": "Streptopelia risoria",
+      "lifespan": "12-15 years",
+      "vaccination_schedule": ["Consult an Avian Vet"]
+    },
+    {
+      "english": "Java Sparrow",
+      "latin": "Lonchura oryzivora",
+      "lifespan": "5-7 years",
+      "vaccination_schedule": ["Consult an Avian Vet"]
+    }
+  ]
+}

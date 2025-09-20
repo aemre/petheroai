@@ -17,6 +17,14 @@ export interface UserProfileDTO {
   credits: number;
   premium: boolean;
   createdAt: number; // Unix timestamp in seconds
+  lastUpdated?: number; // Unix timestamp in seconds
+  lastPurchase?: number; // Unix timestamp in seconds
+  onboardingCompleted?: boolean;
+  petPreference?: "dog" | "cat" | "bird";
+  petSpecies?: string;
+  petName?: string;
+  petAge?: number;
+  petWeight?: string;
 }
 
 export interface PhotoRecordDTO {
@@ -24,7 +32,7 @@ export interface PhotoRecordDTO {
   userId: string;
   originalUrl: string;
   resultUrl: string | null;
-  status: 'processing' | 'completed' | 'failed';
+  status: "processing" | "completed" | "failed";
   createdAt: number; // Unix timestamp in seconds
 }
 
@@ -45,7 +53,7 @@ export const convertFirebaseUserToDTO = (user: any): UserDTO => {
 };
 
 export const convertFirebaseTimestampToNumber = (timestamp: any): number => {
-  if (timestamp && typeof timestamp === 'object') {
+  if (timestamp && typeof timestamp === "object") {
     // Firestore Timestamp object
     if (timestamp.seconds !== undefined) {
       return timestamp.seconds;
@@ -56,10 +64,10 @@ export const convertFirebaseTimestampToNumber = (timestamp: any): number => {
     }
   }
   // Already a number or string
-  if (typeof timestamp === 'number') {
+  if (typeof timestamp === "number") {
     return timestamp;
   }
-  if (typeof timestamp === 'string') {
+  if (typeof timestamp === "string") {
     return Math.floor(new Date(timestamp).getTime() / 1000);
   }
   // Fallback to current time
@@ -71,16 +79,31 @@ export const convertUserProfileToDTO = (profile: any): UserProfileDTO => {
     credits: profile.credits || 0,
     premium: profile.premium || false,
     createdAt: convertFirebaseTimestampToNumber(profile.createdAt),
+    lastUpdated: profile.lastUpdated
+      ? convertFirebaseTimestampToNumber(profile.lastUpdated)
+      : undefined,
+    lastPurchase: profile.lastPurchase
+      ? convertFirebaseTimestampToNumber(profile.lastPurchase)
+      : undefined,
+    onboardingCompleted: profile.onboardingCompleted || false,
+    petPreference: profile.petPreference || undefined,
+    petSpecies: profile.petSpecies || undefined,
+    petName: profile.petName || undefined,
+    petAge: profile.petAge || undefined,
+    petWeight: profile.petWeight || undefined,
   };
 };
 
-export const convertPhotoRecordToDTO = (record: any, id: string): PhotoRecordDTO => {
+export const convertPhotoRecordToDTO = (
+  record: any,
+  id: string
+): PhotoRecordDTO => {
   return {
     id,
     userId: record.userId,
     originalUrl: record.originalUrl,
     resultUrl: record.resultUrl || null,
-    status: record.status || 'processing',
+    status: record.status || "processing",
     createdAt: convertFirebaseTimestampToNumber(record.createdAt),
   };
 };
