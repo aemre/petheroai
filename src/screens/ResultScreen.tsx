@@ -19,15 +19,12 @@ import * as FileSystem from "expo-file-system";
 
 import {AppDispatch, RootState} from "../store/store";
 import {checkPhotoStatus, clearCurrentPhoto} from "../store/slices/photoSlice";
-import {RootStackParamList} from "../navigation/AppNavigator";
+import {TabParamList} from "../navigation/TabNavigator";
 import {useTranslation} from "../hooks/useTranslation";
 import {theme} from "../theme";
 
-type ResultScreenRouteProp = RouteProp<RootStackParamList, "Result">;
-type ResultScreenNavigationProp = StackNavigationProp<
-  RootStackParamList,
-  "Result"
->;
+type ResultScreenRouteProp = RouteProp<TabParamList, "Result">;
+type ResultScreenNavigationProp = StackNavigationProp<TabParamList, "Result">;
 
 const {width, height} = Dimensions.get("window");
 
@@ -197,7 +194,7 @@ export default function ResultScreen() {
 
   const handleCreateAnother = () => {
     dispatch(clearCurrentPhoto());
-    navigation.navigate("Home");
+    navigation.navigate("HomeTab");
   };
 
   if (!currentPhoto || !currentPhoto.resultUrl) {

@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useRef} from "react";
 import {
   View,
   Text,
@@ -10,6 +10,7 @@ import {
   Dimensions,
   Image,
 } from "react-native";
+import {Video, ResizeMode} from "expo-av";
 import {LinearGradient} from "expo-linear-gradient";
 import {useDispatch, useSelector} from "react-redux";
 import {useNavigation} from "@react-navigation/native";
@@ -45,6 +46,8 @@ export default function HomeScreen({route}: {route?: any}) {
 
   const [showPurchaseModal, setShowPurchaseModal] = useState(false);
   const [products, setProducts] = useState<any[]>([]);
+  const [showResultImage, setShowResultImage] = useState(false);
+  const videoRef = useRef<Video>(null);
 
   // No animations needed
 
@@ -211,6 +214,19 @@ export default function HomeScreen({route}: {route?: any}) {
     ]);
   };
 
+  const handleVideoEnd = () => {
+    setShowResultImage(true);
+
+    // Hide result image after 2 seconds and restart video
+    setTimeout(() => {
+      setShowResultImage(false);
+      // Restart the video
+      if (videoRef.current) {
+        videoRef.current.replayAsync();
+      }
+    }, 2000);
+  };
+
   const handleImageSelection = async (useCamera: boolean) => {
     const imageUri = await pickImage(useCamera);
     if (imageUri && user?.uid) {
@@ -331,46 +347,109 @@ export default function HomeScreen({route}: {route?: any}) {
           </LinearGradient>
         </View>
 
-        {/* Main Action Buttons */}
-        <View style={styles.actionContainer}>
-          {/* Transform Pet Button */}
-          <TouchableOpacity
-            style={[
-              styles.primaryActionButton,
-              (!profile?.credits || profile.credits <= 0) &&
-                styles.buttonDisabled,
-            ]}
-            onPress={handleUploadPhoto}
-            disabled={isUploading || !profile?.credits || profile.credits <= 0}
-            activeOpacity={0.8}
-          >
-            <LinearGradient
-              colors={
-                !profile?.credits || profile.credits <= 0
-                  ? theme.colors.gradients.disabled
-                  : theme.colors.gradients.success
-              }
-              style={styles.primaryButtonGradient}
+        {/* Video Transform Section */}
+        <View style={styles.videoTransformContainer}>
+          {/* Transform Action Buttons - Completely separate */}
+          <View style={styles.videoActionButtons}>
+            <TouchableOpacity
+              style={[styles.videoActionButton, styles.cameraButton]}
+              onPress={() => {
+                console.log("Camera button pressed!");
+                if (!profile?.credits || profile.credits <= 0) {
+                  Alert.alert(
+                    "No Credits",
+                    "You need credits to create animations. Please purchase credits first.",
+                    [
+                      {text: "Cancel", style: "cancel"},
+                      {
+                        text: "Buy Credits",
+                        onPress: () => setShowPurchaseModal(true),
+                      },
+                    ]
+                  );
+                  return;
+                }
+                handleImageSelection(true);
+              }}
+              disabled={isUploading}
+              activeOpacity={0.8}
             >
-              <View style={styles.buttonContent}>
-                <View style={styles.buttonIconContainer}>
-                  <Text style={styles.primaryButtonIcon}>
-                    {isUploading ? "⏳" : "📸"}
-                  </Text>
-                </View>
-                <Text style={styles.primaryButtonText}>
-                  {isUploading ? t("home.uploading") : petContent.actionText}
-                </Text>
-                <Text style={styles.primaryButtonSubtext}>
-                  {isUploading
-                    ? t("home.pleaseWait")
-                    : petContent.actionSubtext}
-                </Text>
-              </View>
-            </LinearGradient>
-          </TouchableOpacity>
+              <Text style={styles.videoButtonText}>{t("common.camera")}</Text>
+            </TouchableOpacity>
 
-          {/* Gallery Button */}
+            <TouchableOpacity
+              style={[styles.videoActionButton, styles.galleryButton]}
+              onPress={() => {
+                console.log("Gallery button pressed!");
+                if (!profile?.credits || profile.credits <= 0) {
+                  Alert.alert(
+                    "No Credits",
+                    "You need credits to create animations. Please purchase credits first.",
+                    [
+                      {text: "Cancel", style: "cancel"},
+                      {
+                        text: "Buy Credits",
+                        onPress: () => setShowPurchaseModal(true),
+                      },
+                    ]
+                  );
+                  return;
+                }
+                handleImageSelection(false);
+              }}
+              disabled={isUploading}
+              activeOpacity={0.8}
+            >
+              <Text style={styles.videoButtonText}>{t("common.gallery")}</Text>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.videoContainer}>
+            <Video
+              pointerEvents="none"
+              ref={videoRef}
+              style={styles.video}
+              source={require("../../assets/video.mov")}
+              useNativeControls={false}
+              usePoster={false}
+              resizeMode={ResizeMode.STRETCH}
+              isLooping={false}
+              shouldPlay={!showResultImage}
+              isMuted={true}
+              posterStyle={{
+                zIndex: -1,
+              }}
+              videoStyle={{
+                zIndex: -1,
+                position: "absolute",
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: 0,
+              }}
+              controls={false}
+              onPlaybackStatusUpdate={(status) => {
+                if (
+                  status.isLoaded &&
+                  status.didJustFinish &&
+                  !status.isLooping
+                ) {
+                  handleVideoEnd();
+                }
+              }}
+            />
+            {/* Result Image Overlay */}
+            {showResultImage && (
+              <Image
+                source={require("../../assets/result.jpeg")}
+                style={styles.resultImage}
+                resizeMode="cover"
+              />
+            )}
+          </View>
+        </View>
+
+        {/* Gallery Button */}
+        <View style={styles.actionContainer}>
           <TouchableOpacity
             style={styles.secondaryActionButton}
             onPress={() => navigation.navigate("Gallery")}
@@ -460,6 +539,7 @@ export default function HomeScreen({route}: {route?: any}) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    marginBottom: theme.spacing[20],
   },
   scrollContent: {
     padding: theme.spacing[5],
@@ -620,6 +700,128 @@ const styles = StyleSheet.create({
   // Action Container
   actionContainer: {
     marginBottom: theme.spacing[8],
+  },
+
+  // Video Transform Container
+  videoTransformContainer: {
+    marginBottom: theme.spacing[8],
+  },
+  videoContainer: {
+    height: 320,
+    borderRadius: theme.borderRadius["2xl"],
+    overflow: "hidden",
+    backgroundColor: theme.colors.black,
+    shadowColor: theme.colors.black,
+    shadowOffset: {width: 0, height: 8},
+    shadowOpacity: 0.3,
+    shadowRadius: 16,
+    elevation: 12,
+    position: "relative",
+  },
+  video: {
+    width: "100%",
+    height: "100%",
+    borderRadius: theme.borderRadius["2xl"],
+    pointerEvents: "none",
+  },
+  resultImage: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    width: "100%",
+    height: "100%",
+    borderRadius: theme.borderRadius["2xl"],
+    zIndex: 1,
+  },
+  videoTextOverlay: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    justifyContent: "center",
+    alignItems: "center",
+    padding: theme.spacing[4],
+    zIndex: 5,
+  },
+  videoActionButtons: {
+    position: "absolute",
+    bottom: theme.spacing[3],
+    left: theme.spacing[4],
+    right: theme.spacing[4],
+    flexDirection: "row",
+    justifyContent: "space-between",
+    gap: theme.spacing[3],
+    zIndex: 920,
+  },
+  videoActionButton: {
+    flex: 1,
+    borderRadius: theme.borderRadius.xl,
+    backgroundColor: theme.colors.primary[500],
+    shadowColor: theme.colors.black,
+    shadowOffset: {width: 0, height: 4},
+    shadowOpacity: 0.3,
+    shadowRadius: 8,
+    elevation: 6,
+    zIndex: 25,
+    paddingVertical: theme.spacing[3],
+    paddingHorizontal: theme.spacing[4],
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  cameraButton: {
+    zIndex: 25,
+    marginRight: theme.spacing[2],
+  },
+  galleryButton: {
+    marginLeft: theme.spacing[2],
+  },
+  videoButtonGradient: {
+    alignItems: "center",
+    justifyContent: "center",
+    paddingHorizontal: theme.spacing[4],
+    paddingVertical: theme.spacing[3],
+    borderRadius: theme.borderRadius.xl,
+  },
+  videoButtonText: {
+    color: theme.colors.white,
+    fontSize: theme.typography.sizes.base,
+    fontFamily: theme.typography.fonts.bold,
+    textAlign: "center",
+  },
+  videoTextContainer: {
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  videoMainText: {
+    color: theme.colors.white,
+    fontSize: theme.typography.sizes.xl,
+    fontFamily: theme.typography.fonts.bold,
+    marginBottom: theme.spacing[1],
+    textAlign: "center",
+    textShadowColor: blackWithOpacity(0.7),
+    textShadowOffset: {width: 0, height: 2},
+    textShadowRadius: 4,
+  },
+  videoSubText: {
+    color: theme.colors.white,
+    fontSize: theme.typography.sizes.base,
+    fontFamily: theme.typography.fonts.medium,
+    textAlign: "center",
+    textShadowColor: blackWithOpacity(0.7),
+    textShadowOffset: {width: 0, height: 1},
+    textShadowRadius: 3,
+    opacity: 0.9,
+  },
+  uploadingIndicator: {
+    marginTop: theme.spacing[2],
+    padding: theme.spacing[2],
+    borderRadius: theme.borderRadius.lg,
+    backgroundColor: blackWithOpacity(0.5),
+  },
+  uploadingIcon: {
+    fontSize: theme.typography.sizes["2xl"],
+    textAlign: "center",
   },
 
   // Primary Action Button

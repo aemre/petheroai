@@ -15,12 +15,12 @@ import {StackNavigationProp} from "@react-navigation/stack";
 
 import {AppDispatch, RootState} from "../store/store";
 import {checkPhotoStatus} from "../store/slices/photoSlice";
-import {RootStackParamList} from "../navigation/AppNavigator";
+import {TabParamList} from "../navigation/TabNavigator";
 import {theme} from "../theme";
 
-type ProcessingScreenRouteProp = RouteProp<RootStackParamList, "Processing">;
+type ProcessingScreenRouteProp = RouteProp<TabParamList, "Processing">;
 type ProcessingScreenNavigationProp = StackNavigationProp<
-  RootStackParamList,
+  TabParamList,
   "Processing"
 >;
 
@@ -63,7 +63,7 @@ export default function ProcessingScreen() {
 
       // Then navigate to result
       setTimeout(() => {
-        navigation.replace("Result", {photoId});
+        navigation.navigate("Result", {photoId});
       }, 2000);
     }
   }, [currentPhoto, navigation, photoId]);
