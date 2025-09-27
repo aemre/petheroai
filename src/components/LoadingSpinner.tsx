@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, ActivityIndicator, Text, StyleSheet } from 'react-native';
+import { theme } from '../theme';
 
 interface LoadingSpinnerProps {
   text?: string;
@@ -24,11 +25,11 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: 'center',
     alignItems: 'center',
-    padding: 20,
+    padding: theme.spacing[5],
   },
   text: {
     marginTop: 10,
-    fontSize: 16,
+    fontSize: theme.typography.sizes.md,
     textAlign: 'center',
   },
 });

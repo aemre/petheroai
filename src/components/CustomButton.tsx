@@ -1,11 +1,18 @@
-import React from 'react';
-import { TouchableOpacity, Text, StyleSheet, ViewStyle, TextStyle } from 'react-native';
+import React from "react";
+import {
+  TouchableOpacity,
+  Text,
+  StyleSheet,
+  ViewStyle,
+  TextStyle,
+} from "react-native";
+import {theme} from "../theme";
 
 interface CustomButtonProps {
   title: string;
   onPress: () => void;
-  variant?: 'primary' | 'secondary' | 'outline';
-  size?: 'small' | 'medium' | 'large';
+  variant?: "primary" | "secondary" | "outline";
+  size?: "small" | "medium" | "large";
   disabled?: boolean;
   style?: ViewStyle;
   textStyle?: TextStyle;
@@ -15,8 +22,8 @@ interface CustomButtonProps {
 export default function CustomButton({
   title,
   onPress,
-  variant = 'primary',
-  size = 'medium',
+  variant = "primary",
+  size = "medium",
   disabled = false,
   style,
   textStyle,
@@ -53,71 +60,71 @@ export default function CustomButton({
 
 const styles = StyleSheet.create({
   button: {
-    borderRadius: 12,
-    justifyContent: 'center',
-    alignItems: 'center',
-    flexDirection: 'row',
+    borderRadius: theme.borderRadius.lg,
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "row",
     elevation: 2,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
+    shadowColor: "#000",
+    shadowOffset: {width: 0, height: 2},
     shadowOpacity: 0.2,
     shadowRadius: 4,
   },
   primary: {
-    backgroundColor: '#FF6B6B',
+    backgroundColor: "#FF6B6B",
   },
   secondary: {
-    backgroundColor: '#4ECDC4',
+    backgroundColor: "#4ECDC4",
   },
   outline: {
-    backgroundColor: 'transparent',
+    backgroundColor: "transparent",
     borderWidth: 2,
-    borderColor: '#FF6B6B',
+    borderColor: "#FF6B6B",
   },
   smallSize: {
-    paddingHorizontal: 12,
-    paddingVertical: 8,
+    paddingHorizontal: theme.spacing[3],
+    paddingVertical: theme.spacing[2],
   },
   mediumSize: {
-    paddingHorizontal: 20,
-    paddingVertical: 12,
+    paddingHorizontal: theme.spacing[5],
+    paddingVertical: theme.spacing[3],
   },
   largeSize: {
-    paddingHorizontal: 32,
-    paddingVertical: 16,
+    paddingHorizontal: theme.spacing[8],
+    paddingVertical: theme.spacing[4],
   },
   disabled: {
-    backgroundColor: '#ccc',
+    backgroundColor: "#ccc",
     elevation: 0,
     shadowOpacity: 0,
   },
   text: {
-    fontWeight: '600',
-    textAlign: 'center',
+    fontWeight: "600",
+    textAlign: "center",
   },
   primaryText: {
-    color: 'white',
+    color: theme.colors.white,
   },
   secondaryText: {
-    color: 'white',
+    color: theme.colors.white,
   },
   outlineText: {
-    color: '#FF6B6B',
+    color: "#FF6B6B",
   },
   smallText: {
-    fontSize: 14,
+    fontSize: theme.typography.sizes.base,
   },
   mediumText: {
-    fontSize: 16,
+    fontSize: theme.typography.sizes.md,
   },
   largeText: {
-    fontSize: 18,
+    fontSize: theme.typography.sizes.lg,
   },
   disabledText: {
-    color: '#999',
+    color: "#999",
   },
   icon: {
-    fontSize: 18,
-    marginRight: 8,
+    fontSize: theme.typography.sizes.lg,
+    marginRight: theme.spacing[2],
   },
 });

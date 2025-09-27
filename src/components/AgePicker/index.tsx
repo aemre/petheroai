@@ -10,6 +10,7 @@ import {
 } from "react-native";
 import ReactNativeHapticFeedback from "react-native-haptic-feedback";
 import {DEVICE_WIDTH} from "../../utils/dimensions";
+import {theme} from "../../theme";
 
 // Fixed constants
 const TICK_HEIGHT = 20; // Height of each tick mark
@@ -174,7 +175,7 @@ const AgePicker = ({
                   fontSize: isMajor
                     ? moderateVerticalScale(18)
                     : moderateVerticalScale(14),
-                  color: isAboveCurrent ? "#8B5CF6" : "#8B5CF6",
+                  color: theme.colors.primary[500],
                 },
               ]}
             >
@@ -263,13 +264,13 @@ const styles = StyleSheet.create({
   },
   heightBubble: {
     width: moderateVerticalScale(172),
-    backgroundColor: "#FFFFFF",
+    backgroundColor: theme.colors.white,
     borderRadius: moderateVerticalScale(36),
     paddingVertical: moderateVerticalScale(15),
     paddingHorizontal: moderateVerticalScale(20),
     alignItems: "center",
     justifyContent: "center",
-    shadowColor: "#000",
+    shadowColor: theme.colors.black,
     shadowOffset: {width: 0, height: 4},
     shadowOpacity: 0.15,
     shadowRadius: 8,
@@ -279,11 +280,11 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     marginEnd: moderateVerticalScale(-45),
     borderWidth: 2,
-    borderColor: "#E2E8F0",
+    borderColor: theme.colors.gray[200],
   },
   heightText: {
     fontFamily: "Inter-Regular",
-    color: "#8B5CF6",
+    color: theme.colors.primary[500],
     fontSize: moderateVerticalScale(48),
     fontWeight: "600",
     fontStyle: "normal",
@@ -308,15 +309,15 @@ const styles = StyleSheet.create({
   circleIndicator: {
     width: 8,
     height: 8,
-    borderRadius: 4,
-    backgroundColor: "#8B5CF6",
+    borderRadius: theme.borderRadius.sm,
+    backgroundColor: theme.colors.primary[500],
     marginRight: 1,
     marginLeft: moderateVerticalScale(40),
   },
   indicator: {
     height: 2,
     width: SCREEN_WIDTH,
-    backgroundColor: "#8B5CF6",
+    backgroundColor: theme.colors.primary[500],
     borderRadius: 1,
   },
   scaleContainer: {
@@ -342,14 +343,14 @@ const styles = StyleSheet.create({
   },
   tick: {
     height: 1,
-    backgroundColor: "#B794F6",
+    backgroundColor: theme.colors.primary[300],
   },
   tickLabel: {
-    color: "#4A5568",
+    color: theme.colors.gray[600],
     height: moderateVerticalScale(25),
     width: moderateVerticalScale(50),
     textAlignVertical: "center",
-    marginLeft: 12,
+    marginLeft: theme.spacing[3],
     fontFamily: "Inter-Regular",
     fontSize: moderateVerticalScale(18),
     fontWeight: "500",

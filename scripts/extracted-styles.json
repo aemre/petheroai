@@ -1,0 +1,2148 @@
+{
+  "summary": {
+    "filesProcessed": 25,
+    "colorsFound": 161,
+    "fontSizesFound": 7,
+    "spacingValuesFound": 29,
+    "borderRadiusFound": 10,
+    "shadowsFound": 13
+  },
+  "extracted": {
+    "colors": [
+      "rgba(0,0,0,0.7)",
+      "rgba(255,0,0,0.8)",
+      "rgba(0, 0, 0, 0.8)",
+      "#000",
+      "#FF6B6B",
+      "#4ECDC4",
+      "#ccc",
+      "#999",
+      "#fff",
+      "#333",
+      "#f0f0f0",
+      "#666",
+      "rgba(0, 0, 0, 0.5)",
+      "rgba(0,0,0,0.6)",
+      "rgba(0,0,0,0.2)",
+      "rgba(${r}, ${g}, ${b}, ${opacity})",
+      "\"white\"",
+      "\"black\"",
+      "#4ecdc4",
+      "#44a08d",
+      "#093637",
+      "#ff6b6b",
+      "#ff8e8e",
+      "rgba(0,0,0,0.3)",
+      "rgba(0, 0, 0, 0.7)",
+      "#E8D5FF",
+      "#D4A5FF",
+      "#C084FC",
+      "#FFF5E6",
+      "#F7FAFC",
+      "#A0AEC0",
+      "#FFE4E6",
+      "#FBB6CE",
+      "#F687B3",
+      "#E0F2FE",
+      "#A7F3D0",
+      "#6EE7B7",
+      "#DDD6FE",
+      "#C4B5FD",
+      "#A78BFA",
+      "#FEF3C7",
+      "#FCD34D",
+      "#F59E0B",
+      "#10B981",
+      "#EF4444",
+      "#718096",
+      "rgba(239, 68, 68, 0.5)",
+      "rgba(139, 92, 246, 0.2)",
+      "rgba(139, 92, 246, 0.5)",
+      "rgba(139, 92, 246, 0.7)",
+      "rgba(139, 92, 246, 0.6)",
+      "#ffa726",
+      "#ffffff",
+      "#2196F3",
+      "#FFB74D",
+      "#FF9800",
+      "#e0e0e0",
+      "#888",
+      "#fa709a",
+      "#e5e5e5",
+      "#d1d5db",
+      "#f9fafb",
+      "#e5e7eb",
+      "#374151",
+      "#111827",
+      "#6b7280",
+      "#9ca3af",
+      "rgba(81, 150, 244, ${opacity})",
+      "rgba(255, 99, 132, ${opacity})",
+      "#FFF0F5",
+      "#FFE4E1",
+      "#FFB6C1",
+      "#E0F6FF",
+      "#87CEEB",
+      "#4682B4",
+      "#7C3AED",
+      "#C7D2FE",
+      "#818CF8",
+      "#4F46E5",
+      "#4A5568",
+      "#1a1a2e",
+      "#16213e",
+      "#0f3460",
+      "#B0C4DE",
+      "rgba(138, 43, 226, 0.8)",
+      "rgba(75, 0, 130, 0.9)",
+      "rgba(25, 25, 112, 0.8)",
+      "#F0F9FF",
+      "#BAE6FD",
+      "#45B7D1",
+      "#FFE5E5",
+      "#FFB3B3",
+      "#FF8A80",
+      "#555",
+      "#dc2626",
+      "#ea580c",
+      "#F8F9FB",
+      "#F1F3F7",
+      "#E4E8F0",
+      "#CBD2E0",
+      "#9BAAC7",
+      "#5D688A",
+      "#4A5570",
+      "#3D4659",
+      "#323846",
+      "#2A2F3A",
+      "#FEF9F9",
+      "#FEF2F2",
+      "#FCE5E5",
+      "#F9CCCC",
+      "#F7B8B8",
+      "#F7A5A5",
+      "#E58585",
+      "#D16565",
+      "#B54545",
+      "#962E2E",
+      "#FFFCF7",
+      "#FFF8F0",
+      "#FFF1E1",
+      "#FFE8CC",
+      "#FFE0B8",
+      "#FFDBB6",
+      "#E6C4A3",
+      "#CCAD90",
+      "#B3967D",
+      "#99806A",
+      "#FFF2EF",
+      "#FEF0ED",
+      "#FDEAE6",
+      "#FBE0DA",
+      "#F8D6CE",
+      "#E6C4B8",
+      "#D4B2A2",
+      "#C2A08C",
+      "#A08670",
+      "#7E6C54",
+      "#F8F5F2",
+      "#ECFDF5",
+      "#D1FAE5",
+      "#34D399",
+      "#059669",
+      "#047857",
+      "#065F46",
+      "#064E3B",
+      "#022C22",
+      "#FFFFFF",
+      "#000000",
+      "#333333",
+      "#666666",
+      "#999999",
+      "#CCCCCC",
+      "rgba(colors.black, opacity)",
+      "rgba(colors.white, opacity)",
+      "rgba(colors.primary[500], opacity)",
+      "rgba(colors.success[500], opacity)",
+      "rgba(colors.warning[500], opacity)",
+      "rgba(colors.error[500], opacity)",
+      "#FFF5F5",
+      "#E0E0E0",
+      "#4CAF50",
+      "#F44336"
+    ],
+    "fontSizes": [
+      9,
+      11,
+      13,
+      22,
+      50,
+      60,
+      64
+    ],
+    "spacing": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      6,
+      8,
+      10,
+      12,
+      14,
+      15,
+      16,
+      18,
+      20,
+      24,
+      25,
+      30,
+      32,
+      40,
+      44,
+      50,
+      55,
+      56,
+      60,
+      70,
+      80,
+      90,
+      100,
+      120
+    ],
+    "borderRadius": [
+      1,
+      2,
+      3,
+      15,
+      22,
+      25,
+      28,
+      30,
+      50,
+      60
+    ],
+    "shadows": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      8,
+      10,
+      12,
+      16,
+      20,
+      24
+    ]
+  },
+  "suggestions": {
+    "colors": {
+      "mostUsed": [
+        "rgba(0,0,0,0.7)",
+        "rgba(255,0,0,0.8)",
+        "rgba(0, 0, 0, 0.8)",
+        "#000",
+        "#FF6B6B",
+        "#4ECDC4",
+        "#ccc",
+        "#999",
+        "#fff",
+        "#333",
+        "#f0f0f0",
+        "#666",
+        "rgba(0, 0, 0, 0.5)",
+        "rgba(0,0,0,0.6)",
+        "rgba(0,0,0,0.2)",
+        "rgba(${r}, ${g}, ${b}, ${opacity})",
+        "\"white\"",
+        "\"black\"",
+        "#4ecdc4",
+        "#44a08d"
+      ],
+      "unique": 161
+    },
+    "typography": {
+      "fontSizes": [
+        9,
+        11,
+        13,
+        22,
+        50,
+        60,
+        64
+      ],
+      "suggestions": {
+        "xs": 9,
+        "sm": 12,
+        "base": 16,
+        "lg": 20,
+        "xl": 24,
+        "2xl": 64
+      }
+    },
+    "spacing": {
+      "values": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        6,
+        8,
+        10,
+        12,
+        14,
+        15,
+        16,
+        18,
+        20,
+        24,
+        25,
+        30,
+        32,
+        40,
+        44,
+        50,
+        55,
+        56,
+        60,
+        70,
+        80,
+        90,
+        100,
+        120
+      ],
+      "suggestions": {
+        "0": 0,
+        "1": 4,
+        "2": 8,
+        "3": 12,
+        "4": 16,
+        "5": 20,
+        "6": 24,
+        "7": 28,
+        "8": 32,
+        "9": 36,
+        "10": 40,
+        "11": 44,
+        "12": 48,
+        "13": 52,
+        "14": 56,
+        "15": 60,
+        "16": 64,
+        "17": 68,
+        "18": 72,
+        "19": 76,
+        "20": 80
+      }
+    },
+    "borderRadius": {
+      "values": [
+        1,
+        2,
+        3,
+        15,
+        22,
+        25,
+        28,
+        30,
+        50,
+        60
+      ],
+      "suggestions": {
+        "sm": 4,
+        "base": 8,
+        "lg": 12,
+        "xl": 16,
+        "2xl": 20,
+        "full": 9999
+      }
+    },
+    "shadows": {
+      "values": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        8,
+        10,
+        12,
+        16,
+        20,
+        24
+      ]
+    }
+  },
+  "migrations": [
+    {
+      "file": "screens/PetNameScreen.tsx",
+      "suggestions": [
+        {
+          "type": "color",
+          "from": "rgba(139, 92, 246, 0.2)",
+          "to": "theme.colors.primary[500]",
+          "description": "Replace with primary color from theme"
+        },
+        {
+          "type": "color",
+          "from": "rgba(139, 92, 246, 0.5)",
+          "to": "theme.colors.primary[500]",
+          "description": "Replace with primary color from theme"
+        },
+        {
+          "type": "color",
+          "from": "rgba(139, 92, 246, 0.7)",
+          "to": "theme.colors.primary[500]",
+          "description": "Replace with primary color from theme"
+        },
+        {
+          "type": "color",
+          "from": "rgba(139, 92, 246, 0.6)",
+          "to": "theme.colors.primary[500]",
+          "description": "Replace with primary color from theme"
+        }
+      ]
+    }
+  ],
+  "files": [
+    {
+      "path": "components/AgePicker/index.tsx",
+      "colors": [],
+      "fontSizes": [],
+      "spacing": [
+        {
+          "type": "margin",
+          "value": 10
+        },
+        {
+          "type": "margin",
+          "value": 1
+        },
+        {
+          "type": "margin",
+          "value": 0
+        },
+        {
+          "type": "width",
+          "value": 0
+        },
+        {
+          "type": "width",
+          "value": 8
+        },
+        {
+          "type": "width",
+          "value": 20
+        },
+        {
+          "type": "height",
+          "value": 4
+        },
+        {
+          "type": "height",
+          "value": 8
+        },
+        {
+          "type": "height",
+          "value": 2
+        },
+        {
+          "type": "height",
+          "value": 1
+        }
+      ],
+      "borderRadius": [
+        1
+      ],
+      "shadows": [
+        8,
+        6
+      ]
+    },
+    {
+      "path": "components/AnimatedGalleryItem.tsx",
+      "colors": [
+        "rgba(0,0,0,0.7)",
+        "rgba(255,0,0,0.8)",
+        "rgba(0, 0, 0, 0.8)"
+      ],
+      "fontSizes": [
+        9
+      ],
+      "spacing": [
+        {
+          "type": "margin",
+          "value": 2
+        },
+        {
+          "type": "padding",
+          "value": 10
+        },
+        {
+          "type": "width",
+          "value": 0
+        },
+        {
+          "type": "width",
+          "value": 24
+        },
+        {
+          "type": "height",
+          "value": 2
+        },
+        {
+          "type": "height",
+          "value": 24
+        }
+      ],
+      "borderRadius": [
+        15
+      ],
+      "shadows": [
+        4,
+        3
+      ]
+    },
+    {
+      "path": "components/CustomButton.tsx",
+      "colors": [
+        "#000",
+        "#FF6B6B",
+        "#4ECDC4",
+        "#FF6B6B",
+        "#ccc",
+        "#FF6B6B",
+        "#999"
+      ],
+      "fontSizes": [],
+      "spacing": [
+        {
+          "type": "width",
+          "value": 0
+        },
+        {
+          "type": "height",
+          "value": 2
+        }
+      ],
+      "borderRadius": [],
+      "shadows": [
+        4,
+        2,
+        0
+      ]
+    },
+    {
+      "path": "components/LanguageSelector.tsx",
+      "colors": [
+        "#fff",
+        "#000",
+        "#333",
+        "#FF6B6B",
+        "#333",
+        "#fff",
+        "#fff",
+        "#f0f0f0",
+        "#666",
+        "rgba(0, 0, 0, 0.5)"
+      ],
+      "fontSizes": [],
+      "spacing": [
+        {
+          "type": "width",
+          "value": 0
+        },
+        {
+          "type": "height",
+          "value": 2
+        }
+      ],
+      "borderRadius": [],
+      "shadows": [
+        8,
+        5
+      ]
+    },
+    {
+      "path": "components/LoadingSpinner.tsx",
+      "colors": [
+        "#FF6B6B"
+      ],
+      "fontSizes": [],
+      "spacing": [
+        {
+          "type": "margin",
+          "value": 10
+        }
+      ],
+      "borderRadius": [],
+      "shadows": []
+    },
+    {
+      "path": "components/PurchaseModal.tsx",
+      "colors": [
+        "rgba(0,0,0,0.6)",
+        "rgba(0,0,0,0.2)"
+      ],
+      "fontSizes": [
+        13,
+        11,
+        22
+      ],
+      "spacing": [
+        {
+          "type": "margin",
+          "value": 6
+        },
+        {
+          "type": "width",
+          "value": 0
+        },
+        {
+          "type": "width",
+          "value": 0
+        },
+        {
+          "type": "width",
+          "value": 1
+        },
+        {
+          "type": "height",
+          "value": 12
+        },
+        {
+          "type": "height",
+          "value": 4
+        },
+        {
+          "type": "height",
+          "value": 1
+        }
+      ],
+      "borderRadius": [],
+      "shadows": [
+        24,
+        8,
+        12,
+        16,
+        6,
+        8
+      ]
+    },
+    {
+      "path": "components/WeightPicker/index.tsx",
+      "colors": [],
+      "fontSizes": [],
+      "spacing": [
+        {
+          "type": "margin",
+          "value": 10
+        },
+        {
+          "type": "margin",
+          "value": 1
+        },
+        {
+          "type": "padding",
+          "value": 10
+        },
+        {
+          "type": "width",
+          "value": 0
+        },
+        {
+          "type": "width",
+          "value": 8
+        },
+        {
+          "type": "width",
+          "value": 2
+        },
+        {
+          "type": "width",
+          "value": 1
+        },
+        {
+          "type": "height",
+          "value": 4
+        },
+        {
+          "type": "height",
+          "value": 8
+        }
+      ],
+      "borderRadius": [
+        1
+      ],
+      "shadows": [
+        8,
+        6
+      ]
+    },
+    {
+      "path": "hooks/useTheme.ts",
+      "colors": [
+        "rgba(${r}, ${g}, ${b}, ${opacity})"
+      ],
+      "fontSizes": [],
+      "spacing": [],
+      "borderRadius": [],
+      "shadows": []
+    },
+    {
+      "path": "navigation/AppNavigator.tsx",
+      "colors": [
+        "#fff"
+      ],
+      "fontSizes": [],
+      "spacing": [],
+      "borderRadius": [],
+      "shadows": []
+    },
+    {
+      "path": "navigation/TabNavigator.tsx",
+      "colors": [
+        "\"white\"",
+        "\"white\"",
+        "\"black\"",
+        "\"white\""
+      ],
+      "fontSizes": [],
+      "spacing": [
+        {
+          "type": "padding",
+          "value": 10
+        },
+        {
+          "type": "width",
+          "value": 0
+        },
+        {
+          "type": "width",
+          "value": 60
+        },
+        {
+          "type": "width",
+          "value": 0
+        },
+        {
+          "type": "width",
+          "value": 50
+        },
+        {
+          "type": "width",
+          "value": 60
+        },
+        {
+          "type": "width",
+          "value": 0
+        },
+        {
+          "type": "width",
+          "value": 40
+        },
+        {
+          "type": "height",
+          "value": 90
+        },
+        {
+          "type": "height",
+          "value": 70
+        },
+        {
+          "type": "height",
+          "value": 60
+        },
+        {
+          "type": "height",
+          "value": 2
+        },
+        {
+          "type": "height",
+          "value": 50
+        },
+        {
+          "type": "height",
+          "value": 60
+        },
+        {
+          "type": "height",
+          "value": 4
+        },
+        {
+          "type": "height",
+          "value": 40
+        }
+      ],
+      "borderRadius": [
+        30,
+        30
+      ],
+      "shadows": [
+        10,
+        4,
+        8,
+        20,
+        4,
+        8
+      ]
+    },
+    {
+      "path": "screens/CreateAnimationScreen.tsx",
+      "colors": [
+        "#4ecdc4",
+        "#44a08d",
+        "#093637",
+        "#ff6b6b",
+        "#ff8e8e",
+        "#ff6b6b",
+        "rgba(0,0,0,0.3)",
+        "rgba(0,0,0,0.3)",
+        "\"white\""
+      ],
+      "fontSizes": [
+        50
+      ],
+      "spacing": [
+        {
+          "type": "padding",
+          "value": 10
+        },
+        {
+          "type": "width",
+          "value": 100
+        },
+        {
+          "type": "width",
+          "value": 0
+        },
+        {
+          "type": "width",
+          "value": 0
+        },
+        {
+          "type": "width",
+          "value": 0
+        },
+        {
+          "type": "height",
+          "value": 100
+        },
+        {
+          "type": "height",
+          "value": 2
+        },
+        {
+          "type": "height",
+          "value": 8
+        },
+        {
+          "type": "height",
+          "value": 1
+        }
+      ],
+      "borderRadius": [
+        50,
+        25,
+        25
+      ],
+      "shadows": [
+        16,
+        12
+      ]
+    },
+    {
+      "path": "screens/GalleryScreen.tsx",
+      "colors": [
+        "rgba(0, 0, 0, 0.7)"
+      ],
+      "fontSizes": [
+        64
+      ],
+      "spacing": [
+        {
+          "type": "margin",
+          "value": 2
+        },
+        {
+          "type": "margin",
+          "value": 100
+        },
+        {
+          "type": "width",
+          "value": 40
+        },
+        {
+          "type": "width",
+          "value": 40
+        },
+        {
+          "type": "height",
+          "value": 40
+        }
+      ],
+      "borderRadius": [],
+      "shadows": []
+    },
+    {
+      "path": "screens/HomeScreen.tsx",
+      "colors": [],
+      "fontSizes": [
+        60
+      ],
+      "spacing": [
+        {
+          "type": "padding",
+          "value": 60
+        },
+        {
+          "type": "width",
+          "value": 120
+        },
+        {
+          "type": "width",
+          "value": 0
+        },
+        {
+          "type": "width",
+          "value": 0
+        },
+        {
+          "type": "width",
+          "value": 50
+        },
+        {
+          "type": "width",
+          "value": 0
+        },
+        {
+          "type": "width",
+          "value": 60
+        },
+        {
+          "type": "width",
+          "value": 0
+        },
+        {
+          "type": "width",
+          "value": 50
+        },
+        {
+          "type": "width",
+          "value": 0
+        },
+        {
+          "type": "width",
+          "value": 0
+        },
+        {
+          "type": "width",
+          "value": 60
+        },
+        {
+          "type": "width",
+          "value": 0
+        },
+        {
+          "type": "width",
+          "value": 0
+        },
+        {
+          "type": "width",
+          "value": 0
+        },
+        {
+          "type": "width",
+          "value": 0
+        },
+        {
+          "type": "width",
+          "value": 0
+        },
+        {
+          "type": "width",
+          "value": 0
+        },
+        {
+          "type": "width",
+          "value": 44
+        },
+        {
+          "type": "width",
+          "value": 24
+        },
+        {
+          "type": "width",
+          "value": 0
+        },
+        {
+          "type": "height",
+          "value": 120
+        },
+        {
+          "type": "height",
+          "value": 8
+        },
+        {
+          "type": "height",
+          "value": 4
+        },
+        {
+          "type": "height",
+          "value": 50
+        },
+        {
+          "type": "height",
+          "value": 2
+        },
+        {
+          "type": "height",
+          "value": 4
+        },
+        {
+          "type": "height",
+          "value": 6
+        },
+        {
+          "type": "height",
+          "value": 50
+        },
+        {
+          "type": "height",
+          "value": 4
+        },
+        {
+          "type": "height",
+          "value": 8
+        },
+        {
+          "type": "height",
+          "value": 60
+        },
+        {
+          "type": "height",
+          "value": 2
+        },
+        {
+          "type": "height",
+          "value": 1
+        },
+        {
+          "type": "height",
+          "value": 6
+        },
+        {
+          "type": "height",
+          "value": 1
+        },
+        {
+          "type": "height",
+          "value": 1
+        },
+        {
+          "type": "height",
+          "value": 6
+        },
+        {
+          "type": "height",
+          "value": 44
+        },
+        {
+          "type": "height",
+          "value": 24
+        },
+        {
+          "type": "height",
+          "value": 2
+        }
+      ],
+      "borderRadius": [
+        60,
+        60,
+        25,
+        2,
+        25,
+        30,
+        22
+      ],
+      "shadows": [
+        16,
+        8,
+        12,
+        8,
+        16,
+        12,
+        12,
+        12,
+        8,
+        8,
+        6,
+        12,
+        8,
+        8
+      ]
+    },
+    {
+      "path": "screens/OnboardingScreen.tsx",
+      "colors": [
+        "#E8D5FF",
+        "#D4A5FF",
+        "#C084FC",
+        "#FFF5E6",
+        "#000",
+        "#F7FAFC",
+        "#000",
+        "#A0AEC0",
+        "#000"
+      ],
+      "fontSizes": [],
+      "spacing": [
+        {
+          "type": "margin",
+          "value": 60
+        },
+        {
+          "type": "padding",
+          "value": 50
+        },
+        {
+          "type": "padding",
+          "value": 10
+        },
+        {
+          "type": "padding",
+          "value": 18
+        },
+        {
+          "type": "padding",
+          "value": 60
+        },
+        {
+          "type": "width",
+          "value": 0
+        },
+        {
+          "type": "width",
+          "value": 0
+        },
+        {
+          "type": "width",
+          "value": 44
+        },
+        {
+          "type": "width",
+          "value": 0
+        },
+        {
+          "type": "height",
+          "value": 4
+        },
+        {
+          "type": "height",
+          "value": 4
+        },
+        {
+          "type": "height",
+          "value": 44
+        },
+        {
+          "type": "height",
+          "value": 2
+        }
+      ],
+      "borderRadius": [
+        25,
+        22
+      ],
+      "shadows": [
+        8,
+        8,
+        4,
+        6,
+        6,
+        3
+      ]
+    },
+    {
+      "path": "screens/PetAgeScreen.tsx",
+      "colors": [
+        "#FFE4E6",
+        "#FBB6CE",
+        "#F687B3",
+        "#FFE4E6",
+        "#FBB6CE",
+        "#F687B3",
+        "#FFE4E6",
+        "#FBB6CE",
+        "#F687B3",
+        "#E0F2FE",
+        "#A7F3D0",
+        "#6EE7B7",
+        "#E8D5FF",
+        "#D4A5FF",
+        "#C084FC",
+        "#DDD6FE",
+        "#C4B5FD",
+        "#A78BFA",
+        "#FEF3C7",
+        "#FCD34D",
+        "#F59E0B",
+        "#000",
+        "#A0AEC0",
+        "#000"
+      ],
+      "fontSizes": [],
+      "spacing": [
+        {
+          "type": "margin",
+          "value": 30
+        },
+        {
+          "type": "margin",
+          "value": 30
+        },
+        {
+          "type": "padding",
+          "value": 30
+        },
+        {
+          "type": "padding",
+          "value": 18
+        },
+        {
+          "type": "padding",
+          "value": 60
+        },
+        {
+          "type": "width",
+          "value": 0
+        },
+        {
+          "type": "width",
+          "value": 44
+        },
+        {
+          "type": "width",
+          "value": 0
+        },
+        {
+          "type": "height",
+          "value": 4
+        },
+        {
+          "type": "height",
+          "value": 44
+        },
+        {
+          "type": "height",
+          "value": 2
+        }
+      ],
+      "borderRadius": [
+        25,
+        22
+      ],
+      "shadows": [
+        8,
+        4,
+        6,
+        3
+      ]
+    },
+    {
+      "path": "screens/PetNameScreen.tsx",
+      "colors": [
+        "#E8D5FF",
+        "#D4A5FF",
+        "#C084FC",
+        "#A0AEC0",
+        "#10B981",
+        "#EF4444",
+        "#000",
+        "#718096",
+        "#000",
+        "#A0AEC0",
+        "#000",
+        "rgba(239, 68, 68, 0.5)",
+        "rgba(139, 92, 246, 0.2)",
+        "rgba(139, 92, 246, 0.5)",
+        "rgba(139, 92, 246, 0.7)",
+        "rgba(139, 92, 246, 0.6)"
+      ],
+      "fontSizes": [],
+      "spacing": [
+        {
+          "type": "margin",
+          "value": 60
+        },
+        {
+          "type": "margin",
+          "value": 10
+        },
+        {
+          "type": "margin",
+          "value": 3
+        },
+        {
+          "type": "padding",
+          "value": 50
+        },
+        {
+          "type": "padding",
+          "value": 25
+        },
+        {
+          "type": "padding",
+          "value": 55
+        },
+        {
+          "type": "padding",
+          "value": 18
+        },
+        {
+          "type": "padding",
+          "value": 60
+        },
+        {
+          "type": "padding",
+          "value": 14
+        },
+        {
+          "type": "padding",
+          "value": 10
+        },
+        {
+          "type": "width",
+          "value": 0
+        },
+        {
+          "type": "width",
+          "value": 0
+        },
+        {
+          "type": "width",
+          "value": 44
+        },
+        {
+          "type": "width",
+          "value": 0
+        },
+        {
+          "type": "width",
+          "value": 0
+        },
+        {
+          "type": "height",
+          "value": 4
+        },
+        {
+          "type": "height",
+          "value": 4
+        },
+        {
+          "type": "height",
+          "value": 44
+        },
+        {
+          "type": "height",
+          "value": 2
+        },
+        {
+          "type": "height",
+          "value": 6
+        }
+      ],
+      "borderRadius": [
+        25,
+        25,
+        22,
+        15
+      ],
+      "shadows": [
+        10,
+        8,
+        4,
+        12,
+        8,
+        6,
+        3,
+        12
+      ]
+    },
+    {
+      "path": "screens/PetSpeciesScreen.tsx",
+      "colors": [
+        "#E8D5FF",
+        "#D4A5FF",
+        "#C084FC",
+        "#A0AEC0",
+        "#718096",
+        "#A0AEC0",
+        "#718096",
+        "#A0AEC0"
+      ],
+      "fontSizes": [],
+      "spacing": [
+        {
+          "type": "margin",
+          "value": 30
+        },
+        {
+          "type": "margin",
+          "value": 2
+        },
+        {
+          "type": "padding",
+          "value": 30
+        },
+        {
+          "type": "padding",
+          "value": 15
+        },
+        {
+          "type": "padding",
+          "value": 18
+        },
+        {
+          "type": "padding",
+          "value": 30
+        },
+        {
+          "type": "padding",
+          "value": 18
+        },
+        {
+          "type": "padding",
+          "value": 30
+        },
+        {
+          "type": "width",
+          "value": 0
+        },
+        {
+          "type": "width",
+          "value": 0
+        },
+        {
+          "type": "width",
+          "value": 0
+        },
+        {
+          "type": "width",
+          "value": 44
+        },
+        {
+          "type": "width",
+          "value": 0
+        },
+        {
+          "type": "height",
+          "value": 2
+        },
+        {
+          "type": "height",
+          "value": 2
+        },
+        {
+          "type": "height",
+          "value": 4
+        },
+        {
+          "type": "height",
+          "value": 44
+        },
+        {
+          "type": "height",
+          "value": 2
+        }
+      ],
+      "borderRadius": [
+        25,
+        25,
+        22
+      ],
+      "shadows": [
+        4,
+        4,
+        8,
+        4,
+        3,
+        3,
+        6,
+        3
+      ]
+    },
+    {
+      "path": "screens/PetTrackerScreen.tsx",
+      "colors": [
+        "#ffa726",
+        "#ffffff",
+        "#2196F3",
+        "#FFB74D",
+        "#FF9800",
+        "#FF9800",
+        "#e0e0e0",
+        "#888",
+        "#fa709a",
+        "#e5e5e5",
+        "#fa709a",
+        "#fa709a",
+        "#d1d5db",
+        "#f9fafb",
+        "#d1d5db",
+        "#f9fafb",
+        "#d1d5db",
+        "#f9fafb",
+        "#fa709a",
+        "#fa709a",
+        "#d1d5db",
+        "#f9fafb",
+        "#fa709a",
+        "#fa709a",
+        "#d1d5db",
+        "#f9fafb",
+        "#fa709a",
+        "#fa709a",
+        "#d1d5db",
+        "#f9fafb",
+        "#f9fafb",
+        "#e5e7eb",
+        "#374151",
+        "#111827",
+        "#6b7280",
+        "#9ca3af",
+        "rgba(81, 150, 244, ${opacity})",
+        "rgba(255, 99, 132, ${opacity})",
+        "\"white\""
+      ],
+      "fontSizes": [],
+      "spacing": [
+        {
+          "type": "margin",
+          "value": 0
+        },
+        {
+          "type": "padding",
+          "value": 2
+        },
+        {
+          "type": "padding",
+          "value": 0
+        },
+        {
+          "type": "padding",
+          "value": 0
+        },
+        {
+          "type": "padding",
+          "value": 100
+        },
+        {
+          "type": "padding",
+          "value": 10
+        },
+        {
+          "type": "padding",
+          "value": 100
+        },
+        {
+          "type": "padding",
+          "value": 60
+        },
+        {
+          "type": "padding",
+          "value": 0
+        },
+        {
+          "type": "padding",
+          "value": 100
+        },
+        {
+          "type": "width",
+          "value": 50
+        },
+        {
+          "type": "width",
+          "value": 0
+        },
+        {
+          "type": "width",
+          "value": 0
+        },
+        {
+          "type": "width",
+          "value": 56
+        },
+        {
+          "type": "width",
+          "value": 0
+        },
+        {
+          "type": "width",
+          "value": 0
+        },
+        {
+          "type": "height",
+          "value": 2
+        },
+        {
+          "type": "height",
+          "value": 32
+        },
+        {
+          "type": "height",
+          "value": 24
+        },
+        {
+          "type": "height",
+          "value": 2
+        },
+        {
+          "type": "height",
+          "value": 4
+        },
+        {
+          "type": "height",
+          "value": 56
+        },
+        {
+          "type": "height",
+          "value": 4
+        },
+        {
+          "type": "height",
+          "value": 80
+        },
+        {
+          "type": "height",
+          "value": 1
+        }
+      ],
+      "borderRadius": [
+        25,
+        25,
+        2,
+        2,
+        28
+      ],
+      "shadows": [
+        4,
+        8,
+        2,
+        8
+      ]
+    },
+    {
+      "path": "screens/PetWeightScreen.tsx",
+      "colors": [
+        "#E8D5FF",
+        "#D4A5FF",
+        "#C084FC",
+        "#E8D5FF",
+        "#D4A5FF",
+        "#C084FC",
+        "#FFF0F5",
+        "#FFE4E1",
+        "#FFB6C1",
+        "#E0F6FF",
+        "#87CEEB",
+        "#4682B4",
+        "#E8D5FF",
+        "#D4A5FF",
+        "#C084FC",
+        "#DDD6FE",
+        "#A78BFA",
+        "#7C3AED",
+        "#C7D2FE",
+        "#818CF8",
+        "#4F46E5",
+        "#4A5568",
+        "#000",
+        "#A0AEC0",
+        "#000"
+      ],
+      "fontSizes": [],
+      "spacing": [
+        {
+          "type": "margin",
+          "value": 30
+        },
+        {
+          "type": "margin",
+          "value": 10
+        },
+        {
+          "type": "padding",
+          "value": 30
+        },
+        {
+          "type": "padding",
+          "value": 18
+        },
+        {
+          "type": "padding",
+          "value": 60
+        },
+        {
+          "type": "width",
+          "value": 0
+        },
+        {
+          "type": "width",
+          "value": 44
+        },
+        {
+          "type": "width",
+          "value": 0
+        },
+        {
+          "type": "height",
+          "value": 4
+        },
+        {
+          "type": "height",
+          "value": 44
+        },
+        {
+          "type": "height",
+          "value": 2
+        }
+      ],
+      "borderRadius": [
+        25,
+        22
+      ],
+      "shadows": [
+        8,
+        4,
+        6,
+        3
+      ]
+    },
+    {
+      "path": "screens/ProcessingScreen.tsx",
+      "colors": [
+        "#1a1a2e",
+        "#16213e",
+        "#0f3460",
+        "#000",
+        "#B0C4DE",
+        "#FF6B6B",
+        "#B0C4DE",
+        "#B0C4DE",
+        "rgba(138, 43, 226, 0.8)",
+        "rgba(75, 0, 130, 0.9)",
+        "rgba(25, 25, 112, 0.8)"
+      ],
+      "fontSizes": [
+        22
+      ],
+      "spacing": [
+        {
+          "type": "width",
+          "value": 0
+        },
+        {
+          "type": "height",
+          "value": 10
+        },
+        {
+          "type": "height",
+          "value": 6
+        }
+      ],
+      "borderRadius": [
+        3,
+        3
+      ],
+      "shadows": [
+        20,
+        10
+      ]
+    },
+    {
+      "path": "screens/ResultScreen.tsx",
+      "colors": [
+        "#F0F9FF",
+        "#E0F2FE",
+        "#BAE6FD",
+        "#F0F9FF",
+        "#E0F2FE",
+        "#BAE6FD",
+        "#666",
+        "#FF6B6B",
+        "#666",
+        "#000",
+        "#666",
+        "#4ECDC4",
+        "#000",
+        "#FF6B6B",
+        "#000",
+        "#45B7D1",
+        "#000",
+        "#999"
+      ],
+      "fontSizes": [],
+      "spacing": [
+        {
+          "type": "margin",
+          "value": 30
+        },
+        {
+          "type": "padding",
+          "value": 60
+        },
+        {
+          "type": "width",
+          "value": 0
+        },
+        {
+          "type": "width",
+          "value": 0
+        },
+        {
+          "type": "width",
+          "value": 0
+        },
+        {
+          "type": "width",
+          "value": 0
+        },
+        {
+          "type": "height",
+          "value": 2
+        },
+        {
+          "type": "height",
+          "value": 2
+        },
+        {
+          "type": "height",
+          "value": 2
+        },
+        {
+          "type": "height",
+          "value": 2
+        }
+      ],
+      "borderRadius": [],
+      "shadows": [
+        8,
+        4,
+        4,
+        4,
+        4,
+        3,
+        3,
+        2
+      ]
+    },
+    {
+      "path": "screens/SplashScreen.tsx",
+      "colors": [
+        "#FFE5E5",
+        "#FFB3B3",
+        "#FF8A80"
+      ],
+      "fontSizes": [],
+      "spacing": [
+        {
+          "type": "margin",
+          "value": 100
+        },
+        {
+          "type": "margin",
+          "value": 10
+        },
+        {
+          "type": "width",
+          "value": 120
+        },
+        {
+          "type": "height",
+          "value": 120
+        }
+      ],
+      "borderRadius": [],
+      "shadows": []
+    },
+    {
+      "path": "screens/VaccineCardScreen.tsx",
+      "colors": [
+        "#555",
+        "#dc2626",
+        "#ea580c",
+        "#e5e5e5",
+        "#d1d5db",
+        "#f9fafb",
+        "#d1d5db",
+        "#f9fafb",
+        "#d1d5db",
+        "#f9fafb",
+        "rgba(0,0,0,0.3)"
+      ],
+      "fontSizes": [],
+      "spacing": [
+        {
+          "type": "padding",
+          "value": 60
+        },
+        {
+          "type": "width",
+          "value": 0
+        },
+        {
+          "type": "width",
+          "value": 0
+        },
+        {
+          "type": "height",
+          "value": 2
+        },
+        {
+          "type": "height",
+          "value": 2
+        },
+        {
+          "type": "height",
+          "value": 80
+        }
+      ],
+      "borderRadius": [
+        25,
+        25
+      ],
+      "shadows": [
+        4,
+        3
+      ]
+    },
+    {
+      "path": "theme/index.ts",
+      "colors": [
+        "#F8F9FB",
+        "#F1F3F7",
+        "#E4E8F0",
+        "#CBD2E0",
+        "#9BAAC7",
+        "#5D688A",
+        "#4A5570",
+        "#3D4659",
+        "#323846",
+        "#2A2F3A",
+        "#FEF9F9",
+        "#FEF2F2",
+        "#FCE5E5",
+        "#F9CCCC",
+        "#F7B8B8",
+        "#F7A5A5",
+        "#E58585",
+        "#D16565",
+        "#B54545",
+        "#962E2E",
+        "#FFFCF7",
+        "#FFF8F0",
+        "#FFF1E1",
+        "#FFE8CC",
+        "#FFE0B8",
+        "#FFDBB6",
+        "#E6C4A3",
+        "#CCAD90",
+        "#B3967D",
+        "#99806A",
+        "#FFF2EF",
+        "#FEF0ED",
+        "#FDEAE6",
+        "#FBE0DA",
+        "#F8D6CE",
+        "#E6C4B8",
+        "#D4B2A2",
+        "#C2A08C",
+        "#A08670",
+        "#7E6C54",
+        "#FFF2EF",
+        "#F8F5F2",
+        "#E4E8F0",
+        "#CBD2E0",
+        "#9BAAC7",
+        "#5D688A",
+        "#4A5570",
+        "#3D4659",
+        "#323846",
+        "#2A2F3A",
+        "#ECFDF5",
+        "#D1FAE5",
+        "#A7F3D0",
+        "#6EE7B7",
+        "#34D399",
+        "#059669",
+        "#047857",
+        "#065F46",
+        "#064E3B",
+        "#022C22",
+        "#FFFCF7",
+        "#FFF8F0",
+        "#FFF1E1",
+        "#FFE8CC",
+        "#FFE0B8",
+        "#FFDBB6",
+        "#E6C4A3",
+        "#CCAD90",
+        "#B3967D",
+        "#99806A",
+        "#FEF9F9",
+        "#FEF2F2",
+        "#FCE5E5",
+        "#F9CCCC",
+        "#F7B8B8",
+        "#F7A5A5",
+        "#E58585",
+        "#D16565",
+        "#B54545",
+        "#962E2E",
+        "#FFFFFF",
+        "#000000",
+        "#333333",
+        "#666666",
+        "#999999",
+        "#CCCCCC",
+        "#5D688A",
+        "#F7A5A5",
+        "#FFDBB6",
+        "#FFF2EF",
+        "#5D688A",
+        "#9BAAC7",
+        "#5D688A",
+        "#F7A5A5",
+        "#F7B8B8",
+        "#F7A5A5",
+        "#FFDBB6",
+        "#FFE0B8",
+        "#FFDBB6",
+        "#FFF2EF",
+        "#FFDBB6",
+        "#F7A5A5",
+        "#D1FAE5",
+        "#34D399",
+        "#059669",
+        "#F7A5A5",
+        "#E58585",
+        "#FFF2EF",
+        "#FFFCF7",
+        "#E6C4B8",
+        "#D4B2A2",
+        "rgba(${r}, ${g}, ${b}, ${opacity})",
+        "rgba(colors.black, opacity)",
+        "rgba(colors.white, opacity)",
+        "rgba(colors.primary[500], opacity)",
+        "rgba(colors.success[500], opacity)",
+        "rgba(colors.warning[500], opacity)",
+        "rgba(colors.error[500], opacity)"
+      ],
+      "fontSizes": [],
+      "spacing": [
+        {
+          "type": "width",
+          "value": 0
+        },
+        {
+          "type": "width",
+          "value": 0
+        },
+        {
+          "type": "width",
+          "value": 0
+        },
+        {
+          "type": "width",
+          "value": 0
+        },
+        {
+          "type": "width",
+          "value": 0
+        },
+        {
+          "type": "width",
+          "value": 0
+        },
+        {
+          "type": "width",
+          "value": 0
+        },
+        {
+          "type": "height",
+          "value": 0
+        },
+        {
+          "type": "height",
+          "value": 1
+        },
+        {
+          "type": "height",
+          "value": 2
+        },
+        {
+          "type": "height",
+          "value": 4
+        },
+        {
+          "type": "height",
+          "value": 8
+        },
+        {
+          "type": "height",
+          "value": 12
+        },
+        {
+          "type": "height",
+          "value": 16
+        }
+      ],
+      "borderRadius": [],
+      "shadows": [
+        0,
+        2,
+        4,
+        6,
+        12,
+        16,
+        24,
+        0,
+        1,
+        2,
+        4,
+        8,
+        12,
+        16
+      ]
+    },
+    {
+      "path": "utils/constants.ts",
+      "colors": [
+        "#FF6B6B",
+        "#4ECDC4",
+        "#45B7D1",
+        "#FFF5F5",
+        "#FFFFFF",
+        "#000000",
+        "#666666",
+        "#E0E0E0",
+        "#333333",
+        "#4CAF50",
+        "#FF9800",
+        "#F44336"
+      ],
+      "fontSizes": [],
+      "spacing": [],
+      "borderRadius": [],
+      "shadows": []
+    }
+  ]
+}

@@ -24,6 +24,7 @@ import {
 } from "../services/firebase";
 import {RootState} from "../store/store";
 import auth from "@react-native-firebase/auth";
+import {theme} from "../theme";
 
 const {width, height} = Dimensions.get("window");
 
@@ -248,8 +249,8 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: 60,
     left: 50,
-    fontSize: 24,
-    color: "#B794F6",
+    fontSize: theme.typography.sizes["2xl"],
+    color: theme.colors.primary[300],
     opacity: 0.6,
     transform: [{rotate: "-15deg"}],
   },
@@ -257,20 +258,20 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: 80,
     right: 40,
-    fontSize: 20,
-    color: "#B794F6",
+    fontSize: theme.typography.sizes.xl,
+    color: theme.colors.primary[300],
     opacity: 0.5,
     transform: [{rotate: "20deg"}],
   },
   content: {
     flex: 1,
-    paddingHorizontal: 32,
+    paddingHorizontal: theme.spacing[8],
     paddingTop: height * 0.08,
     paddingBottom: 30,
   },
   questionText: {
-    fontSize: 28,
-    fontWeight: "bold",
+    fontSize: theme.typography.sizes["3xl"],
+    fontFamily: theme.typography.fonts.bold,
     color: "#4A5568",
     textAlign: "center",
     lineHeight: 36,
@@ -286,7 +287,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   continueButton: {
-    backgroundColor: "#8B5CF6",
+    backgroundColor: theme.colors.primary[500],
     borderRadius: 25,
     paddingVertical: 18,
     paddingHorizontal: 60,
@@ -307,9 +308,9 @@ const styles = StyleSheet.create({
     opacity: 0.6,
   },
   continueButtonText: {
-    color: "#FFFFFF",
-    fontSize: 20,
-    fontWeight: "bold",
+    color: theme.colors.white,
+    fontSize: theme.typography.sizes.xl,
+    fontFamily: theme.typography.fonts.bold,
   },
   languageButton: {
     position: "absolute",
@@ -318,7 +319,7 @@ const styles = StyleSheet.create({
     width: 44,
     height: 44,
     borderRadius: 22,
-    backgroundColor: "rgba(255, 255, 255, 0.9)",
+    backgroundColor: "theme.colors.white",
     alignItems: "center",
     justifyContent: "center",
     shadowColor: "#000",
@@ -333,7 +334,7 @@ const styles = StyleSheet.create({
     left: 20,
   },
   languageIcon: {
-    fontSize: 24,
+    fontSize: theme.typography.sizes["2xl"],
   },
   textRTL: {
     textAlign: "right",

@@ -24,6 +24,17 @@ export const initializeFirebase = async () => {
     console.log("✅ Firebase services initialized successfully");
     console.log("📱 App name:", storageApp.app.name);
     console.log("🗄️ Storage bucket:", storageApp.app.options.storageBucket);
+    console.log("🔐 Auth domain:", authApp.app.options.authDomain);
+
+    // Check if auth domain is properly configured
+    if (!authApp.app.options.authDomain) {
+      console.warn(
+        "⚠️ AUTH_DOMAIN not found in Firebase config - emails may not work"
+      );
+      console.log("💡 Expected auth domain: pet-hero-ai.firebaseapp.com");
+    } else {
+      console.log("✅ Auth domain configured:", authApp.app.options.authDomain);
+    }
 
     return true;
   } catch (error) {

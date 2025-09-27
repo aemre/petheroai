@@ -28,6 +28,7 @@ import VaccineCardScreen from "../screens/VaccineCardScreen";
 import PetTrackerScreen from "../screens/PetTrackerScreen";
 import ProcessingScreen from "../screens/ProcessingScreen";
 import ResultScreen from "../screens/ResultScreen";
+import {theme} from "../theme";
 
 export type TabParamList = {
   HomeTab: {showPurchaseModal?: boolean} | undefined;
@@ -83,6 +84,64 @@ export default function TabNavigator({route}: {route?: any}) {
     const animatedMiniBubbleValues = useRef<Animated.Value[]>([]);
     const animatedImageValues = useRef<Animated.Value[]>([]);
     const lastSelectedIndex = useRef<number | null>(null);
+
+    const startAnimation = (index: number) => {
+      Animated.parallel([
+        Animated.timing(animatedItemValues.current[index], {
+          toValue: -30,
+          duration: 500,
+          delay: 300,
+          easing: Easing.in(Easing.elastic(1.5)),
+          useNativeDriver: true,
+        }),
+        Animated.timing(animatedMiniBubbleValues.current[index], {
+          toValue: 1,
+          duration: 1000,
+          delay: 300,
+          useNativeDriver: true,
+        }),
+        Animated.timing(animatedBubbleValues.current[index], {
+          toValue: 1,
+          duration: 800,
+          easing: Easing.inOut(Easing.out(Easing.ease)),
+          useNativeDriver: true,
+        }),
+        Animated.timing(animatedImageValues.current[index], {
+          toValue: 1,
+          duration: 800,
+          useNativeDriver: false, // tintColor doesn't support native driver
+        }),
+      ]).start();
+    };
+
+    const endAnimation = (index: number) => {
+      // Immediately reset all animations without any duration or delay
+      animatedItemValues.current[index].setValue(0);
+      animatedMiniBubbleValues.current[index].setValue(0);
+      animatedBubbleValues.current[index].setValue(0);
+      animatedImageValues.current[index].setValue(0);
+    };
+
+    // Watch for programmatic navigation changes
+    useEffect(() => {
+      if (
+        lastSelectedIndex.current !== null &&
+        lastSelectedIndex.current !== state.index
+      ) {
+        // Programmatic navigation detected
+        const newIndex = state.index;
+        const oldIndex = lastSelectedIndex.current;
+
+        // End animation for old tab immediately
+        if (oldIndex !== null) {
+          endAnimation(oldIndex);
+        }
+
+        // Start animation for new tab
+        startAnimation(newIndex);
+        lastSelectedIndex.current = newIndex;
+      }
+    }, [state.index]);
 
     const requestCameraPermission = async () => {
       const {status} = await ImagePicker.requestCameraPermissionsAsync();
@@ -217,63 +276,6 @@ export default function TabNavigator({route}: {route?: any}) {
       }, 100);
     }
 
-    const startAnimation = (index: number) => {
-      Animated.parallel([
-        Animated.timing(animatedItemValues.current[index], {
-          toValue: -30,
-          duration: 500,
-          delay: 300,
-          easing: Easing.in(Easing.elastic(1.5)),
-          useNativeDriver: true,
-        }),
-        Animated.timing(animatedMiniBubbleValues.current[index], {
-          toValue: 1,
-          duration: 1000,
-          delay: 300,
-          useNativeDriver: true,
-        }),
-        Animated.timing(animatedBubbleValues.current[index], {
-          toValue: 1,
-          duration: 800,
-          easing: Easing.inOut(Easing.out(Easing.ease)),
-          useNativeDriver: true,
-        }),
-        Animated.timing(animatedImageValues.current[index], {
-          toValue: 1,
-          duration: 800,
-          useNativeDriver: false, // tintColor doesn't support native driver
-        }),
-      ]).start();
-    };
-
-    const endAnimation = (index: number) => {
-      Animated.parallel([
-        Animated.timing(animatedItemValues.current[index], {
-          toValue: 0,
-          duration: 400,
-          delay: 350,
-          useNativeDriver: true,
-        }),
-        Animated.timing(animatedMiniBubbleValues.current[index], {
-          toValue: 0,
-          duration: 1,
-          useNativeDriver: true,
-        }),
-        Animated.timing(animatedBubbleValues.current[index], {
-          toValue: 0,
-          duration: 750,
-          easing: Easing.out(Easing.ease),
-          useNativeDriver: true,
-        }),
-        Animated.timing(animatedImageValues.current[index], {
-          toValue: 0,
-          duration: 400,
-          delay: 350,
-          useNativeDriver: false,
-        }),
-      ]).start();
-    };
-
     return (
       <View style={styles.customTabBar}>
         {state.routes.map((route: any, index: number) => {
@@ -387,7 +389,10 @@ export default function TabNavigator({route}: {route?: any}) {
                     />
                   ) : (
                     <Animated.Text
-                      style={[styles.iconText, {color: "#8B5CF6"}]}
+                      style={[
+                        styles.iconText,
+                        {color: theme.colors.primary[500]},
+                      ]}
                     >
                       {fallbackIcon}
                     </Animated.Text>
@@ -460,15 +465,15 @@ export default function TabNavigator({route}: {route?: any}) {
 const styles = StyleSheet.create({
   customTabBar: {
     flexDirection: "row",
-    backgroundColor: "#ffffff",
+    backgroundColor: theme.colors.white,
     borderTopWidth: 0,
     elevation: 20,
-    shadowColor: "#000",
+    shadowColor: theme.colors.black,
     shadowOffset: {width: 0, height: -2},
     shadowOpacity: 0.1,
     shadowRadius: 10,
     height: 90,
-    paddingBottom: 20,
+    paddingBottom: theme.spacing[5],
     paddingTop: 10,
     width: screenWidth,
     position: "absolute",
@@ -494,9 +499,9 @@ const styles = StyleSheet.create({
   },
   iconContainerFocused: {
     borderWidth: 2,
-    borderColor: "#8B5CF6",
+    borderColor: theme.colors.primary[500],
     backgroundColor: "white",
-    shadowColor: "#000",
+    shadowColor: theme.colors.black,
     shadowOffset: {width: 0, height: 2},
     shadowOpacity: 0.1,
     shadowRadius: 4,
@@ -507,8 +512,8 @@ const styles = StyleSheet.create({
     height: 50,
   },
   iconText: {
-    fontSize: 24,
-    color: "#8B5CF6",
+    fontSize: theme.typography.sizes["2xl"],
+    color: theme.colors.primary[500],
   },
   titleContainer: {
     position: "absolute",
@@ -520,9 +525,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   titleText: {
-    fontSize: 12,
+    fontSize: theme.typography.sizes.sm,
     fontWeight: "600",
-    color: "#8B5CF6",
+    color: theme.colors.primary[500],
   },
   createButton: {
     backgroundColor: "white",
@@ -534,7 +539,7 @@ const styles = StyleSheet.create({
     flex: 1,
     borderWidth: 2,
     borderColor: "black",
-    shadowColor: "#000",
+    shadowColor: theme.colors.black,
     shadowOffset: {width: 0, height: 4},
     shadowOpacity: 0.15,
     shadowRadius: 8,
@@ -545,7 +550,7 @@ const styles = StyleSheet.create({
     height: 40,
   },
   createButtonText: {
-    fontSize: 24,
+    fontSize: theme.typography.sizes["2xl"],
     color: "white",
   },
 });

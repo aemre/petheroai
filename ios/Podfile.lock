@@ -3415,6 +3415,8 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
+  - RNSVG (15.13.0):
+    - React-Core
   - SocketRocket (0.7.1)
   - Yoga (0.0.0)
 
@@ -3519,6 +3521,7 @@ DEPENDENCIES:
   - RNReactNativeHapticFeedback (from `../node_modules/react-native-haptic-feedback`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNScreens (from `../node_modules/react-native-screens`)
+  - RNSVG (from `../node_modules/react-native-svg`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
@@ -3749,6 +3752,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-reanimated"
   RNScreens:
     :path: "../node_modules/react-native-screens"
+  RNSVG:
+    :path: "../node_modules/react-native-svg"
   Yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
@@ -3877,6 +3882,7 @@ SPEC CHECKSUMS:
   RNReactNativeHapticFeedback: 7c1ed6eab651d8e4f316125dbd78356523426b84
   RNReanimated: 0ef4195cae61084be15ba5f3f888962311bc115f
   RNScreens: 39d31613db654b41925342a10f50252780b839be
+  RNSVG: d7a2f20fb4e1b2423e67b4834ee67ffc0397440f
   SocketRocket: d4aabe649be1e368d1318fdf28a022d714d65748
   Yoga: 1259c7a8cbaccf7b4c3ddf8ee36ca11be9dee407
 

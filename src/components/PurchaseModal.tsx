@@ -16,6 +16,7 @@ import {AppDispatch, RootState} from "../store/store";
 import {fetchUserProfile} from "../store/slices/userSlice";
 import IAPService from "../services/iap";
 import {verifyPurchase} from "../services/cloudFunctions";
+import {theme} from "../theme";
 
 const {width, height} = Dimensions.get("window");
 
@@ -147,10 +148,11 @@ const PurchaseModal: React.FC<PurchaseModalProps> = ({
                     </View>
                   )}
                   <LinearGradient
-                    colors={[
-                      index % 2 === 0 ? "#ff6b6b" : "#4ecdc4",
-                      index % 2 === 0 ? "#ff8e8e" : "#6ee0d5",
-                    ]}
+                    colors={
+                      index % 2 === 0
+                        ? theme.colors.gradients.secondary // Coral gradient
+                        : theme.colors.gradients.accent // Peach gradient
+                    }
                     style={styles.productGradient}
                   >
                     <View style={styles.productInfo}>
@@ -197,36 +199,36 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   modalContent: {
-    backgroundColor: "white",
-    margin: 20,
-    padding: 28,
-    borderRadius: 24,
+    backgroundColor: theme.colors.white,
+    margin: theme.spacing[5],
+    padding: theme.spacing[7],
+    borderRadius: theme.borderRadius["3xl"],
     width: width * 0.9,
     maxHeight: height * 0.8,
-    shadowColor: "#000",
+    shadowColor: theme.colors.black,
     shadowOffset: {width: 0, height: 12},
     shadowOpacity: 0.3,
     shadowRadius: 24,
     elevation: 16,
   },
   modalTitle: {
-    fontSize: 24,
+    fontSize: theme.typography.sizes["2xl"],
     fontWeight: "800",
-    color: "#333",
+    color: theme.colors.gray333,
     textAlign: "center",
-    marginBottom: 8,
+    marginBottom: theme.spacing[2],
   },
   modalSubtitle: {
-    fontSize: 16,
-    color: "#666",
+    fontSize: theme.typography.sizes.md,
+    color: theme.colors.gray666,
     textAlign: "center",
-    marginBottom: 28,
+    marginBottom: theme.spacing[7],
     fontWeight: "500",
   },
   productButton: {
-    borderRadius: 16,
-    marginBottom: 16,
-    shadowColor: "#ff6b6b",
+    borderRadius: theme.borderRadius.xl,
+    marginBottom: theme.spacing[4],
+    shadowColor: theme.colors.secondary[500],
     shadowOffset: {width: 0, height: 4},
     shadowOpacity: 0.2,
     shadowRadius: 8,
@@ -234,7 +236,7 @@ const styles = StyleSheet.create({
     position: "relative",
   },
   popularProduct: {
-    shadowColor: "#4ecdc4",
+    shadowColor: theme.colors.accent[500],
     shadowOpacity: 0.3,
     shadowRadius: 12,
     elevation: 8,
@@ -243,15 +245,15 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: -8,
     right: 8,
-    backgroundColor: "#ff6b6b",
-    paddingHorizontal: 12,
-    paddingVertical: 4,
-    borderRadius: 12,
+    backgroundColor: theme.colors.secondary[500],
+    paddingHorizontal: theme.spacing[3],
+    paddingVertical: theme.spacing[1],
+    borderRadius: theme.borderRadius.lg,
     zIndex: 1,
   },
   popularBadgeText: {
-    color: "white",
-    fontSize: 10,
+    color: theme.colors.white,
+    fontSize: theme.typography.sizes.xs,
     fontWeight: "800",
     letterSpacing: 0.5,
   },
@@ -259,15 +261,15 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: -8,
     right: 8,
-    backgroundColor: "#4CAF50",
-    paddingHorizontal: 12,
-    paddingVertical: 4,
-    borderRadius: 12,
+    backgroundColor: theme.colors.success[500],
+    paddingHorizontal: theme.spacing[3],
+    paddingVertical: theme.spacing[1],
+    borderRadius: theme.borderRadius.lg,
     zIndex: 1,
   },
   bestValueBadgeText: {
-    color: "white",
-    fontSize: 10,
+    color: theme.colors.white,
+    fontSize: theme.typography.sizes.xs,
     fontWeight: "800",
     letterSpacing: 0.5,
   },
@@ -275,29 +277,29 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    padding: 20,
-    borderRadius: 16,
+    padding: theme.spacing[5],
+    borderRadius: theme.borderRadius.xl,
     minHeight: 80,
   },
   productInfo: {
     flex: 1,
-    marginRight: 16,
+    marginRight: theme.spacing[4],
   },
   productTitle: {
-    color: "white",
-    fontSize: 20,
+    color: theme.colors.white,
+    fontSize: theme.typography.sizes.xl,
     fontWeight: "800",
-    marginBottom: 4,
+    marginBottom: theme.spacing[1],
   },
   productDescription: {
-    color: "white",
+    color: theme.colors.white,
     fontSize: 13,
     opacity: 0.9,
     marginBottom: 6,
     lineHeight: 18,
   },
   productValueText: {
-    color: "white",
+    color: theme.colors.white,
     fontSize: 11,
     opacity: 0.8,
     fontWeight: "600",
@@ -306,7 +308,7 @@ const styles = StyleSheet.create({
     alignItems: "flex-end",
   },
   productPrice: {
-    color: "white",
+    color: theme.colors.white,
     fontSize: 22,
     fontWeight: "900",
     textShadowColor: "rgba(0,0,0,0.2)",
@@ -314,15 +316,15 @@ const styles = StyleSheet.create({
     textShadowRadius: 2,
   },
   closeButton: {
-    marginTop: 16,
-    padding: 16,
+    marginTop: theme.spacing[4],
+    padding: theme.spacing[4],
     alignItems: "center",
-    borderRadius: 12,
-    backgroundColor: "#f5f5f5",
+    borderRadius: theme.borderRadius.lg,
+    backgroundColor: theme.colors.neutral[100],
   },
   closeButtonText: {
-    color: "#666",
-    fontSize: 16,
+    color: theme.colors.gray666,
+    fontSize: theme.typography.sizes.md,
     fontWeight: "600",
   },
 });

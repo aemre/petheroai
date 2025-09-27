@@ -19,6 +19,7 @@ import {useSelector} from "react-redux";
 import {RootState} from "../store/store";
 import {useTranslation} from "../hooks/useTranslation";
 import {VaccineService} from "../services/vaccineService";
+import {theme} from "../theme";
 import {
   VaccineRecord,
   VaccineFormData,
@@ -245,12 +246,12 @@ const VaccineCardScreen: React.FC = () => {
   if (loading) {
     return (
       <LinearGradient
-        colors={["#667eea", "#764ba2", "#f093fb"]}
+        colors={theme.colors.gradients.primary}
         style={styles.container}
       >
         <SafeAreaView style={styles.safeArea}>
           <View style={styles.loadingContainer}>
-            <ActivityIndicator size="large" color="#ffffff" />
+            <ActivityIndicator size="large" color={theme.colors.white} />
             <Text style={styles.loadingText}>Loading vaccine records...</Text>
           </View>
         </SafeAreaView>
@@ -260,7 +261,7 @@ const VaccineCardScreen: React.FC = () => {
 
   return (
     <LinearGradient
-      colors={["#667eea", "#764ba2", "#f093fb"]}
+      colors={theme.colors.gradients.primary}
       style={styles.container}
     >
       <SafeAreaView style={styles.safeArea}>
@@ -579,32 +580,33 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   loadingText: {
-    color: "#ffffff",
-    fontSize: 16,
-    marginTop: 16,
+    color: theme.colors.white,
+    fontSize: theme.typography.sizes.md,
+    fontFamily: theme.typography.fonts.regular,
+    marginTop: theme.spacing[4],
   },
   header: {
-    paddingHorizontal: 20,
-    paddingTop: 20,
-    paddingBottom: 16,
+    paddingHorizontal: theme.spacing[5],
+    paddingTop: theme.spacing[5],
+    paddingBottom: theme.spacing[4],
   },
   title: {
-    fontSize: 32,
-    fontWeight: "800",
-    color: "#ffffff",
+    fontSize: theme.typography.sizes["4xl"],
+    fontFamily: theme.typography.fonts.bold,
+    color: theme.colors.white,
     textAlign: "center",
     textShadowColor: "rgba(0,0,0,0.3)",
     textShadowOffset: {width: 0, height: 2},
     textShadowRadius: 4,
   },
   subtitle: {
-    fontSize: 16,
-    color: "#ffffff",
+    fontSize: theme.typography.sizes.md,
+    color: theme.colors.white,
     textAlign: "center",
     opacity: 0.9,
-    fontWeight: "500",
-    marginTop: 8,
-    marginBottom: 20,
+    fontFamily: theme.typography.fonts.medium,
+    marginTop: theme.spacing[2],
+    marginBottom: theme.spacing[5],
   },
   headerButtons: {
     flexDirection: "row",
@@ -613,33 +615,33 @@ const styles = StyleSheet.create({
   },
   shareButton: {
     flex: 1,
-    backgroundColor: "rgba(255,255,255,0.2)",
-    paddingVertical: 12,
-    paddingHorizontal: 20,
+    backgroundColor: theme.colors.white,
+    paddingVertical: theme.spacing[3],
+    paddingHorizontal: theme.spacing[5],
     borderRadius: 25,
     alignItems: "center",
   },
   shareButtonText: {
-    color: "#ffffff",
-    fontSize: 16,
-    fontWeight: "600",
+    color: theme.colors.white,
+    fontSize: theme.typography.sizes.md,
+    fontFamily: theme.typography.fonts.semibold,
   },
   addButton: {
     flex: 1,
-    backgroundColor: "#ffffff",
-    paddingVertical: 12,
-    paddingHorizontal: 20,
+    backgroundColor: theme.colors.white,
+    paddingVertical: theme.spacing[3],
+    paddingHorizontal: theme.spacing[5],
     borderRadius: 25,
     alignItems: "center",
   },
   addButtonText: {
-    color: "#8B5CF6",
-    fontSize: 16,
-    fontWeight: "700",
+    color: theme.colors.primary[500],
+    fontSize: theme.typography.sizes.md,
+    fontFamily: theme.typography.fonts.bold,
   },
   scrollView: {
     flex: 1,
-    paddingHorizontal: 20,
+    paddingHorizontal: theme.spacing[5],
   },
   emptyState: {
     flex: 1,
@@ -648,24 +650,25 @@ const styles = StyleSheet.create({
     paddingVertical: 60,
   },
   emptyStateText: {
-    fontSize: 24,
-    fontWeight: "600",
-    color: "#ffffff",
+    fontSize: theme.typography.sizes["2xl"],
+    fontFamily: theme.typography.fonts.semibold,
+    color: theme.colors.white,
     textAlign: "center",
-    marginBottom: 12,
+    marginBottom: theme.spacing[3],
   },
   emptyStateSubtext: {
-    fontSize: 16,
-    color: "#ffffff",
+    fontSize: theme.typography.sizes.md,
+    fontFamily: theme.typography.fonts.regular,
+    color: theme.colors.white,
     textAlign: "center",
     opacity: 0.8,
   },
   vaccineCard: {
-    backgroundColor: "rgba(255,255,255,0.95)",
-    borderRadius: 16,
-    padding: 16,
-    marginBottom: 16,
-    shadowColor: "#000",
+    backgroundColor: theme.colors.white,
+    borderRadius: theme.borderRadius.xl,
+    padding: theme.spacing[4],
+    marginBottom: theme.spacing[4],
+    shadowColor: theme.colors.black,
     shadowOffset: {width: 0, height: 2},
     shadowOpacity: 0.1,
     shadowRadius: 4,
@@ -675,110 +678,111 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "flex-start",
-    marginBottom: 12,
+    marginBottom: theme.spacing[3],
   },
   vaccineInfo: {
     flex: 1,
   },
   vaccineName: {
-    fontSize: 18,
-    fontWeight: "700",
-    color: "#333",
-    marginBottom: 4,
+    fontSize: theme.typography.sizes.lg,
+    fontFamily: theme.typography.fonts.bold,
+    color: theme.colors.gray333,
+    marginBottom: theme.spacing[1],
   },
   vaccineType: {
-    fontSize: 14,
-    color: "#666",
-    fontWeight: "500",
+    fontSize: theme.typography.sizes.base,
+    color: theme.colors.gray666,
+    fontFamily: theme.typography.fonts.medium,
   },
   vaccineActions: {
     flexDirection: "row",
     gap: 8,
   },
   editButton: {
-    padding: 8,
+    padding: theme.spacing[2],
   },
   editButtonText: {
-    fontSize: 16,
+    fontSize: theme.typography.sizes.md,
   },
   deleteButton: {
-    padding: 8,
+    padding: theme.spacing[2],
   },
   deleteButtonText: {
-    fontSize: 16,
+    fontSize: theme.typography.sizes.md,
   },
   vaccineDetails: {
     gap: 6,
   },
   detailText: {
-    fontSize: 14,
+    fontSize: theme.typography.sizes.base,
+    fontFamily: theme.typography.fonts.regular,
     color: "#555",
     lineHeight: 20,
   },
   overdueText: {
     color: "#dc2626",
-    fontWeight: "600",
+    fontFamily: theme.typography.fonts.semibold,
   },
   dueSoonText: {
     color: "#ea580c",
-    fontWeight: "600",
+    fontFamily: theme.typography.fonts.semibold,
   },
 
   // Modal Styles
   modalContainer: {
     flex: 1,
-    backgroundColor: "#ffffff",
+    backgroundColor: theme.colors.white,
   },
   modalHeader: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    paddingHorizontal: 20,
-    paddingVertical: 16,
+    paddingHorizontal: theme.spacing[5],
+    paddingVertical: theme.spacing[4],
     borderBottomWidth: 1,
     borderBottomColor: "#e5e5e5",
   },
   modalCloseButton: {
-    padding: 4,
+    padding: theme.spacing[1],
   },
   modalCloseText: {
-    fontSize: 16,
-    color: "#8B5CF6",
+    fontSize: theme.typography.sizes.md,
+    color: theme.colors.primary[500],
   },
   modalTitle: {
-    fontSize: 18,
+    fontSize: theme.typography.sizes.lg,
     fontWeight: "600",
-    color: "#333",
+    color: theme.colors.gray333,
   },
   modalSaveButton: {
-    padding: 4,
+    padding: theme.spacing[1],
   },
   modalSaveText: {
-    fontSize: 16,
+    fontSize: theme.typography.sizes.md,
     fontWeight: "600",
-    color: "#8B5CF6",
+    color: theme.colors.primary[500],
   },
   modalContent: {
     flex: 1,
-    paddingHorizontal: 20,
-    paddingTop: 20,
+    paddingHorizontal: theme.spacing[5],
+    paddingTop: theme.spacing[5],
   },
   inputGroup: {
-    marginBottom: 24,
+    marginBottom: theme.spacing[6],
   },
   inputLabel: {
-    fontSize: 16,
+    fontSize: theme.typography.sizes.md,
     fontWeight: "600",
-    color: "#333",
-    marginBottom: 8,
+    color: theme.colors.gray333,
+    marginBottom: theme.spacing[2],
   },
   textInput: {
     borderWidth: 1,
     borderColor: "#d1d5db",
-    borderRadius: 12,
-    paddingHorizontal: 16,
-    paddingVertical: 12,
-    fontSize: 16,
+    borderRadius: theme.borderRadius.lg,
+    paddingHorizontal: theme.spacing[4],
+    paddingVertical: theme.spacing[3],
+    fontSize: theme.typography.sizes.md,
     backgroundColor: "#f9fafb",
   },
   textArea: {
@@ -788,48 +792,48 @@ const styles = StyleSheet.create({
   dateButton: {
     borderWidth: 1,
     borderColor: "#d1d5db",
-    borderRadius: 12,
-    paddingHorizontal: 16,
-    paddingVertical: 12,
+    borderRadius: theme.borderRadius.lg,
+    paddingHorizontal: theme.spacing[4],
+    paddingVertical: theme.spacing[3],
     backgroundColor: "#f9fafb",
   },
   dateButtonText: {
-    fontSize: 16,
-    color: "#333",
+    fontSize: theme.typography.sizes.md,
+    color: theme.colors.gray333,
   },
   clearDateButton: {
-    marginTop: 8,
+    marginTop: theme.spacing[2],
     alignSelf: "flex-start",
   },
   clearDateText: {
-    fontSize: 14,
-    color: "#8B5CF6",
+    fontSize: theme.typography.sizes.base,
+    color: theme.colors.primary[500],
     fontWeight: "500",
   },
   vaccineTypeContainer: {
     flexDirection: "row",
     gap: 8,
-    paddingVertical: 4,
+    paddingVertical: theme.spacing[1],
   },
   vaccineTypeButton: {
-    paddingHorizontal: 16,
-    paddingVertical: 8,
-    borderRadius: 20,
+    paddingHorizontal: theme.spacing[4],
+    paddingVertical: theme.spacing[2],
+    borderRadius: theme.borderRadius["2xl"],
     borderWidth: 1,
     borderColor: "#d1d5db",
     backgroundColor: "#f9fafb",
   },
   vaccineTypeButtonActive: {
-    backgroundColor: "#8B5CF6",
-    borderColor: "#8B5CF6",
+    backgroundColor: theme.colors.primary[500],
+    borderColor: theme.colors.primary[500],
   },
   vaccineTypeText: {
-    fontSize: 14,
-    color: "#666",
+    fontSize: theme.typography.sizes.base,
+    color: theme.colors.gray666,
     fontWeight: "500",
   },
   vaccineTypeTextActive: {
-    color: "#ffffff",
+    color: theme.colors.white,
     fontWeight: "600",
   },
 });

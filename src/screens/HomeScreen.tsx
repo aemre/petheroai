@@ -25,6 +25,7 @@ import {TabParamList} from "../navigation/TabNavigator";
 import IAPService from "../services/iap";
 import {useTranslation} from "../hooks/useTranslation";
 import PurchaseModal from "../components/PurchaseModal";
+import {theme, blackWithOpacity} from "../theme";
 
 type HomeScreenNavigationProp = StackNavigationProp<TabParamList, "HomeTab">;
 
@@ -62,11 +63,11 @@ export default function HomeScreen({route}: {route?: any}) {
       actionText: isDog ? t("home.transformDog") : t("home.transformCat"),
       actionSubtext: isDog ? t("home.dogActionText") : t("home.catActionText"),
       gradientColors: isDog
-        ? (["#667eea", "#764ba2", "#f093fb"] as const)
-        : (["#fa709a", "#fee140", "#fa709a"] as const),
+        ? theme.colors.gradients.primary
+        : theme.colors.gradients.secondary,
       iconGradient: isDog
-        ? (["#ff9a9e", "#fecfef", "#fecfef"] as const)
-        : (["#a8edea", "#fed6e3", "#a8edea"] as const),
+        ? theme.colors.gradients.accent
+        : theme.colors.gradients.light,
     };
   };
 
@@ -259,7 +260,7 @@ export default function HomeScreen({route}: {route?: any}) {
   if (authLoading || !user) {
     return (
       <LinearGradient
-        colors={["#667eea", "#764ba2", "#f093fb"]}
+        colors={theme.colors.gradients.primary}
         style={styles.container}
       >
         <View style={styles.loadingContainer}>
@@ -272,7 +273,7 @@ export default function HomeScreen({route}: {route?: any}) {
 
   return (
     <LinearGradient
-      colors={petContent.gradientColors}
+      colors={theme.colors.gradients.primary}
       start={{x: 0, y: 0}}
       end={{x: 1, y: 1}}
       style={styles.container}
@@ -300,7 +301,7 @@ export default function HomeScreen({route}: {route?: any}) {
         {/* Credits Card */}
         <View style={styles.creditsCard}>
           <LinearGradient
-            colors={["#ffffff", "#f8f9ff"]}
+            colors={theme.colors.gradients.light}
             style={styles.creditsGradient}
           >
             <View style={styles.creditsHeader}>
@@ -318,7 +319,7 @@ export default function HomeScreen({route}: {route?: any}) {
               onPress={() => setShowPurchaseModal(true)}
             >
               <LinearGradient
-                colors={["#ff6b6b", "#ff8e8e"]}
+                colors={theme.colors.gradients.error}
                 style={styles.buyCreditsGradient}
               >
                 <Text style={styles.buyCreditsIcon}>+</Text>
@@ -346,8 +347,8 @@ export default function HomeScreen({route}: {route?: any}) {
             <LinearGradient
               colors={
                 !profile?.credits || profile.credits <= 0
-                  ? ["#cccccc", "#999999"]
-                  : ["#00b894", "#00a085"]
+                  ? theme.colors.gradients.disabled
+                  : theme.colors.gradients.success
               }
               style={styles.primaryButtonGradient}
             >
@@ -376,7 +377,7 @@ export default function HomeScreen({route}: {route?: any}) {
             activeOpacity={0.8}
           >
             <LinearGradient
-              colors={["#ffffff", "#f8f9fa"]}
+              colors={theme.colors.gradients.light}
               style={styles.secondaryButtonGradient}
             >
               <View style={styles.buttonContent}>
@@ -397,7 +398,7 @@ export default function HomeScreen({route}: {route?: any}) {
         {/* How it Works Section */}
         <View style={styles.infoCard}>
           <LinearGradient
-            colors={["#ffffff", "#f8f9ff"]}
+            colors={theme.colors.gradients.light}
             style={styles.infoGradient}
           >
             <View style={styles.infoHeader}>
@@ -406,10 +407,26 @@ export default function HomeScreen({route}: {route?: any}) {
 
             <View style={styles.stepsContainer}>
               {[
-                {icon: "💎", text: t("home.step1"), color: "#ff6b6b"},
-                {icon: "📸", text: `${t("home.step2")}`, color: "#4ecdc4"},
-                {icon: "🤖", text: t("home.step3"), color: "#a8edea"},
-                {icon: "🎉", text: t("home.step4"), color: "#ffd93d"},
+                {
+                  icon: "💎",
+                  text: t("home.step1"),
+                  color: theme.colors.secondary[500],
+                },
+                {
+                  icon: "📸",
+                  text: `${t("home.step2")}`,
+                  color: theme.colors.accent[500],
+                },
+                {
+                  icon: "🤖",
+                  text: t("home.step3"),
+                  color: theme.colors.primary[500],
+                },
+                {
+                  icon: "🎉",
+                  text: t("home.step4"),
+                  color: theme.colors.warning[500],
+                },
               ].map((step, index) => (
                 <View key={index} style={styles.stepItem}>
                   <View
@@ -445,26 +462,26 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   scrollContent: {
-    padding: 20,
+    padding: theme.spacing[5],
     paddingTop: 60,
-    paddingBottom: 40,
+    paddingBottom: theme.spacing[10],
   },
 
   // Header Styles
   header: {
     alignItems: "center",
-    marginBottom: 32,
+    marginBottom: theme.spacing[8],
   },
   heroIconContainer: {
-    marginBottom: 16,
+    marginBottom: theme.spacing[4],
   },
   petImageContainer: {
     width: 120,
     height: 120,
     borderRadius: 60,
     overflow: "hidden",
-    backgroundColor: "#ffffff",
-    shadowColor: "#000",
+    backgroundColor: theme.colors.white,
+    shadowColor: theme.colors.black,
     shadowOffset: {width: 0, height: 8},
     shadowOpacity: 0.25,
     shadowRadius: 16,
@@ -480,7 +497,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     bottom: -5,
     right: -5,
-    shadowColor: "#000",
+    shadowColor: theme.colors.black,
     shadowOffset: {width: 0, height: 4},
     shadowOpacity: 0.2,
     shadowRadius: 8,
@@ -493,88 +510,88 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     borderWidth: 3,
-    borderColor: "#ffffff",
+    borderColor: theme.colors.white,
   },
   heroEmoji: {
-    fontSize: 24,
+    fontSize: theme.typography.sizes["2xl"],
   },
   welcomeText: {
-    fontSize: 32,
-    fontWeight: "800",
-    color: "#ffffff",
-    marginBottom: 8,
+    fontSize: theme.typography.sizes["4xl"],
+    fontFamily: theme.typography.fonts.bold,
+    color: theme.colors.white,
+    marginBottom: theme.spacing[2],
     textAlign: "center",
-    textShadowColor: "rgba(0,0,0,0.3)",
+    textShadowColor: blackWithOpacity(0.3),
     textShadowOffset: {width: 0, height: 2},
     textShadowRadius: 4,
   },
   subtitle: {
-    fontSize: 16,
-    color: "#ffffff",
+    fontSize: theme.typography.sizes.md,
+    color: theme.colors.white,
     textAlign: "center",
     opacity: 0.9,
-    fontWeight: "500",
+    fontFamily: theme.typography.fonts.medium,
     lineHeight: 22,
   },
   decorativeLine: {
     width: 60,
     height: 4,
-    backgroundColor: "#ffffff",
-    marginTop: 16,
+    backgroundColor: theme.colors.white,
+    marginTop: theme.spacing[4],
     borderRadius: 2,
     opacity: 0.8,
   },
 
   // Credits Card Styles
   creditsCard: {
-    marginBottom: 24,
-    borderRadius: 20,
-    backgroundColor: "#ffffff",
-    shadowColor: "#000",
+    marginBottom: theme.spacing[6],
+    borderRadius: theme.borderRadius["2xl"],
+    backgroundColor: theme.colors.white,
+    shadowColor: theme.colors.black,
     shadowOffset: {width: 0, height: 6},
     shadowOpacity: 0.15,
     shadowRadius: 12,
     elevation: 8,
   },
   creditsGradient: {
-    borderRadius: 20,
-    padding: 20,
+    borderRadius: theme.borderRadius["2xl"],
+    padding: theme.spacing[5],
   },
   creditsHeader: {
     flexDirection: "row",
     alignItems: "center",
-    marginBottom: 16,
+    marginBottom: theme.spacing[4],
   },
   creditsIconContainer: {
     width: 50,
     height: 50,
     borderRadius: 25,
-    backgroundColor: "#f0f0ff",
+    backgroundColor: theme.colors.primary[50],
     justifyContent: "center",
     alignItems: "center",
-    marginRight: 16,
+    marginRight: theme.spacing[4],
   },
   creditsIcon: {
-    fontSize: 24,
+    fontSize: theme.typography.sizes["2xl"],
   },
   creditsInfo: {
     flex: 1,
   },
   creditsLabel: {
-    fontSize: 14,
-    color: "#666",
-    marginBottom: 4,
-    fontWeight: "500",
+    fontSize: theme.typography.sizes.base,
+    color: theme.colors.gray666,
+    marginBottom: theme.spacing[1],
+    fontFamily: theme.typography.fonts.medium,
   },
   creditsValue: {
-    fontSize: 28,
-    fontWeight: "800",
-    color: "#333",
+    fontSize: theme.typography.sizes["3xl"],
+    fontFamily: theme.typography.fonts.bold,
+    color: theme.colors.gray333,
   },
   buyCreditsButton: {
-    borderRadius: 12,
-    backgroundColor: "#ff6b6b",
-    shadowColor: "#ff6b6b",
+    borderRadius: theme.borderRadius.lg,
+    backgroundColor: theme.colors.secondary[500],
+    shadowColor: theme.colors.secondary[500],
     shadowOffset: {width: 0, height: 4},
     shadowOpacity: 0.3,
     shadowRadius: 8,
@@ -584,43 +601,43 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    paddingHorizontal: 20,
-    paddingVertical: 12,
-    borderRadius: 12,
+    paddingHorizontal: theme.spacing[5],
+    paddingVertical: theme.spacing[3],
+    borderRadius: theme.borderRadius.lg,
   },
   buyCreditsIcon: {
-    fontSize: 18,
-    color: "white",
-    fontWeight: "bold",
-    marginRight: 8,
+    fontSize: theme.typography.sizes.lg,
+    color: theme.colors.white,
+    fontFamily: theme.typography.fonts.bold,
+    marginRight: theme.spacing[2],
   },
   buyCreditsText: {
-    color: "white",
-    fontSize: 16,
-    fontWeight: "700",
+    color: theme.colors.white,
+    fontSize: theme.typography.sizes.md,
+    fontFamily: theme.typography.fonts.bold,
   },
 
   // Action Container
   actionContainer: {
-    marginBottom: 32,
+    marginBottom: theme.spacing[8],
   },
 
   // Primary Action Button
   primaryActionButton: {
-    marginBottom: 16,
-    borderRadius: 20,
-    backgroundColor: "#00b894",
-    shadowColor: "#000",
+    marginBottom: theme.spacing[4],
+    borderRadius: theme.borderRadius["2xl"],
+    backgroundColor: theme.colors.success[500],
+    shadowColor: theme.colors.black,
     shadowOffset: {width: 0, height: 8},
     shadowOpacity: 0.3,
     shadowRadius: 16,
     elevation: 12,
     borderWidth: 2,
-    borderColor: "rgba(255,255,255,0.3)",
+    borderColor: "theme.colors.white",
   },
   primaryButtonGradient: {
-    borderRadius: 20,
-    padding: 24,
+    borderRadius: theme.borderRadius["2xl"],
+    padding: theme.spacing[6],
   },
   buttonContent: {
     alignItems: "center",
@@ -629,69 +646,69 @@ const styles = StyleSheet.create({
     width: 60,
     height: 60,
     borderRadius: 30,
-    backgroundColor: "rgba(255,255,255,0.2)",
+    backgroundColor: "theme.colors.white",
     justifyContent: "center",
     alignItems: "center",
-    marginBottom: 16,
+    marginBottom: theme.spacing[4],
   },
   primaryButtonIcon: {
-    fontSize: 28,
+    fontSize: theme.typography.sizes["3xl"],
   },
   primaryButtonText: {
-    color: "white",
-    fontSize: 20,
-    fontWeight: "800",
-    marginBottom: 4,
+    color: theme.colors.white,
+    fontSize: theme.typography.sizes.xl,
+    fontFamily: theme.typography.fonts.bold,
+    marginBottom: theme.spacing[1],
     textAlign: "center",
-    textShadowColor: "rgba(0,0,0,0.5)",
+    textShadowColor: blackWithOpacity(0.5),
     textShadowOffset: {width: 0, height: 2},
     textShadowRadius: 4,
   },
   primaryButtonSubtext: {
-    color: "rgba(255,255,255,0.9)",
-    fontSize: 14,
-    fontWeight: "500",
+    color: theme.colors.white,
+    fontSize: theme.typography.sizes.base,
+    fontFamily: theme.typography.fonts.medium,
     textAlign: "center",
-    textShadowColor: "rgba(0,0,0,0.3)",
+    textShadowColor: blackWithOpacity(0.3),
     textShadowOffset: {width: 0, height: 1},
     textShadowRadius: 2,
   },
 
   // Secondary Action Button
   secondaryActionButton: {
-    borderRadius: 16,
-    backgroundColor: "#ffffff",
-    shadowColor: "#000",
+    borderRadius: theme.borderRadius.xl,
+    backgroundColor: theme.colors.white,
+    shadowColor: theme.colors.black,
     shadowOffset: {width: 0, height: 6},
     shadowOpacity: 0.2,
     shadowRadius: 12,
     elevation: 8,
     borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.5)",
+    borderColor: "theme.colors.white",
   },
   secondaryButtonGradient: {
-    borderRadius: 16,
-    padding: 20,
+    borderRadius: theme.borderRadius.xl,
+    padding: theme.spacing[5],
   },
   secondaryButtonIcon: {
-    fontSize: 24,
+    fontSize: theme.typography.sizes["2xl"],
   },
   secondaryButtonText: {
-    color: "#2c3e50",
-    fontSize: 18,
-    fontWeight: "700",
-    marginBottom: 4,
+    color: theme.colors.gray[700],
+    fontSize: theme.typography.sizes.lg,
+    fontFamily: theme.typography.fonts.bold,
+    marginBottom: theme.spacing[1],
     textAlign: "center",
-    textShadowColor: "rgba(255,255,255,0.7)",
+    textShadowColor: theme.colors.white,
     textShadowOffset: {width: 0, height: 1},
     textShadowRadius: 1,
   },
   secondaryButtonSubtext: {
-    color: "#34495e",
-    fontSize: 14,
-    fontWeight: "500",
+    color: theme.colors.gray[600],
+    fontSize: theme.typography.sizes.base,
+    fontFamily: theme.typography.fonts.medium,
     textAlign: "center",
-    textShadowColor: "rgba(255,255,255,0.5)",
+    textShadowColor: theme.colors.white,
     textShadowOffset: {width: 0, height: 1},
     textShadowRadius: 1,
   },
@@ -702,25 +719,25 @@ const styles = StyleSheet.create({
 
   // Info Card Styles
   infoCard: {
-    borderRadius: 20,
-    backgroundColor: "#ffffff",
-    shadowColor: "#000",
+    borderRadius: theme.borderRadius["2xl"],
+    backgroundColor: theme.colors.white,
+    shadowColor: theme.colors.black,
     shadowOffset: {width: 0, height: 6},
     shadowOpacity: 0.1,
     shadowRadius: 12,
     elevation: 8,
   },
   infoGradient: {
-    borderRadius: 20,
-    padding: 24,
+    borderRadius: theme.borderRadius["2xl"],
+    padding: theme.spacing[6],
   },
   infoHeader: {
-    marginBottom: 20,
+    marginBottom: theme.spacing[5],
   },
   infoTitle: {
-    fontSize: 20,
-    fontWeight: "800",
-    color: "#333",
+    fontSize: theme.typography.sizes.xl,
+    fontFamily: theme.typography.fonts.bold,
+    color: theme.colors.gray333,
     textAlign: "center",
   },
   stepsContainer: {
@@ -729,7 +746,7 @@ const styles = StyleSheet.create({
   stepItem: {
     flexDirection: "row",
     alignItems: "center",
-    paddingVertical: 8,
+    paddingVertical: theme.spacing[2],
   },
   stepIcon: {
     width: 44,
@@ -737,29 +754,29 @@ const styles = StyleSheet.create({
     borderRadius: 22,
     justifyContent: "center",
     alignItems: "center",
-    marginRight: 16,
+    marginRight: theme.spacing[4],
   },
   stepEmoji: {
-    fontSize: 20,
+    fontSize: theme.typography.sizes.xl,
   },
   stepText: {
     flex: 1,
-    fontSize: 16,
-    color: "#333",
-    fontWeight: "600",
+    fontSize: theme.typography.sizes.md,
+    color: theme.colors.gray333,
+    fontFamily: theme.typography.fonts.semibold,
   },
   stepNumber: {
     width: 24,
     height: 24,
-    borderRadius: 12,
-    backgroundColor: "#667eea",
+    borderRadius: theme.borderRadius.lg,
+    backgroundColor: theme.colors.primary[500],
     justifyContent: "center",
     alignItems: "center",
   },
   stepNumberText: {
-    fontSize: 12,
-    color: "white",
-    fontWeight: "700",
+    fontSize: theme.typography.sizes.sm,
+    color: theme.colors.white,
+    fontFamily: theme.typography.fonts.bold,
   },
 
   // Loading Styles
@@ -770,13 +787,13 @@ const styles = StyleSheet.create({
   },
   loadingEmoji: {
     fontSize: 60,
-    marginBottom: 16,
+    marginBottom: theme.spacing[4],
   },
   loadingText: {
-    color: "#ffffff",
-    fontSize: 18,
-    fontWeight: "600",
-    textShadowColor: "rgba(0,0,0,0.3)",
+    color: theme.colors.white,
+    fontSize: theme.typography.sizes.lg,
+    fontFamily: theme.typography.fonts.semibold,
+    textShadowColor: blackWithOpacity(0.3),
     textShadowOffset: {width: 0, height: 2},
     textShadowRadius: 4,
   },

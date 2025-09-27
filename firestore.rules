@@ -38,6 +38,54 @@ service cloud.firestore {
         request.auth.uid == request.resource.data.userId;
     }
     
+    // Users can read and write their own tracker records
+    match /feeding_records/{recordId} {
+      allow read, write: if request.auth != null && 
+        (resource == null || request.auth.uid == resource.data.userId);
+      allow create: if request.auth != null && 
+        request.auth.uid == request.resource.data.userId;
+    }
+    
+    match /water_records/{recordId} {
+      allow read, write: if request.auth != null && 
+        (resource == null || request.auth.uid == resource.data.userId);
+      allow create: if request.auth != null && 
+        request.auth.uid == request.resource.data.userId;
+    }
+    
+    match /weight_records/{recordId} {
+      allow read, write: if request.auth != null && 
+        (resource == null || request.auth.uid == resource.data.userId);
+      allow create: if request.auth != null && 
+        request.auth.uid == request.resource.data.userId;
+    }
+    
+    match /feeding_schedules/{scheduleId} {
+      allow read, write: if request.auth != null && 
+        (resource == null || request.auth.uid == resource.data.userId);
+      allow create: if request.auth != null && 
+        request.auth.uid == request.resource.data.userId;
+    }
+    
+    match /tracker_notifications/{notificationId} {
+      allow read, write: if request.auth != null && 
+        (resource == null || request.auth.uid == resource.data.userId);
+      allow create: if request.auth != null && 
+        request.auth.uid == request.resource.data.userId;
+    }
+    
+    // Users can create and read their own suggestions
+    match /suggestions/{suggestionId} {
+      allow read: if request.auth != null && 
+        request.auth.uid == resource.data.userId;
+      allow create: if request.auth != null && 
+        request.auth.uid == request.resource.data.userId;
+      // Only allow updates to status by admin (not implemented yet)
+      allow update: if request.auth != null && 
+        request.auth.uid == resource.data.userId &&
+        !('status' in request.resource.data.diff(resource.data).affectedKeys());
+    }
+    
     // Deny all other access
     match /{document=**} {
       allow read, write: if false;

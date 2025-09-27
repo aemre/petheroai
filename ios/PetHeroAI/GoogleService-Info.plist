@@ -12,6 +12,8 @@
 	<string>com.pethero.ai</string>
 	<key>PROJECT_ID</key>
 	<string>pet-hero-ai</string>
+	<key>AUTH_DOMAIN</key>
+	<string>pet-hero-ai.firebaseapp.com</string>
 	<key>STORAGE_BUCKET</key>
 	<string>pet-hero-ai.firebasestorage.app</string>
 	<key>IS_ADS_ENABLED</key>

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, {useEffect, useRef} from "react";
 import {
   View,
   Text,
@@ -7,29 +7,35 @@ import {
   Animated,
   Dimensions,
   Image,
-} from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigation, useRoute, RouteProp } from '@react-navigation/native';
-import { StackNavigationProp } from '@react-navigation/stack';
+} from "react-native";
+import {LinearGradient} from "expo-linear-gradient";
+import {useDispatch, useSelector} from "react-redux";
+import {useNavigation, useRoute, RouteProp} from "@react-navigation/native";
+import {StackNavigationProp} from "@react-navigation/stack";
 
-import { AppDispatch, RootState } from '../store/store';
-import { checkPhotoStatus } from '../store/slices/photoSlice';
-import { RootStackParamList } from '../navigation/AppNavigator';
+import {AppDispatch, RootState} from "../store/store";
+import {checkPhotoStatus} from "../store/slices/photoSlice";
+import {RootStackParamList} from "../navigation/AppNavigator";
+import {theme} from "../theme";
 
-type ProcessingScreenRouteProp = RouteProp<RootStackParamList, 'Processing'>;
-type ProcessingScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Processing'>;
+type ProcessingScreenRouteProp = RouteProp<RootStackParamList, "Processing">;
+type ProcessingScreenNavigationProp = StackNavigationProp<
+  RootStackParamList,
+  "Processing"
+>;
 
-const { width } = Dimensions.get('window');
+const {width} = Dimensions.get("window");
 
 export default function ProcessingScreen() {
   const dispatch = useDispatch<AppDispatch>();
   const navigation = useNavigation<ProcessingScreenNavigationProp>();
   const route = useRoute<ProcessingScreenRouteProp>();
-  const { photoId, originalImageUri } = route.params;
+  const {photoId, originalImageUri} = route.params;
 
-  const { currentPhoto, isProcessing } = useSelector((state: RootState) => state.photo);
-  
+  const {currentPhoto, isProcessing} = useSelector(
+    (state: RootState) => state.photo
+  );
+
   // Animation values
   const overlayOpacity = useRef(new Animated.Value(0)).current;
   const transformProgress = useRef(new Animated.Value(0)).current;
@@ -51,13 +57,13 @@ export default function ProcessingScreen() {
   }, [photoId, dispatch]);
 
   useEffect(() => {
-    if (currentPhoto && currentPhoto.status === 'done') {
+    if (currentPhoto && currentPhoto.status === "done") {
       // Complete the transformation animation first
       completeTransformation();
-      
+
       // Then navigate to result
       setTimeout(() => {
-        navigation.replace('Result', { photoId });
+        navigation.replace("Result", {photoId});
       }, 2000);
     }
   }, [currentPhoto, navigation, photoId]);
@@ -129,42 +135,42 @@ export default function ProcessingScreen() {
 
   const sparkleRotate = sparkleRotation.interpolate({
     inputRange: [0, 1],
-    outputRange: ['0deg', '360deg'],
+    outputRange: ["0deg", "360deg"],
   });
 
   const getStatusText = () => {
     if (!currentPhoto) {
-      return 'Preparing your photo...';
+      return "Preparing your photo...";
     }
-    
+
     switch (currentPhoto.status) {
-      case 'processing':
-        return 'AI is working its magic...';
-      case 'done':
-        return 'Transformation complete!';
+      case "processing":
+        return "AI is working its magic...";
+      case "done":
+        return "Transformation complete!";
       default:
-        return t('processing.processing');
+        return t("processing.processing");
     }
   };
 
   const getSubtitleText = () => {
     if (!currentPhoto) {
-      return t('processing.patience');
+      return t("processing.patience");
     }
-    
+
     switch (currentPhoto.status) {
-      case 'processing':
-        return 'Creating your pet hero transformation';
-      case 'done':
-        return 'Get ready to see your hero pet!';
+      case "processing":
+        return "Creating your pet hero transformation";
+      case "done":
+        return "Get ready to see your hero pet!";
       default:
-        return 'Please wait...';
+        return "Please wait...";
     }
   };
 
   return (
     <LinearGradient
-      colors={['#1a1a2e', '#16213e', '#0f3460']}
+      colors={["#1a1a2e", "#16213e", "#0f3460"]}
       style={styles.container}
     >
       {/* Main Image Container */}
@@ -172,12 +178,12 @@ export default function ProcessingScreen() {
         {originalImageUri && (
           <View style={styles.imageWrapper}>
             {/* Original Image */}
-            <Image 
-              source={{ uri: originalImageUri }} 
+            <Image
+              source={{uri: originalImageUri}}
               style={styles.originalImage}
               resizeMode="cover"
             />
-            
+
             {/* Transformation Overlay with bottom-to-top animation */}
             <Animated.View
               style={[
@@ -186,13 +192,17 @@ export default function ProcessingScreen() {
                   opacity: overlayOpacity,
                   height: transformProgress.interpolate({
                     inputRange: [0, 1],
-                    outputRange: ['0%', '100%'],
+                    outputRange: ["0%", "100%"],
                   }),
                 },
               ]}
             >
               <LinearGradient
-                colors={['rgba(138, 43, 226, 0.8)', 'rgba(75, 0, 130, 0.9)', 'rgba(25, 25, 112, 0.8)']}
+                colors={[
+                  "rgba(138, 43, 226, 0.8)",
+                  "rgba(75, 0, 130, 0.9)",
+                  "rgba(25, 25, 112, 0.8)",
+                ]}
                 style={styles.gradientOverlay}
               />
             </Animated.View>
@@ -202,10 +212,7 @@ export default function ProcessingScreen() {
               style={[
                 styles.sparkleContainer,
                 {
-                  transform: [
-                    { scale: sparkleScale },
-                    { rotate: sparkleRotate },
-                  ],
+                  transform: [{scale: sparkleScale}, {rotate: sparkleRotate}],
                 },
               ]}
             >
@@ -232,16 +239,19 @@ export default function ProcessingScreen() {
       {/* Progress Indicator */}
       <View style={styles.progressContainer}>
         <View style={styles.progressBar}>
-          <Animated.View 
+          <Animated.View
             style={[
               styles.progressFill,
-              { 
+              {
                 width: transformProgress.interpolate({
                   inputRange: [0, 1],
-                  outputRange: ['10%', currentPhoto?.status === 'done' ? '100%' : '75%'],
+                  outputRange: [
+                    "10%",
+                    currentPhoto?.status === "done" ? "100%" : "75%",
+                  ],
                 }),
-              }
-            ]} 
+              },
+            ]}
           />
         </View>
         <Text style={styles.progressText}>
@@ -251,15 +261,16 @@ export default function ProcessingScreen() {
 
       {/* Loading Indicator */}
       <View style={styles.loadingContainer}>
-        <ActivityIndicator size="large" color="#FF6B6B" />
+        <ActivityIndicator size="large" color={theme.colors.secondary[500]} />
       </View>
 
       {/* Tips */}
       <View style={styles.tipsContainer}>
         <Text style={styles.tipsTitle}>🎭 AI Magic in Progress</Text>
         <Text style={styles.tipsText}>
-          Watch as your pet transforms! Our AI is analyzing facial features and creating 
-          the perfect heroic version while keeping their adorable characteristics.
+          Watch as your pet transforms! Our AI is analyzing facial features and
+          creating the perfect heroic version while keeping their adorable
+          characteristics.
         </Text>
       </View>
     </LinearGradient>
@@ -269,35 +280,35 @@ export default function ProcessingScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    padding: 20,
+    justifyContent: "space-between",
+    alignItems: "center",
+    padding: theme.spacing[5],
   },
   imageContainer: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 40,
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: theme.spacing[10],
   },
   imageWrapper: {
     width: width * 0.8,
     height: width * 0.8,
-    borderRadius: 20,
-    overflow: 'hidden',
-    position: 'relative',
+    borderRadius: theme.borderRadius["2xl"],
+    overflow: "hidden",
+    position: "relative",
     elevation: 10,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 10 },
+    shadowColor: "#000",
+    shadowOffset: {width: 0, height: 10},
     shadowOpacity: 0.3,
     shadowRadius: 20,
   },
   originalImage: {
-    width: '100%',
-    height: '100%',
-    borderRadius: 20,
+    width: "100%",
+    height: "100%",
+    borderRadius: theme.borderRadius["2xl"],
   },
   transformationOverlay: {
-    position: 'absolute',
+    position: "absolute",
     bottom: 0,
     left: 0,
     right: 0,
@@ -310,105 +321,108 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: 20,
   },
   sparkleContainer: {
-    position: 'absolute',
+    position: "absolute",
     top: 0,
     left: 0,
     right: 0,
     bottom: 0,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
   },
   sparkle: {
-    position: 'absolute',
-    fontSize: 20,
+    position: "absolute",
+    fontSize: theme.typography.sizes.xl,
   },
   sparkle2: {
-    top: '20%',
-    right: '20%',
-    fontSize: 16,
+    top: "20%",
+    right: "20%",
+    fontSize: theme.typography.sizes.md,
   },
   sparkle3: {
-    bottom: '30%',
-    left: '15%',
-    fontSize: 18,
+    bottom: "30%",
+    left: "15%",
+    fontSize: theme.typography.sizes.lg,
   },
   sparkle4: {
-    top: '60%',
-    right: '30%',
-    fontSize: 14,
+    top: "60%",
+    right: "30%",
+    fontSize: theme.typography.sizes.base,
   },
   heroIndicator: {
-    position: 'absolute',
+    position: "absolute",
     top: 15,
     right: 15,
-    backgroundColor: 'rgba(255, 255, 255, 0.9)',
-    borderRadius: 20,
-    padding: 8,
+    backgroundColor: theme.colors.white,
+    borderRadius: theme.borderRadius["2xl"],
+    padding: theme.spacing[2],
   },
   heroIcon: {
-    fontSize: 24,
+    fontSize: theme.typography.sizes["2xl"],
   },
   textContainer: {
-    alignItems: 'center',
-    marginVertical: 20,
+    alignItems: "center",
+    marginVertical: theme.spacing[5],
   },
   statusText: {
     fontSize: 22,
-    fontWeight: 'bold',
-    color: '#FFFFFF',
-    textAlign: 'center',
-    marginBottom: 8,
+    fontFamily: theme.typography.fonts.bold,
+    color: theme.colors.white,
+    textAlign: "center",
+    marginBottom: theme.spacing[2],
   },
   subtitleText: {
-    fontSize: 16,
-    color: '#B0C4DE',
-    textAlign: 'center',
+    fontSize: theme.typography.sizes.md,
+    fontFamily: theme.typography.fonts.regular,
+    color: "#B0C4DE",
+    textAlign: "center",
     lineHeight: 22,
   },
   progressContainer: {
     width: width - 40,
-    alignItems: 'center',
-    marginBottom: 20,
+    alignItems: "center",
+    marginBottom: theme.spacing[5],
   },
   progressBar: {
-    width: '100%',
+    width: "100%",
     height: 6,
-    backgroundColor: 'rgba(255, 255, 255, 0.2)',
+    backgroundColor: theme.colors.white,
     borderRadius: 3,
-    marginBottom: 8,
-    overflow: 'hidden',
+    marginBottom: theme.spacing[2],
+    overflow: "hidden",
   },
   progressFill: {
-    height: '100%',
-    backgroundColor: '#FF6B6B',
+    height: "100%",
+    backgroundColor: "#FF6B6B",
     borderRadius: 3,
   },
   progressText: {
-    fontSize: 14,
-    color: '#B0C4DE',
-    textAlign: 'center',
+    fontSize: theme.typography.sizes.base,
+    fontFamily: theme.typography.fonts.regular,
+    color: "#B0C4DE",
+    textAlign: "center",
   },
   loadingContainer: {
-    marginBottom: 20,
+    marginBottom: theme.spacing[5],
   },
   tipsContainer: {
-    backgroundColor: 'rgba(255, 255, 255, 0.1)',
-    padding: 16,
-    borderRadius: 12,
-    width: '100%',
-    marginBottom: 20,
+    backgroundColor: theme.colors.white,
+    padding: theme.spacing[4],
+    borderRadius: theme.borderRadius.lg,
+    width: "100%",
+    marginBottom: theme.spacing[5],
   },
   tipsTitle: {
-    fontSize: 16,
-    fontWeight: '600',
-    color: '#FFFFFF',
-    marginBottom: 8,
-    textAlign: 'center',
+    fontSize: theme.typography.sizes.md,
+    fontFamily: theme.typography.fonts.semibold,
+    color: theme.colors.white,
+    marginBottom: theme.spacing[2],
+    textAlign: "center",
   },
   tipsText: {
-    fontSize: 14,
-    color: '#B0C4DE',
+    fontSize: theme.typography.sizes.base,
+    fontFamily: theme.typography.fonts.regular,
+    color: "#B0C4DE",
     lineHeight: 20,
-    textAlign: 'center',
+    textAlign: "center",
   },
 });

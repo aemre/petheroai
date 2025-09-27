@@ -18,6 +18,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import {useTranslation} from "../hooks/useTranslation";
 import LanguageSelector from "../components/LanguageSelector";
 import {Language} from "../services/i18n";
+import {theme} from "../theme";
 
 const {width, height} = Dimensions.get("window");
 
@@ -167,8 +168,8 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: 60,
     left: 50,
-    fontSize: 24,
-    color: "#B794F6",
+    fontSize: theme.typography.sizes["2xl"],
+    color: theme.colors.primary[300],
     opacity: 0.6,
     transform: [{rotate: "-15deg"}],
   },
@@ -176,8 +177,8 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: 80,
     right: 40,
-    fontSize: 20,
-    color: "#B794F6",
+    fontSize: theme.typography.sizes.xl,
+    color: theme.colors.primary[300],
     opacity: 0.5,
     transform: [{rotate: "20deg"}],
   },
@@ -189,9 +190,9 @@ const styles = StyleSheet.create({
     paddingBottom: 50,
   },
   questionText: {
-    fontSize: 36,
-    fontWeight: "bold",
-    color: "#4A5568",
+    fontSize: theme.typography.sizes["5xl"],
+    fontFamily: theme.typography.fonts.bold,
+    color: theme.colors.gray[600],
     textAlign: "center",
     lineHeight: 45,
     marginBottom: 60,
@@ -202,11 +203,11 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     paddingHorizontal: 10,
-    marginBottom: 40,
+    marginBottom: theme.spacing[10],
   },
   optionButton: {
     backgroundColor: "#FFF5E6",
-    borderRadius: 20,
+    borderRadius: theme.borderRadius["2xl"],
     width: width * 0.28,
     height: width * 0.32,
     alignItems: "center",
@@ -221,22 +222,22 @@ const styles = StyleSheet.create({
     elevation: 6,
     borderWidth: 3,
     borderColor: "transparent",
-    paddingVertical: 8,
+    paddingVertical: theme.spacing[2],
   },
   selectedOption: {
-    borderColor: "#8B5CF6",
+    borderColor: theme.colors.primary[500],
     transform: [{scale: 1.05}],
   },
   petImage: {
     width: "80%",
     height: "65%",
-    borderRadius: 16,
-    marginBottom: 4,
+    borderRadius: theme.borderRadius.xl,
+    marginBottom: theme.spacing[1],
   },
   petLabel: {
-    fontSize: 14,
-    fontWeight: "bold",
-    color: "#4A5568",
+    fontSize: theme.typography.sizes.base,
+    fontFamily: theme.typography.fonts.bold,
+    color: theme.colors.gray[600],
     textAlign: "center",
   },
   birdIconContainer: {
@@ -245,14 +246,14 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "#F7FAFC",
-    borderRadius: 16,
-    marginBottom: 4,
+    borderRadius: theme.borderRadius.xl,
+    marginBottom: theme.spacing[1],
   },
   birdIcon: {
-    fontSize: 48,
+    fontSize: theme.typography.sizes["6xl"],
   },
   continueButton: {
-    backgroundColor: "#8B5CF6",
+    backgroundColor: theme.colors.primary[500],
     borderRadius: 25,
     paddingVertical: 18,
     paddingHorizontal: 60,
@@ -273,9 +274,9 @@ const styles = StyleSheet.create({
     opacity: 0.6,
   },
   continueButtonText: {
-    color: "#FFFFFF",
-    fontSize: 20,
-    fontWeight: "bold",
+    color: theme.colors.white,
+    fontSize: theme.typography.sizes.xl,
+    fontFamily: theme.typography.fonts.bold,
   },
   languageButton: {
     position: "absolute",
@@ -284,7 +285,7 @@ const styles = StyleSheet.create({
     width: 44,
     height: 44,
     borderRadius: 22,
-    backgroundColor: "rgba(255, 255, 255, 0.9)",
+    backgroundColor: theme.colors.white,
     alignItems: "center",
     justifyContent: "center",
     shadowColor: "#000",
@@ -299,7 +300,7 @@ const styles = StyleSheet.create({
     left: 20,
   },
   languageIcon: {
-    fontSize: 24,
+    fontSize: theme.typography.sizes["2xl"],
   },
   textRTL: {
     textAlign: "right",

@@ -9,6 +9,7 @@ import {
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Language, i18n } from '../services/i18n';
 import { useTranslation } from '../hooks/useTranslation';
+import { theme } from '../theme';
 
 interface LanguageSelectorProps {
   visible: boolean;
@@ -96,9 +97,9 @@ const styles = StyleSheet.create({
   },
   container: {
     backgroundColor: '#fff',
-    borderRadius: 16,
-    padding: 24,
-    margin: 20,
+    borderRadius: theme.borderRadius.xl,
+    padding: theme.spacing[6],
+    margin: theme.spacing[5],
     minWidth: 280,
     elevation: 5,
     shadowColor: '#000',
@@ -110,9 +111,9 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end',
   },
   title: {
-    fontSize: 20,
+    fontSize: theme.typography.sizes.xl,
     fontWeight: 'bold',
-    marginBottom: 16,
+    marginBottom: theme.spacing[4],
     textAlign: 'center',
     color: '#333',
   },
@@ -122,11 +123,11 @@ const styles = StyleSheet.create({
   languageButton: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingVertical: 12,
-    paddingHorizontal: 16,
-    borderRadius: 8,
-    marginBottom: 8,
-    backgroundColor: '#f5f5f5',
+    paddingVertical: theme.spacing[3],
+    paddingHorizontal: theme.spacing[4],
+    borderRadius: theme.borderRadius.md,
+    marginBottom: theme.spacing[2],
+    backgroundColor: theme.colors.neutral[100],
   },
   languageButtonRTL: {
     flexDirection: 'row-reverse',
@@ -135,11 +136,11 @@ const styles = StyleSheet.create({
     backgroundColor: '#FF6B6B',
   },
   flag: {
-    fontSize: 24,
-    marginRight: 12,
+    fontSize: theme.typography.sizes["2xl"],
+    marginRight: theme.spacing[3],
   },
   languageName: {
-    fontSize: 16,
+    fontSize: theme.typography.sizes.md,
     flex: 1,
     color: '#333',
   },
@@ -148,23 +149,23 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
   checkmark: {
-    fontSize: 18,
+    fontSize: theme.typography.sizes.lg,
     color: '#fff',
     fontWeight: 'bold',
   },
   closeButton: {
-    marginTop: 16,
-    paddingVertical: 12,
-    paddingHorizontal: 24,
+    marginTop: theme.spacing[4],
+    paddingVertical: theme.spacing[3],
+    paddingHorizontal: theme.spacing[6],
     backgroundColor: '#f0f0f0',
-    borderRadius: 8,
+    borderRadius: theme.borderRadius.md,
     alignItems: 'center',
   },
   closeButtonRTL: {
     alignItems: 'center',
   },
   closeText: {
-    fontSize: 16,
+    fontSize: theme.typography.sizes.md,
     color: '#666',
     fontWeight: '500',
   },

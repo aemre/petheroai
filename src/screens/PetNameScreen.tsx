@@ -19,6 +19,7 @@ import {useTranslation} from "../hooks/useTranslation";
 import LanguageSelector from "../components/LanguageSelector";
 import {Language} from "../services/i18n";
 import ReactNativeHapticFeedback from "react-native-haptic-feedback";
+import {theme} from "../theme";
 
 const {width, height} = Dimensions.get("window");
 
@@ -387,8 +388,8 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: 60,
     left: 50,
-    fontSize: 24,
-    color: "#B794F6",
+    fontSize: theme.typography.sizes["2xl"],
+    color: theme.colors.primary[300],
     opacity: 0.6,
     transform: [{rotate: "-15deg"}],
   },
@@ -396,28 +397,28 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: 80,
     right: 40,
-    fontSize: 20,
-    color: "#B794F6",
+    fontSize: theme.typography.sizes.xl,
+    color: theme.colors.primary[300],
     opacity: 0.5,
     transform: [{rotate: "20deg"}],
   },
   content: {
     flex: 1,
     justifyContent: "center",
-    paddingHorizontal: 32,
+    paddingHorizontal: theme.spacing[8],
     paddingTop: height * 0.1,
     paddingBottom: 50,
   },
   questionText: {
-    fontSize: 32,
-    fontWeight: "bold",
-    color: "#4A5568",
+    fontSize: theme.typography.sizes["4xl"],
+    fontFamily: theme.typography.fonts.bold,
+    color: theme.colors.gray[600],
     textAlign: "center",
     lineHeight: 40,
     marginBottom: 60,
   },
   inputContainer: {
-    marginBottom: 20,
+    marginBottom: theme.spacing[5],
     alignItems: "center",
     position: "relative",
   },
@@ -425,13 +426,14 @@ const styles = StyleSheet.create({
     borderColor: "rgba(239, 68, 68, 0.5)",
   },
   textInput: {
-    backgroundColor: "#FFFFFF",
+    backgroundColor: theme.colors.white,
     borderRadius: 25,
     paddingHorizontal: 25,
-    paddingVertical: 20,
+    paddingVertical: theme.spacing[5],
     paddingRight: 55, // Make room for validation indicator
-    fontSize: 20,
-    color: "#4A5568",
+    fontSize: theme.typography.sizes.xl,
+    fontFamily: theme.typography.fonts.regular,
+    color: theme.colors.gray[600],
     textAlign: "center",
     width: width * 0.8,
     shadowColor: "#000",
@@ -449,13 +451,14 @@ const styles = StyleSheet.create({
     textAlign: "center", // Keep center alignment for RTL
   },
   characterCount: {
-    fontSize: 14,
+    fontSize: theme.typography.sizes.base,
+    fontFamily: theme.typography.fonts.regular,
     color: "#718096",
     textAlign: "center",
-    marginBottom: 40,
+    marginBottom: theme.spacing[10],
   },
   continueButton: {
-    backgroundColor: "#8B5CF6",
+    backgroundColor: theme.colors.primary[500],
     borderRadius: 25,
     paddingVertical: 18,
     paddingHorizontal: 60,
@@ -476,8 +479,8 @@ const styles = StyleSheet.create({
     opacity: 0.6,
   },
   continueButtonText: {
-    color: "#FFFFFF",
-    fontSize: 20,
+    color: theme.colors.white,
+    fontSize: theme.typography.sizes.xl,
     fontWeight: "bold",
   },
   languageButton: {
@@ -487,7 +490,7 @@ const styles = StyleSheet.create({
     width: 44,
     height: 44,
     borderRadius: 22,
-    backgroundColor: "rgba(255, 255, 255, 0.9)",
+    backgroundColor: "theme.colors.white",
     alignItems: "center",
     justifyContent: "center",
     shadowColor: "#000",
@@ -502,7 +505,7 @@ const styles = StyleSheet.create({
     left: 20,
   },
   languageIcon: {
-    fontSize: 24,
+    fontSize: theme.typography.sizes["2xl"],
   },
   textRTL: {
     textAlign: "right",
@@ -520,12 +523,12 @@ const styles = StyleSheet.create({
     transform: [{translateY: -10}],
   },
   validationIcon: {
-    fontSize: 20,
+    fontSize: theme.typography.sizes.xl,
     fontWeight: "bold",
   },
   errorText: {
-    color: "#EF4444",
-    fontSize: 14,
+    color: theme.colors.error[500],
+    fontSize: theme.typography.sizes.base,
     textAlign: "center",
     marginBottom: 10,
     fontWeight: "500",
@@ -536,25 +539,25 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     minHeight: 60,
-    marginBottom: 20,
-    paddingHorizontal: 20,
+    marginBottom: theme.spacing[5],
+    paddingHorizontal: theme.spacing[5],
   },
   letterCube: {
-    backgroundColor: "rgba(255, 255, 255, 0.98)",
+    backgroundColor: theme.colors.white,
     borderRadius: 15,
     paddingHorizontal: 14,
     paddingVertical: 10,
-    marginHorizontal: 4,
+    marginHorizontal: theme.spacing[1],
     marginVertical: 3,
-    shadowColor: "#8B5CF6",
+    shadowColor: theme.colors.primary[500],
     shadowOffset: {width: 0, height: 6},
     shadowOpacity: 0.4,
     shadowRadius: 12,
     elevation: 12,
     borderWidth: 3,
     borderColor: "rgba(139, 92, 246, 0.5)",
-    borderTopColor: "rgba(255, 255, 255, 0.8)", // 3D effect
-    borderLeftColor: "rgba(255, 255, 255, 0.6)",
+    borderTopColor: theme.colors.white, // 3D effect
+    borderLeftColor: theme.colors.white,
     borderBottomColor: "rgba(139, 92, 246, 0.7)",
     borderRightColor: "rgba(139, 92, 246, 0.6)",
     minWidth: 40,
@@ -563,9 +566,9 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   letterText: {
-    fontSize: 24,
-    fontWeight: "bold",
-    color: "#4A5568",
+    fontSize: theme.typography.sizes["2xl"],
+    fontFamily: theme.typography.fonts.bold,
+    color: theme.colors.gray[600],
     textAlign: "center",
   },
 });
